@@ -16,6 +16,11 @@ class Home extends Component {
             title="Add Plant"
             onPress={ () => this.props.navigation.navigate('AddPlant') }
         />
+
+        <Button 
+          title="About Plant Mamma"
+          onPress={ () => this.props.navigation.navigate('AboutApp') }
+        />
       </View>
     );
   }
