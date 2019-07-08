@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Home from './screens/Home';
-import AddPlant from './screens/AddPlant';
-import ListPlants from './screens/ListPlants';
+import Home from './src/screens/Home';
+import AddPlant from './src/screens/AddPlant';
+import ListPlants from './src/screens/ListPlants';
 
 const AppNavigator = createStackNavigator(
   {

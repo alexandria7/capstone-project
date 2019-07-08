@@ -5,13 +5,17 @@ class Home extends Component {
   render() {
     return (
       <View>
-        <Text>Home Screen</Text>
+        <Text>Plant Momma</Text>
 
         <Button 
             title="My Plants"
             onPress={ () => this.props.navigation.navigate('ListPlants') }
         />
 
+        <Button 
+            title="Add Plant"
+            onPress={ () => this.props.navigation.navigate('AddPlant') }
+        />
       </View>
     );
   }

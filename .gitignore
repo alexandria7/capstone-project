@@ -10,3 +10,5 @@ web-build/
 web-report/
 
 package-lock.json
+
+config.js
