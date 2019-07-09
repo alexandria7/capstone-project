@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
       color: '#055607',
       fontWeight: 'bold',
       alignSelf: 'center',
+      marginTop: 50,
       paddingTop: 10
   },
   imageStyle: {

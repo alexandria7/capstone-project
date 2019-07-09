@@ -5,7 +5,7 @@ const AboutApp = () => {
     return (
     <View>
         <Text>
-            Welcome to Plant Mamma!
+            Welcome to Plant Momma!
         </Text>
 
         <Text>
