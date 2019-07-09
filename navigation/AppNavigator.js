@@ -1,10 +1,35 @@
-import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+// import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Auth from '../src/screens/Auth';
+import Home from '../src/screens/Home';
+import AddPlant from '../src/screens/AddPlant';
+import ListPlants from '../src/screens/ListPlants';
+import AboutApp from '../src/screens/AboutApp';
 
-export default createAppContainer(
-  createSwitchNavigator({
-    // You could add another route here for authentication.
-    // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-    Main: MainTabNavigator,
-  })
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        header: null
+      },
+    },
+    AddPlant: {
+      screen: AddPlant
+    },
+    ListPlants: {
+      screen: ListPlants
+    }, 
+    AboutApp: {
+      screen: AboutApp
+    }
+  },
+  {
+    initialRouteName: 'Home'
+  }
 );
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default AppContainer;
+

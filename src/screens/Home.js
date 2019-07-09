@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.mainHomepageContainer}>
-        <Text style={styles.titleStyle}>Plant Momma</Text>
+        <Text style={styles.titleStyle}>Plant Mamma</Text>
 
         <Image 
           style={styles.imageStyle}
