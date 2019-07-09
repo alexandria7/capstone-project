@@ -1,27 +1,47 @@
 // import React from 'react';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 import Auth from '../src/screens/Auth';
 import Home from '../src/screens/Home';
 import AddPlant from '../src/screens/AddPlant';
 import ListPlants from '../src/screens/ListPlants';
 import AboutApp from '../src/screens/AboutApp';
 
-const AppNavigator = createStackNavigator(
+const AppNavigator = createSwitchNavigator(
   {
+    Login: {
+      screen: Auth,
+      navigationOptions: {
+        header: null
+      },
+    },
     Home: {
       screen: Home,
       navigationOptions: {
         header: null
       },
     },
-    AddPlant: {
-      screen: AddPlant
-    },
-    ListPlants: {
-      screen: ListPlants
-    }, 
-    AboutApp: {
-      screen: AboutApp
+    main: {
+      screen: createDrawerNavigator({
+        Home: { screen: Home },
+        ListPlants: { 
+          screen: ListPlants, 
+          navigationOptions: {
+            drawerLabel: 'My Plants'
+          }, 
+        },
+        AddPlant: { 
+          screen: AddPlant, 
+          navigationOptions: {
+            drawerLabel: 'Add a New Plant'
+          },  
+        },
+        AboutApp: { 
+          screen: AboutApp,
+          navigationOptions: {
+            drawerLabel: 'About Wet Your Plants'
+          }, 
+        }
+      })
     }
   },
   {

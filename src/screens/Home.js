@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.mainHomepageContainer}>
-        <Text style={styles.titleStyle}>Plant Mamma</Text>
+        <Text style={styles.titleStyle}>Wet Your Plants</Text>
 
         <Image 
           style={styles.imageStyle}
@@ -26,7 +26,7 @@ class Home extends Component {
           <TouchableOpacity 
             onPress={ () => this.props.navigation.navigate('AboutApp') }
           >
-            <Text style={styles.aboutAppButtonText}>About Plant Momma</Text>
+            <Text style={styles.aboutAppButtonText}>About Wet Your Plants</Text>
           </TouchableOpacity>
         </View>
 

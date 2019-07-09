@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const AboutApp = () => {
     return (
-    <View>
+    <View style={styles.aboutAppMainStyle}>
         <Text>
-            Welcome to Plant Momma!
+            Welcome to Wet Your Plants!
         </Text>
 
         <Text>
@@ -14,5 +14,11 @@ const AboutApp = () => {
     </View>
     )
 };
+
+const styles = StyleSheet.create({
+    aboutAppMainStyle: {
+        marginTop: 20
+    }
+  });
 
 export default AboutApp;
