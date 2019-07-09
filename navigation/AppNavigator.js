@@ -8,7 +8,7 @@ import AboutApp from '../src/screens/AboutApp';
 
 const AppNavigator = createSwitchNavigator(
   {
-    Login: {
+    Auth: {
       screen: Auth,
       navigationOptions: {
         header: null
@@ -45,7 +45,7 @@ const AppNavigator = createSwitchNavigator(
     }
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Auth'
   }
 );
 
