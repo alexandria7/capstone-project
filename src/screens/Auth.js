@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import * as Expo from 'expo';
+import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import firebase from 'firebase';
+import firebaseConfig from '../config';
 
 class Auth extends Component {
+    async signInWithGoogleAsync() {
+        try {
+          const result = await Expo.Google.logInAsync({
+            behavior: 'web',
+            iosClientId: '673892001378-v8mvtf1rga472rco10e6l207ilbkk9i0.apps.googleusercontent.com',
+            scopes: ['profile', 'email'],
+          });
+      
+          if (result.type === 'success') {
+            return result.accessToken;
+          } else {
+            return { cancelled: true };
+          }
+        } catch (e) {
+          return { error: true };
+        }
+      }
+
     render() {
         return (
             <View style={styles.mainLoginStyle}>
@@ -13,7 +33,10 @@ class Auth extends Component {
                 source={require('../images/adansonii-transparent.png')}
                 />
 
-                <Text>Please Log In</Text>
+                <Button
+                    title='Sign in with Google'
+                    onPress={() => this.signInWithGoogleAsync()}
+                />
             </View>
         )
     }

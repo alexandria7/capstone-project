@@ -1,5 +1,6 @@
 // import React from 'react';
 import { createSwitchNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
+import Loading from '../src/screens/Loading';
 import Auth from '../src/screens/Auth';
 import Home from '../src/screens/Home';
 import AddPlant from '../src/screens/AddPlant';
@@ -8,6 +9,12 @@ import AboutApp from '../src/screens/AboutApp';
 
 const AppNavigator = createSwitchNavigator(
   {
+    Loading: {
+      screen: Loading,
+      navigationOptions: {
+        header: null
+      },
+    },
     Auth: {
       screen: Auth,
       navigationOptions: {
