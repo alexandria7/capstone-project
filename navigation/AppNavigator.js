@@ -53,7 +53,7 @@ const AppNavigator = createSwitchNavigator(
     }
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Loading'
   }
 );
 

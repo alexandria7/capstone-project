@@ -3,10 +3,13 @@ import firebase from 'firebase';
 import firebaseConfig from './src/config';
 import AppContainer from './navigation/AppNavigator';
 
-// componentDidMount() {
-  firebase.initializeApp(firebaseConfig);
-// }
+firebase.initializeApp(firebaseConfig);
+
 class App extends Component {
+
+  // componentDidMount() {
+  //   firebase.initializeApp(firebaseConfig);
+  //   }
 
   render() {
     return <AppContainer />;

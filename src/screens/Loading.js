@@ -4,7 +4,7 @@ import firebase from 'firebase';
 
 class Loading extends Component {
     componentDidMount() {
-        this.checkIfLoggedIn;
+        this.checkIfLoggedIn();
     }
 
     checkIfLoggedIn() {
@@ -25,7 +25,7 @@ class Loading extends Component {
                     source={require('../images/pothos-transparent.png')}
                 />
 
-                {/* <ActivityIndicator size='large'/> */}
+                <ActivityIndicator size='large'/>
 
                 <Text>Loading...Planty things await...</Text>
             </View>
