@@ -33,7 +33,8 @@ const AppNavigator = createSwitchNavigator(
         ListPlants: { 
           screen: ListPlants, 
           navigationOptions: {
-            drawerLabel: 'My Plants'
+            drawerLabel: 'My Plants',
+            // header: navigationOptionsHeader
           }, 
         },
         AddPlant: { 
@@ -52,9 +53,22 @@ const AppNavigator = createSwitchNavigator(
     }
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: 'Home'
   }
 );
+
+// const navigationOptionsHeader=({navigation})=>{
+//   return {
+
+//     headerLeft: (
+//         <Button
+//           onPress={() => navigation.toggleDrawer()}
+//           title="Info"
+//           color="#222"
+//         />
+//     )
+//   };
+// }
 
 const AppContainer = createAppContainer(AppNavigator);
 
