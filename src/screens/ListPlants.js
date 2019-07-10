@@ -18,7 +18,9 @@ class ListPlants extends Component {
 
 const styles = StyleSheet.create({
   aboutAppMainStyle: {
-      marginTop: 20
+      // marginTop: 20,
+      flex: 1,
+      backgroundColor: '#BDE1C9', 
   }
 });
 

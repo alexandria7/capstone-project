@@ -34,7 +34,6 @@ const AppNavigator = createSwitchNavigator(
           screen: ListPlants, 
           navigationOptions: {
             drawerLabel: 'My Plants',
-            // header: navigationOptionsHeader
           }, 
         },
         AddPlant: { 
