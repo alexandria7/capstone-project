@@ -4,6 +4,8 @@ import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 
 class Auth extends Component {
+    
+    //taken from Firebase Google sign-in docs
     isUserEqual(googleUser, firebaseUser) {
         if (firebaseUser) {
           const providerData = firebaseUser.providerData;
@@ -18,6 +20,7 @@ class Auth extends Component {
         return false;
     }
 
+    //taken from Firebase Google sign-in docs
     onSignIn(googleUser) {
         console.log('Google Auth Response', googleUser);
         // We need to register an Observer on Firebase Auth to make sure auth is initialized.
@@ -51,6 +54,7 @@ class Auth extends Component {
         }.bind(this));
       }
 
+      // from Expo Google sign-in docs
       async signInWithGoogleAsync () {
         try {
           const result = await Expo.Google.logInAsync({

@@ -4,10 +4,10 @@ import firebase from 'firebase';
 
 class Loading extends Component {
     componentDidMount() {
-        this.checkIfLoggedIn();
+        this.isUserLoggedIn();
     }
 
-    checkIfLoggedIn() {
+    isUserLoggedIn() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.props.navigation.navigate('Home')
