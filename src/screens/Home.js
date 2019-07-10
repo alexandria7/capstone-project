@@ -3,6 +3,8 @@ import firebase from 'firebase';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 class Home extends Component {
+
+  // const user 
   render() {
     return (
       <View style={styles.mainHomepageContainer}>
@@ -13,22 +15,38 @@ class Home extends Component {
           source={require('../images/adansonii-transparent.png')}
         />
 
-        <Text>Hello, user!</Text>
-        <TouchableOpacity 
-            onPress={ () => firebase.auth().signOut() }
-        >
-          <Text>Log Out</Text>
-        </TouchableOpacity>
+        <View style={styles.greetingStyle}>
+          <Text>Hello, user!</Text>
+          <TouchableOpacity 
+              onPress={ () => firebase.auth().signOut() }
+          >
+            <Text>Log Out</Text>
+          </TouchableOpacity>
+        </View>
 
-        <Button 
-            title="My Plants"
-            onPress={ () => this.props.navigation.navigate('ListPlants') }
-        />
+        <View style={styles.buttonContainerStyle}>
+          <Button 
+              title="My Plants"
+              onPress={ () => this.props.navigation.navigate('ListPlants') }
+          />
 
-        <Button 
-            title="Add Plant"
-            onPress={ () => this.props.navigation.navigate('AddPlant') }
-        />
+          <Button 
+              title="Add Plant"
+              onPress={ () => this.props.navigation.navigate('AddPlant') }
+          />
+
+          <Button 
+            title="My Notifications"
+          />
+
+          <Button 
+            title="Discussion Forum"
+          />
+
+          <Button 
+            title="My Conversations"
+          />
+        </View>
 
         <View style={styles.aboutAppStyle}>
           <TouchableOpacity 
@@ -46,7 +64,8 @@ class Home extends Component {
 const styles = StyleSheet.create({
   mainHomepageContainer: {
     flex: 1,
-    backgroundColor: '#BDE1C9'
+    backgroundColor: '#BDE1C9', 
+    // justifyContent: 'center'
   },
   titleStyle: {
       fontSize: 50,
@@ -62,6 +81,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 30
+  },
+  greetingStyle: {
+    justifyContent: 'center', 
+    alignItems: 'center',
+  },
+  buttonContainerStyle: {
+    marginTop: 30
   },
   aboutAppStyle: {
     flex: 1,
