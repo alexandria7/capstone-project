@@ -3,9 +3,10 @@ import firebase from 'firebase';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 class Home extends Component {
-
-  // const user 
   render() {
+
+    const loggedInUser = firebase.auth().currentUser;
+
     return (
       <View style={styles.mainHomepageContainer}>
         <Text style={styles.titleStyle}>Wet Your Plants</Text>
@@ -16,11 +17,11 @@ class Home extends Component {
         />
 
         <View style={styles.greetingStyle}>
-          <Text>Hello, user!</Text>
+          <Text style={styles.greetingText}>{`Hello, ${loggedInUser.displayName}!`}</Text>
           <TouchableOpacity 
               onPress={ () => firebase.auth().signOut() }
           >
-            <Text>Log Out</Text>
+            <Text style={styles.greetingButtonText}>Log Out</Text>
           </TouchableOpacity>
         </View>
 
@@ -86,8 +87,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center',
   },
+  greetingText: {
+    fontSize: 15,
+    color: '#055607',
+    fontWeight: 'bold'
+  },
+  greetingButtonText: {
+    fontSize: 15,
+    color: '#055607'
+  },
   buttonContainerStyle: {
-    marginTop: 30
+    marginTop: 50
   },
   aboutAppStyle: {
     flex: 1,
