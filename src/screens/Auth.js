@@ -38,7 +38,7 @@ class Auth extends Component {
             .then(function(result) {
                 console.log('user signed in!');
                 console.log('result.user.uid is', result.user.uid);
-                console.log('firebase.auth() is', firebase.auth().uid)
+                console.log('firebase.auth() is', firebase.auth().currentUser.uid)
 
                 if (result.additionalUserInfo.isNewUser) {
                     firebase.database().ref(`/users/${result.user.uid}`)
@@ -71,24 +71,24 @@ class Auth extends Component {
       }
 
       // from Expo Google sign-in docs
-      async signInWithGoogleAsync () {
+    async signInWithGoogleAsync () {
         try {
-          const result = await Expo.Google.logInAsync({
+            const result = await Expo.Google.logInAsync({
             // behavior: 'web',
             iosClientId: '673892001378-v8mvtf1rga472rco10e6l207ilbkk9i0.apps.googleusercontent.com',
             scopes: ['profile', 'email'],
-          });
-      
-          if (result.type === 'success') {
+            });
+        
+            if (result.type === 'success') {
             this.onSignIn(result);
             return result.accessToken;
-          } else {
+            } else {
             return { cancelled: true };
-          }
+            }
         } catch (e) {
-          return { error: true };
+            return { error: true };
         }
-      }
+    }
 
     render() {
         return (

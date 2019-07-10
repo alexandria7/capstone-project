@@ -4,10 +4,6 @@ import firebase from 'firebase';
 
 class Loading extends Component {
     componentDidMount() {
-        this.isUserLoggedIn();
-    }
-
-    isUserLoggedIn() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.props.navigation.navigate('Home')
@@ -22,12 +18,13 @@ class Loading extends Component {
             <View style={styles.mainLoadingContainer}>
                 <Image 
                     style={styles.imageStyle}
+                    resizeMode="contain"
                     source={require('../images/pothos-transparent.png')}
                 />
 
                 <ActivityIndicator size='large'/>
 
-                <Text>Loading...Planty things await...</Text>
+                <Text style={styles.textStyle}>Planty things await...</Text>
             </View>
         )
     }
@@ -40,11 +37,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center' 
     },
     imageStyle: {
-        width: 85, 
-        height: 85,
+        // flex: 1,
+        width: 95, 
+        height: 95,
         alignSelf: 'center',
         // marginTop: 30,
-        // marginBottom: 30
+        marginBottom: 30,
+    },
+    textStyle: {
+        textAlign: 'center',
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#FFF',
+        marginTop: 30
     }
 });
 
