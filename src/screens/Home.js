@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import toggleDrawer from 'react-navigation';
 
 class Home extends Component {
   render() {
     return (
       <View style={styles.mainHomepageContainer}>
-        {/* <Button 
-            title="Open"
-            onPress={ (navigation) => navigation.toggleDrawer() }
-        /> */}
         <Text style={styles.titleStyle}>Wet Your Plants</Text>
 
         <Image 
           style={styles.imageStyle}
           source={require('../images/adansonii-transparent.png')}
         />
+
+        <Text>Hello, user!</Text>
+        <TouchableOpacity 
+            onPress={ () => firebase.auth().signOut() }
+        >
+          <Text>Log Out</Text>
+        </TouchableOpacity>
 
         <Button 
             title="My Plants"
