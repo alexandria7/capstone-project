@@ -4,7 +4,7 @@ import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 
 class Auth extends Component {
-    
+
     //taken from Firebase Google sign-in docs
     isUserEqual(googleUser, firebaseUser) {
         if (firebaseUser) {
@@ -34,9 +34,12 @@ class Auth extends Component {
                 googleUser.accessToken
             );
             // Sign in with credential from the Google user.
-            firebase.auth().signInAndRetrieveDataWithCredential(credential)
-            .then(function() {
-                console.log('user signed in!')
+            firebase.auth().signInWithCredential(credential)
+            .then(function(result) {
+                console.log('user signed in!');
+                console.log('result.user.uid is', result.user.uid);
+                console.log('firebase.auth() is', firebase.auth().uid)
+                // firebase.database().ref('/')
             })
             .catch(function(error) {
               // Handle Errors here.
