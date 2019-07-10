@@ -16,7 +16,7 @@ class AddPlant extends Component {
 
   addInfoToDatabase = () => {
     firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants`)
-      .set({
+      .push({
         plant_name: this.state.plantName,
         date_received: this.state.dateReceived,
         notes: this.state.notes,
