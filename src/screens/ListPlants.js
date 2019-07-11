@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StackActions, NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
@@ -36,13 +37,14 @@ class ListPlants extends Component {
 
   onPlantNameButtonPress = (plant) => {
     this.setState({ selectedPlant: plant });
-    console.log('this is the selected plant:', plant["plant_name"])
-    // console.log("i'm going to the plant page!");
+    console.log('this is the selected plant:', plant["plant_name"]);
+
     this.props.navigation.navigate('Plant', {
       plantName: plant["plant_name"],
       receivedDate: plant["date_received"],
       notes: plant["notes"]
     }); 
+
   }
 
   render() {
@@ -63,6 +65,7 @@ class ListPlants extends Component {
     //   notice = 'You have not added any plants!';
     //   noticeStyleName = 'noPlantsMessage';
     // };
+    
 
     return (
         <View style={styles.aboutAppMainStyle}>
