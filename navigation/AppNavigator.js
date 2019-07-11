@@ -28,9 +28,6 @@ const AppNavigator = createSwitchNavigator(
         header: null
       },
     },
-    Plant: { 
-      screen: Plant 
-    },
     main: {
       screen: createDrawerNavigator({
         Home: { screen: Home },
@@ -51,7 +48,13 @@ const AppNavigator = createSwitchNavigator(
           navigationOptions: {
             drawerLabel: 'About Wet Your Plants'
           }, 
-        }
+        },
+        Plant: { 
+          screen: Plant,
+          navigationOptions: {
+            drawerLabel: () => null
+          },
+        },
       })
     }
   },

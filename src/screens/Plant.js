@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
 
 class Plant extends Component {
     constructor(props) {
@@ -16,20 +16,29 @@ class Plant extends Component {
 
 
         return (
+            <View>
+                <View style={styles.headerStyle}>
 
-            // console.log("i'm in the plant page for", this.props.plantInfo)
-            
-                <View>
-                    <Text style={styles.infoStyle}>Hi I'm a plant page for {this.state.plantName}!</Text>
-                    <Text>Received: {this.state.dateReceived}</Text>
-                    <View>
-                        <Text>
-                            Notes:
-                        </Text>
-
-                        
-                    </View>
+                <View style={styles.headerNavButton}>
+                    <Button
+                        title='Open'
+                        onPress={ () => this.props.navigation.openDrawer() }
+                    />
                 </View>
+                <Text style={styles.headerText}>Wet Your Plants</Text>
+
+            </View>    
+
+                <Text style={styles.infoStyle}>Hi I'm a plant page for {this.state.plantName}!</Text>
+                <Text>Received: {this.state.dateReceived}</Text>
+                <View>
+                    <Text>
+                        Notes:
+                    </Text>
+
+                    
+                </View>
+            </View>
             
         )
     }
