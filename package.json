@@ -23,6 +23,7 @@
     "expo-google-sign-in": "^5.0.1",
     "expo-web-browser": "^5.0.0",
     "firebase": "^6.2.4",
+    "lodash": "^4.17.14",
     "mem": "^4.3.0",
     "react": "16.8.3",
     "react-dom": "^16.8.6",

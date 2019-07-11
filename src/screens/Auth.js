@@ -74,16 +74,16 @@ class Auth extends Component {
     async signInWithGoogleAsync () {
         try {
             const result = await Expo.Google.logInAsync({
-            // behavior: 'web',
-            iosClientId: '673892001378-v8mvtf1rga472rco10e6l207ilbkk9i0.apps.googleusercontent.com',
-            scopes: ['profile', 'email'],
+                // behavior: 'web',
+                iosClientId: '673892001378-v8mvtf1rga472rco10e6l207ilbkk9i0.apps.googleusercontent.com',
+                scopes: ['profile', 'email'],
             });
         
             if (result.type === 'success') {
-            this.onSignIn(result);
-            return result.accessToken;
+                this.onSignIn(result);
+                return result.accessToken;
             } else {
-            return { cancelled: true };
+                return { cancelled: true };
             }
         } catch (e) {
             return { error: true };

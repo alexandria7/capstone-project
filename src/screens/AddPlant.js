@@ -21,7 +21,17 @@ class AddPlant extends Component {
         date_received: this.state.dateReceived,
         notes: this.state.notes,
       })
-    console.log('info added!')
+      .then(() => {
+        console.log('plant added to database!');
+        this.setState = {
+          plantName: '',
+          dateReceived: '',
+          notes: [],
+          // photos: [], 
+        };
+        this.props.navigation.navigate('ListPlants');
+      });
+    
   }
 
   render() {
@@ -39,7 +49,6 @@ class AddPlant extends Component {
         <View>
           <Text>Plant Name: </Text>
           <TextInput 
-            autoCorrect={false}
             placeholder="Monstera deliciosa"
             onChangeText={(plantName) => this.setState({plantName})}
           />
@@ -48,7 +57,6 @@ class AddPlant extends Component {
         <View>
           <Text>Date Received: </Text>
           <TextInput 
-            autoCorrect={false}
             placeholder="June 28, 2019"
             onChangeText={(dateReceived) => this.setState({dateReceived})}
           />
@@ -57,7 +65,6 @@ class AddPlant extends Component {
         <View>
           <Text>Add a note about this plant: </Text>
           <TextInput 
-            autoCorrect={false}
             placeholder="only water when soil is completely dry"
             onChangeText={(note) => this.setState({notes: [note]})}
           />
