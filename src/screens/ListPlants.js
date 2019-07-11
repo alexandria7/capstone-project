@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import Plant from './Plant';
 // import { FlatList } from 'react-native-gesture-handler';
 
 class ListPlants extends Component {
@@ -34,6 +35,11 @@ class ListPlants extends Component {
       console.log('this is the state', this.state.plants)
   }
 
+  onPlantNameButtonPress() {
+    this.props.navigation.navigate('AboutApp')
+
+  }
+
   render() {
 
     let notice = '';
@@ -45,7 +51,13 @@ class ListPlants extends Component {
     };
 
   const allPlants = this.state.plants.map((plant, i) => 
-    <Text key={i}>{plant["plant_name"]}</Text>
+    // <Text key={i}>{plant["plant_name"]}</Text>
+    <TouchableOpacity 
+      onPress={ () => this.onPlantNameButtonPress() }
+      key={i}
+    >
+      <Text>{plant["plant_name"]}</Text>
+    </TouchableOpacity>
   );
 
     return (
