@@ -5,6 +5,7 @@ import Auth from '../src/screens/Auth';
 import Home from '../src/screens/Home';
 import AddPlant from '../src/screens/AddPlant';
 import ListPlants from '../src/screens/ListPlants';
+import Plant from '../src/screens/Plant';
 import AboutApp from '../src/screens/AboutApp';
 
 const AppNavigator = createSwitchNavigator(
@@ -26,6 +27,9 @@ const AppNavigator = createSwitchNavigator(
       navigationOptions: {
         header: null
       },
+    },
+    Plant: { 
+      screen: Plant 
     },
     main: {
       screen: createDrawerNavigator({
@@ -55,19 +59,6 @@ const AppNavigator = createSwitchNavigator(
     initialRouteName: 'Loading'
   }
 );
-
-// const navigationOptionsHeader=({navigation})=>{
-//   return {
-
-//     headerLeft: (
-//         <Button
-//           onPress={() => navigation.toggleDrawer()}
-//           title="Info"
-//           color="#222"
-//         />
-//     )
-//   };
-// }
 
 const AppContainer = createAppContainer(AppNavigator);
 

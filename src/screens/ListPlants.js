@@ -10,7 +10,8 @@ class ListPlants extends Component {
     super(props);
 
     this.state = {
-      plants: []
+      plants: [],
+      selectedPlant: null
     }
   }
 
@@ -24,93 +25,78 @@ class ListPlants extends Component {
     const currentUser = firebase.auth().currentUser.uid;
     firebase.database().ref(`/users/${currentUser}/plants`)
       .on('value', snapshot => {
-        const plants = _.map(snapshot.val(), (uid) => {
-          return uid;
+        const plants = _.map(snapshot.val(), (plantObject) => {
+          return plantObject;
         });
 
         this.setState({plants})
         console.log('this is the plants list from firebase', plants)
       })
-
-      console.log('this is the state', this.state.plants)
   }
 
-  onPlantNameButtonPress() {
-    this.props.navigation.navigate('AboutApp')
-
+  onPlantNameButtonPress = (plant) => {
+    this.setState({ selectedPlant: plant });
+    console.log('this is the selected plant:', plant["plant_name"])
+    // console.log("i'm going to the plant page!");
+    this.props.navigation.navigate('Plant', {
+      plantName: plant["plant_name"],
+      receivedDate: plant["date_received"],
+      notes: plant["notes"]
+    }); 
   }
 
   render() {
 
-    let notice = '';
-    let noticeStyleName = 'hasPlantsMessage';
+    const plantList = this.state.plants.map((plant, i) => 
+      <TouchableOpacity 
+        onPress={ () => this.onPlantNameButtonPress(plant) }
+        key={i}
+      >
+        <Text>{plant["plant_name"]}</Text>
+      </TouchableOpacity> 
+    );
 
-    if (this.state.plants.length === 0) {
-      notice = 'You have not added any plants!';
-      noticeStyleName = 'noPlantsMessage';
-    };
+    // let notice = '';
+    // let noticeStyleName = 'hasPlantsMessage';
 
-  const allPlants = this.state.plants.map((plant, i) => 
-    // <Text key={i}>{plant["plant_name"]}</Text>
-    <TouchableOpacity 
-      onPress={ () => this.onPlantNameButtonPress() }
-      key={i}
-    >
-      <Text>{plant["plant_name"]}</Text>
-    </TouchableOpacity>
-  );
+    // if (this.state.plants.length === 0) {
+    //   notice = 'You have not added any plants!';
+    //   noticeStyleName = 'noPlantsMessage';
+    // };
 
     return (
-      <View style={styles.aboutAppMainStyle}>
-        <View style={styles.headerStyle}>
+        <View style={styles.aboutAppMainStyle}>
+          <View style={styles.headerStyle}>
 
-          <View style={styles.headerNavButton}>
-            <Button
-              title='Open'
-              onPress={ () => this.props.navigation.openDrawer() }
+            <View style={styles.headerNavButton}>
+              <Button
+                title='Open'
+                onPress={ () => this.props.navigation.openDrawer() }
+              />
+            </View>
+            <Text style={styles.headerText}>Wet Your Plants</Text>
+
+          </View>
+
+          <View style={styles.mainPlantListSection}>
+
+            <Text style={styles.plantListTitle}>Your Plants</Text>
+
+            <Button 
+                title="Add Plant"
+                onPress={ () => this.props.navigation.navigate('AddPlant') }
             />
+
+            <View style={styles.listOfPlantsStyle}>
+
+              {plantList}
+
+            </View>
+
+            {/* <Text style={this.noticeStyleName}>{notice}</Text> */}
           </View>
-          <Text style={styles.headerText}>Wet Your Plants</Text>
-
         </View>
-
-        <View style={styles.mainPlantListSection}>
-
-          <Text style={styles.plantListTitle}>Your Plants</Text>
-
-          <Button 
-              title="Add Plant"
-              onPress={ () => this.props.navigation.navigate('AddPlant') }
-          />
-
-          <View style={styles.listOfPlantsStyle}>
-            {allPlants}
-
-          {/* <FlatList
-            data={this.state.plants}
-            renderItem={({plant}) => <Text style={{width: 40, height: 30}}>{plant}</Text>}
-            keyExtractor={index => index}
-            style={{
-              flex: 1
-            }}
-          /> */}
-
-          {/* <View> */}
-            {/* {allPlants} */}
-          {/* </View> */}
-
-
-            {/* <FlatList
-              data={this.state.plants}
-              renderItem={({plant, i}) => <Text key={i}>{plant}</Text>}
-              keyExtractor={i => i}
-            /> */}
-          </View>
-
-          <Text style={this.noticeStyleName}>{notice}</Text>
-        </View>
-      </View>
-    );
+      );
   }
 }
 
