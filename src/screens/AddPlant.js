@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
 import firebase from 'firebase';
+// import ImagePicker from 'react-native-image-picker';
+// import AddPhoto from '../components/AddPhoto';
 
 class AddPlant extends Component {
   constructor(props) {
@@ -20,14 +22,17 @@ class AddPlant extends Component {
   }
 
   handleNameChange = (plantName) => {
+    console.log('this was the name entered', plantName)
     this.setState({plantName});
   }
 
   handleDateChange = (dateReceived) => {
+    console.log('this was the date entered', dateReceived)
     this.setState({dateReceived});
   }
 
   handleNoteChange = (note) => {
+    console.log('this was the note entered', note)
     this.setState({notes: [note]});
   }
 
@@ -39,7 +44,7 @@ class AddPlant extends Component {
         notes: this.state.notes,
       })
       .then(() => {
-        console.log('plant added to database!');
+        console.log('plant added to database with the name', this.state.plantName);
 
         this.props.navigation.navigate('Plant', {
           plantName: this.state.plantName,
@@ -47,12 +52,14 @@ class AddPlant extends Component {
           notes: this.state.notes
         })
 
-        this.setState = {
+        console.log('about to reset the state!!!!!')
+        this.setState({
           plantName: '',
           dateReceived: '',
           notes: [],
           // photos: [], 
-        };
+        });
+        console.log('i should have just reset my state!!!!')
         // this.props.navigation.navigate('ListPlants');
       });
   }
@@ -76,7 +83,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="Monstera deliciosa"
               value={this.state.plantName}
-              onChangeText={val => this.handleNameChange(val)}
+              onChangeText={(name) => this.handleNameChange(name)}
               clearButtonMode='always'
             />
           </View>
@@ -86,7 +93,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="June 28, 2019"
               value={this.state.dateReceived}
-              onChangeText={val => this.handleDateChange(val)}
+              onChangeText={(name) => this.handleDateChange(name)}
               clearButtonMode='always'
             />
           </View>
@@ -96,14 +103,19 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="only water when soil is completely dry"
               value={this.state.value}
-              onChangeText={val => this.handleNoteChange(val)}
+              onChangeText={(name) => this.handleNoteChange(name)}
               clearButtonMode='always'
             />
           </View>
 
+          <View>
+            <Text>Add a photo of your plant!</Text>
+            {/* <AddPhoto /> */}
+          </View>
+
           <Button 
             title="Add Plant!"
-            onPress={ this.addInfoToDatabaseAndClear }
+            onPress={ () => {this.addInfoToDatabaseAndClear()} }
           />
         </ScrollView>
 

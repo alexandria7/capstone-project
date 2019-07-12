@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "react-native/react-native": true
     },
     "extends": "eslint:recommended",
     "globals": {
@@ -16,8 +17,11 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "react-native",
+        "babel"
     ],
+    "parser": "babel-eslint",
     "rules": {
     }
 };
