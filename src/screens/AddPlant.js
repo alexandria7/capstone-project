@@ -9,6 +9,7 @@ class AddPlant extends Component {
     super(props);
 
     this.state = {
+      plantKey: '',
       plantName: '',
       dateReceived: '',
       notes: [],
@@ -44,6 +45,12 @@ class AddPlant extends Component {
         notes: this.state.notes,
       }).key
       // .then(() => {
+        // this.setState({
+        //   plantKey: dataRef
+        // })
+      // // })
+      console.log('the state of plantKey is', this.state.plantKey )
+
         console.log('the childId of this new plant is', dataRef)
         console.log('plant added to database with the name', this.state.plantName);
 
@@ -52,10 +59,12 @@ class AddPlant extends Component {
           receivedDate: this.state.dateReceived,
           notes: this.state.notes, 
           plantKey: dataRef
+          // plantKey: this.state.plantKey
         })
 
         console.log('about to reset the state!!!!!')
         this.setState({
+          plantKey: '',
           plantName: '',
           dateReceived: '',
           notes: [],

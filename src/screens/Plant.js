@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import firebase from 'firebase';
+import { Text, View, Button, Alert, StyleSheet } from 'react-native';
 
 const Plant = (props) => {
 
@@ -8,6 +9,32 @@ const Plant = (props) => {
     const notes = props.navigation.getParam('notes');
     const plantKey = props.navigation.getParam('plantKey');
 
+    const onButtonPress = () => {
+        Alert.alert(
+            `Are you sure you want to delete ${plantName}?`,
+            'This will permanently remove this plant from the database.',
+            [
+              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
+              {text: 'Delete', onPress: () => deletePlant()}
+            ]
+          )
+    }
+
+    const deletePlant = () => {
+        console.log(`${plantName} is about to be deleted with id ${plantKey}`)
+        
+        const currentUser = firebase.auth().currentUser.uid;
+
+        const plantToDelete = firebase.database().ref(`/users/${currentUser}/plants/${plantKey}`);
+        plantToDelete
+            .remove()
+            .then(() => {
+                console.log('plant was deleted...')
+                props.navigation.navigate('ListPlants'); 
+            })
+        
+        // props.navigation.navigate('ListPlants'); 
+    }
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -26,6 +53,7 @@ const Plant = (props) => {
             <View style={styles.mainPlantInfo}>
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
+        
                 <Text>Date Received: {dateReceived}</Text>
                 <View>
                     <Text>
@@ -35,6 +63,18 @@ const Plant = (props) => {
                 
                 </View>
 
+            </View>
+
+            <View>
+                {/* <Button 
+                    title='Edit Plant'
+                    onPress={}
+                /> */}
+
+                <Button 
+                    title='Delete Plant'
+                    onPress={() => onButtonPress()}
+                />
             </View>
         </View>
         

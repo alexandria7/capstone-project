@@ -27,7 +27,9 @@ class ListPlants extends Component {
     const currentUser = firebase.auth().currentUser.uid;
     firebase.database().ref(`/users/${currentUser}/plants`)
       .on('value', snapshot => {
-        const plants = _.map(snapshot.val(), (plantObject) => {
+        console.log(snapshot.val());
+        const plants = _.map(snapshot.val(), (plantObject, key) => {
+          plantObject.key = key;
           return plantObject;
         });
 
@@ -42,7 +44,8 @@ class ListPlants extends Component {
     this.props.navigation.navigate('Plant', {
       plantName: plant["plant_name"],
       receivedDate: plant["date_received"],
-      notes: plant["notes"]
+      notes: plant["notes"],
+      plantKey: plant["key"]
       // pass in function for rendering of firebase list here
     }); 
 
