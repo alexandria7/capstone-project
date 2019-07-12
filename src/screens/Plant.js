@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Button, Alert, StyleSheet } from 'react-native';
+import { Text, View, Button, Alert, TextInput, StyleSheet } from 'react-native';
+import EditPlant from './EditPlant';
 
 const Plant = (props) => {
 
@@ -9,7 +10,16 @@ const Plant = (props) => {
     const notes = props.navigation.getParam('notes');
     const plantKey = props.navigation.getParam('plantKey');
 
-    const onButtonPress = () => {
+    const onEditNamePress = () => {
+        props.navigation.navigate('EditPlant', {
+            plantKey: plantKey,
+            plantName: plantName
+            // pass in function for rendering of firebase list here
+        })
+
+    }
+
+    const onDeletePress = () => {
         Alert.alert(
             `Are you sure you want to delete ${plantName}?`,
             'This will permanently remove this plant from the database.',
@@ -32,8 +42,6 @@ const Plant = (props) => {
                 console.log('plant was deleted...')
                 props.navigation.navigate('ListPlants'); 
             })
-        
-        // props.navigation.navigate('ListPlants'); 
     }
 
     return (
@@ -53,6 +61,10 @@ const Plant = (props) => {
             <View style={styles.mainPlantInfo}>
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
+                <Button 
+                    title='Edit Name'
+                    onPress={() => onEditNamePress()}
+                />
         
                 <Text>Date Received: {dateReceived}</Text>
                 <View>
@@ -68,12 +80,12 @@ const Plant = (props) => {
             <View>
                 {/* <Button 
                     title='Edit Plant'
-                    onPress={}
+                    onPress={() => onEditPress()}
                 /> */}
 
                 <Button 
                     title='Delete Plant'
-                    onPress={() => onButtonPress()}
+                    onPress={() => onDeletePress()}
                 />
             </View>
         </View>

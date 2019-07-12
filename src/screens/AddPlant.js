@@ -15,11 +15,6 @@ class AddPlant extends Component {
       notes: [],
       // photos: [], 
     };
-
-    // this.handleNameChange = this.handleNameChange.bind(this);
-    // this.handleDateChange = this.handleDateChange.bind(this);
-    // this.handleNoteChange = this.handleNoteChange.bind(this);
-    // this.addInfoToDatabaseAndClear = this.addInfoToDatabaseAndClear.bind(this);
   }
 
   handleNameChange = (plantName) => {
@@ -44,11 +39,7 @@ class AddPlant extends Component {
         date_received: this.state.dateReceived,
         notes: this.state.notes,
       }).key
-      // .then(() => {
-        // this.setState({
-        //   plantKey: dataRef
-        // })
-      // // })
+   
       console.log('the state of plantKey is', this.state.plantKey )
 
         console.log('the childId of this new plant is', dataRef)
@@ -71,8 +62,7 @@ class AddPlant extends Component {
           // photos: [], 
         });
         console.log('i should have just reset my state!!!!')
-        // this.props.navigation.navigate('ListPlants');
-      // });
+    
   }
 
   render() {
