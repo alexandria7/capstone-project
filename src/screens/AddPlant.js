@@ -12,6 +12,23 @@ class AddPlant extends Component {
       notes: [],
       // photos: [], 
     };
+
+    // this.handleNameChange = this.handleNameChange.bind(this);
+    // this.handleDateChange = this.handleDateChange.bind(this);
+    // this.handleNoteChange = this.handleNoteChange.bind(this);
+    // this.addInfoToDatabaseAndClear = this.addInfoToDatabaseAndClear.bind(this);
+  }
+
+  handleNameChange = (plantName) => {
+    this.setState({plantName});
+  }
+
+  handleDateChange = (dateReceived) => {
+    this.setState({dateReceived});
+  }
+
+  handleNoteChange = (note) => {
+    this.setState({notes: [note]});
   }
 
   addInfoToDatabaseAndClear = () => {
@@ -37,9 +54,7 @@ class AddPlant extends Component {
           // photos: [], 
         };
         // this.props.navigation.navigate('ListPlants');
-
       });
-    
   }
 
   render() {
@@ -61,7 +76,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="Monstera deliciosa"
               value={this.state.plantName}
-              onChangeText={(plantName) => this.setState({plantName})}
+              onChangeText={val => this.handleNameChange(val)}
               clearButtonMode='always'
             />
           </View>
@@ -71,7 +86,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="June 28, 2019"
               value={this.state.dateReceived}
-              onChangeText={(dateReceived) => this.setState({dateReceived})}
+              onChangeText={val => this.handleDateChange(val)}
               clearButtonMode='always'
             />
           </View>
@@ -81,7 +96,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="only water when soil is completely dry"
               value={this.state.value}
-              onChangeText={(note) => this.setState({notes: [note]})}
+              onChangeText={val => this.handleNoteChange(val)}
               clearButtonMode='always'
             />
           </View>
