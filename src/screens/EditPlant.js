@@ -11,6 +11,7 @@ class EditPlant extends Component {
             plantName: this.props.navigation.getParam('plantName'),
         };
         
+        // tells react-navigation to focus/look at these params
         this.props.navigation.addListener(
             'willFocus',
             () => {
