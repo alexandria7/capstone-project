@@ -16,11 +16,12 @@ class ListPlants extends Component {
     }
   }
 
+  // look into changing this rendering 
   componentDidMount () {
     this.getPlantListFromFireBase();
   }
 
-  getPlantListFromFireBase() {
+  getPlantListFromFireBase = () => {
     console.log('plant list incoming...');
 
     const currentUser = firebase.auth().currentUser.uid;
@@ -43,6 +44,7 @@ class ListPlants extends Component {
       plantName: plant["plant_name"],
       receivedDate: plant["date_received"],
       notes: plant["notes"]
+      // pass in function for rendering of firebase list here
     }); 
 
   }

@@ -7,11 +7,6 @@ const Plant = (props) => {
     const dateReceived = props.navigation.getParam('receivedDate');
     const notes = props.navigation.getParam('notes');
 
-    // this.state = {
-    //     plantName: this.props.navigation.getParam('plantName'),
-    //     dateReceived: this.props.navigation.getParam('receivedDate'),
-    //     notes: this.props.navigation.getParam('notes')
-    //   }
     return (
         <View style={styles.aboutAppMainStyle}>
             <View style={styles.headerStyle}>

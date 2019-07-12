@@ -23,13 +23,22 @@ class AddPlant extends Component {
       })
       .then(() => {
         console.log('plant added to database!');
+
+        this.props.navigation.navigate('Plant', {
+          plantName: this.state.plantName,
+          receivedDate: this.state.dateReceived,
+          notes: this.state.notes
+          // pass in function for rendering of firebase list here
+        })
+        
         this.setState = {
           plantName: '',
           dateReceived: '',
           notes: [],
           // photos: [], 
         };
-        this.props.navigation.navigate('ListPlants');
+        // this.props.navigation.navigate('ListPlants');
+
       });
     
   }
@@ -50,6 +59,7 @@ class AddPlant extends Component {
           <Text>Plant Name: </Text>
           <TextInput 
             placeholder="Monstera deliciosa"
+            value={this.state.plantName}
             onChangeText={(plantName) => this.setState({plantName})}
           />
         </View>
@@ -58,6 +68,7 @@ class AddPlant extends Component {
           <Text>Date Received: </Text>
           <TextInput 
             placeholder="June 28, 2019"
+            value={this.state.dateReceived}
             onChangeText={(dateReceived) => this.setState({dateReceived})}
           />
         </View>
@@ -66,6 +77,7 @@ class AddPlant extends Component {
           <Text>Add a note about this plant: </Text>
           <TextInput 
             placeholder="only water when soil is completely dry"
+            value={this.state.value}
             onChangeText={(note) => this.setState({notes: [note]})}
           />
         </View>
