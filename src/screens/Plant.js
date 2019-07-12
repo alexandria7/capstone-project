@@ -11,24 +11,26 @@ const Plant = (props) => {
         <View style={styles.aboutAppMainStyle}>
             <View style={styles.headerStyle}>
 
-            <View style={styles.headerNavButton}>
-                <Button
-                    title='Open'
-                    onPress={ () => props.navigation.openDrawer() }
-                />
-            </View>
-            <Text style={styles.headerText}>Wet Your Plants</Text>
+                <View style={styles.headerNavButton}>
+                    <Button
+                        title='Open'
+                        onPress={ () => props.navigation.openDrawer() }
+                    />
+                </View>
+                <Text style={styles.headerText}>Wet Your Plants</Text>
 
-        </View>    
+            </View>    
 
-            <Text style={styles.infoStyle}>Hi I'm a plant page for {plantName}!</Text>
-            <Text>Received: {dateReceived}</Text>
-            <View>
-                <Text>
-                    Notes:
-                </Text>
+            <View style={styles.mainPlantInfo}>
+                <Text style={styles.infoStyle}>{plantName}!</Text>
+                <Text>Received: {dateReceived}</Text>
+                <View>
+                    <Text>
+                        Notes:
+                    </Text>
 
                 
+                </View>
             </View>
         </View>
         
@@ -43,6 +45,9 @@ const styles = StyleSheet.create({
     },
     infoStyle: {
         marginTop: 30
+    },
+    mainPlantInfo: {
+        justifyContent: 'space-between'
     }
 });
 

@@ -56,18 +56,9 @@ class ListPlants extends Component {
         onPress={ () => this.onPlantNameButtonPress(plant) }
         key={i}
       >
-        <Text>{plant["plant_name"]}</Text>
+        <Text style={styles.plantNameButtonStyle}>{plant["plant_name"]}</Text>
       </TouchableOpacity> 
     );
-
-    // let notice = '';
-    // let noticeStyleName = 'hasPlantsMessage';
-
-    // if (this.state.plants.length === 0) {
-    //   notice = 'You have not added any plants!';
-    //   noticeStyleName = 'noPlantsMessage';
-    // };
-    
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -92,13 +83,13 @@ class ListPlants extends Component {
                 onPress={ () => this.props.navigation.navigate('AddPlant') }
             />
 
-            <ScrollView style={styles.listOfPlantsStyle}>
+            {
+              this.state.plants.length === 0 ? 
+              <Text style={styles.noticeStyleName}>You have not added any plants!</Text> : 
+              <ScrollView style={styles.listOfPlantsStyle}>{plantList}</ScrollView>
+            }
 
-              {plantList}
 
-            </ScrollView>
-
-            {/* <Text style={this.noticeStyleName}>{notice}</Text> */}
           </View>
         </View>
       );
@@ -138,8 +129,19 @@ const styles = StyleSheet.create({
   },
   listOfPlantsStyle: {
     marginLeft: 15,
+    marginRight: 15,
     marginTop: 15,
     // flex: 1
+  },
+  noticeStyleName : {
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    marginTop: 25
+  },
+  plantNameButtonStyle: {
+    fontSize: 20,
+    paddingBottom: 10
   }
 });
 
