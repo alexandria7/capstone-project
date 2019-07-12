@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StackActions, NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import Plant from './Plant';
 // import { FlatList } from 'react-native-gesture-handler';
 
@@ -92,11 +92,11 @@ class ListPlants extends Component {
                 onPress={ () => this.props.navigation.navigate('AddPlant') }
             />
 
-            <View style={styles.listOfPlantsStyle}>
+            <ScrollView style={styles.listOfPlantsStyle}>
 
               {plantList}
 
-            </View>
+            </ScrollView>
 
             {/* <Text style={this.noticeStyleName}>{notice}</Text> */}
           </View>
@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   mainPlantListSection: {
-    paddingTop: 20
+    paddingTop: 20,
+    flex: 1
   },
   plantListTitle: {
     fontSize: 35,
@@ -137,7 +138,8 @@ const styles = StyleSheet.create({
   },
   listOfPlantsStyle: {
     marginLeft: 15,
-    marginTop: 15
+    marginTop: 15,
+    // flex: 1
   }
 });
 

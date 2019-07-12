@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
 import firebase from 'firebase';
 
 class AddPlant extends Component {
@@ -14,7 +14,7 @@ class AddPlant extends Component {
     };
   }
 
-  addInfoToDatabase = () => {
+  addInfoToDatabaseAndClear = () => {
     firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants`)
       .push({
         plant_name: this.state.plantName,
@@ -28,9 +28,8 @@ class AddPlant extends Component {
           plantName: this.state.plantName,
           receivedDate: this.state.dateReceived,
           notes: this.state.notes
-          // pass in function for rendering of firebase list here
         })
-        
+
         this.setState = {
           plantName: '',
           dateReceived: '',
@@ -50,42 +49,48 @@ class AddPlant extends Component {
           title='Open'
           onPress={ () => this.props.navigation.openDrawer() }
         />
+
+        <ScrollView style={styles.addPlantForm}>
         
-        <View>
-          <Text style={styles.addPlantTitle}>Add New Plant</Text>
-        </View>
+          <View>
+            <Text style={styles.addPlantTitle}>Add New Plant</Text>
+          </View>
 
-        <View>
-          <Text>Plant Name: </Text>
-          <TextInput 
-            placeholder="Monstera deliciosa"
-            value={this.state.plantName}
-            onChangeText={(plantName) => this.setState({plantName})}
+          <View>
+            <Text>Plant Name: </Text>
+            <TextInput 
+              placeholder="Monstera deliciosa"
+              value={this.state.plantName}
+              onChangeText={(plantName) => this.setState({plantName})}
+              clearButtonMode='always'
+            />
+          </View>
+
+          <View>
+            <Text>Date Received: </Text>
+            <TextInput 
+              placeholder="June 28, 2019"
+              value={this.state.dateReceived}
+              onChangeText={(dateReceived) => this.setState({dateReceived})}
+              clearButtonMode='always'
+            />
+          </View>
+
+          <View>
+            <Text>Add a note about this plant: </Text>
+            <TextInput 
+              placeholder="only water when soil is completely dry"
+              value={this.state.value}
+              onChangeText={(note) => this.setState({notes: [note]})}
+              clearButtonMode='always'
+            />
+          </View>
+
+          <Button 
+            title="Add Plant!"
+            onPress={ this.addInfoToDatabaseAndClear }
           />
-        </View>
-
-        <View>
-          <Text>Date Received: </Text>
-          <TextInput 
-            placeholder="June 28, 2019"
-            value={this.state.dateReceived}
-            onChangeText={(dateReceived) => this.setState({dateReceived})}
-          />
-        </View>
-
-        <View>
-          <Text>Add a note about this plant: </Text>
-          <TextInput 
-            placeholder="only water when soil is completely dry"
-            value={this.state.value}
-            onChangeText={(note) => this.setState({notes: [note]})}
-          />
-        </View>
-
-        <Button 
-          title="Add Plant!"
-          onPress={ this.addInfoToDatabase }
-        />
+        </ScrollView>
 
       </View>
     );
@@ -97,10 +102,8 @@ const styles = StyleSheet.create({
       // marginTop: 20,
       flex: 1,
       backgroundColor: '#BDE1C9', 
+      // justifyContent: 'space-between'
   },
-  addPlantTitle: {
-
-  }
 });
 
 export default AddPlant;
