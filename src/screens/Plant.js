@@ -6,6 +6,8 @@ const Plant = (props) => {
     const plantName = props.navigation.getParam('plantName');
     const dateReceived = props.navigation.getParam('receivedDate');
     const notes = props.navigation.getParam('notes');
+    const plantKey = props.navigation.getParam('plantKey');
+
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -22,15 +24,17 @@ const Plant = (props) => {
             </View>    
 
             <View style={styles.mainPlantInfo}>
-                <Text style={styles.infoStyle}>{plantName}!</Text>
-                <Text>Received: {dateReceived}</Text>
+
+                <Text style={styles.plantNameTitle}>{plantName}</Text>
+                <Text>Date Received: {dateReceived}</Text>
                 <View>
                     <Text>
-                        Notes:
+                        The plant key is {plantKey}
                     </Text>
 
                 
                 </View>
+
             </View>
         </View>
         
@@ -43,8 +47,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#BDE1C9', 
     },
-    infoStyle: {
-        marginTop: 30
+    plantNameTitle: {
+        marginTop: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 25
     },
     mainPlantInfo: {
         justifyContent: 'space-between'

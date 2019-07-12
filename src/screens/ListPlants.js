@@ -37,7 +37,6 @@ class ListPlants extends Component {
   }
 
   onPlantNameButtonPress = (plant) => {
-    this.setState({ selectedPlant: plant });
     console.log('this is the selected plant:', plant["plant_name"]);
 
     this.props.navigation.navigate('Plant', {

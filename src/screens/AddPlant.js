@@ -37,19 +37,21 @@ class AddPlant extends Component {
   }
 
   addInfoToDatabaseAndClear = () => {
-    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants`)
+    const dataRef = firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants`)
       .push({
         plant_name: this.state.plantName,
         date_received: this.state.dateReceived,
         notes: this.state.notes,
-      })
-      .then(() => {
+      }).key
+      // .then(() => {
+        console.log('the childId of this new plant is', dataRef)
         console.log('plant added to database with the name', this.state.plantName);
 
         this.props.navigation.navigate('Plant', {
           plantName: this.state.plantName,
           receivedDate: this.state.dateReceived,
-          notes: this.state.notes
+          notes: this.state.notes, 
+          plantKey: dataRef
         })
 
         console.log('about to reset the state!!!!!')
@@ -61,7 +63,7 @@ class AddPlant extends Component {
         });
         console.log('i should have just reset my state!!!!')
         // this.props.navigation.navigate('ListPlants');
-      });
+      // });
   }
 
   render() {
