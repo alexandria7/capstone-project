@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Button, Alert, TextInput, StyleSheet } from 'react-native';
+import { Text, View, Button, Alert, TextInput, ScrollView, StyleSheet } from 'react-native';
 
 const Plant = (props) => {
 
@@ -49,6 +49,14 @@ const Plant = (props) => {
             })
     }
 
+    let allNotes = <Text style={styles.noNotesStyle}>No notes for this plant</Text>;
+
+    if (notes) {
+        allNotes = notes.map((note, i) => {
+            return (<Text key={i}>{note}</Text>)
+        })
+    }
+
     return (
         <View style={styles.aboutAppMainStyle}>
             <View style={styles.headerStyle}>
@@ -66,6 +74,7 @@ const Plant = (props) => {
             <View style={styles.mainPlantInfo}>
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
+                <Text>{plantKey}</Text>
                 <Button 
                     title='Edit Name'
                     onPress={() => onEditNamePress()}
@@ -79,21 +88,15 @@ const Plant = (props) => {
 
 
                 <View>
-                    <Text>
-                        The plant key is {plantKey}
-                    </Text>
-
+                    <Text>Notes:</Text>
                 
+                    <ScrollView>{allNotes}</ScrollView> 
+                    
                 </View>
 
             </View>
 
             <View>
-                {/* <Button 
-                    title='Edit Plant'
-                    onPress={() => onEditPress()}
-                /> */}
-
                 <Button 
                     title='Delete Plant'
                     onPress={() => onDeletePress()}
@@ -118,7 +121,11 @@ const styles = StyleSheet.create({
     },
     mainPlantInfo: {
         justifyContent: 'space-between'
-    }
+    },
+    noNotesStyle: {
+        fontStyle: 'italic',
+        textAlign: 'center',
+      }
 });
 
 export default Plant;

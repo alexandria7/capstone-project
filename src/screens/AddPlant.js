@@ -117,13 +117,6 @@ class AddPlant extends Component {
               onDateChange={(dateReceived) => this.handleDateChange(dateReceived)}
             />
 
-            {/* <Text>Date Received: </Text>
-            <TextInput 
-              placeholder="June 28, 2019"
-              value={this.state.dateReceived}
-              onChangeText={(name) => this.handleDateChange(name)}
-              clearButtonMode='always'
-            /> */}
           </View>
 
           <View>
