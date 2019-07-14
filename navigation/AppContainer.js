@@ -4,7 +4,7 @@ import Loading from '../src/screens/Loading';
 import Auth from '../src/screens/Auth';
 import Home from '../src/screens/Home';
 import AddPlant from '../src/screens/AddPlant';
-import EditPlant from '../src/screens/EditPlant';
+import EditPlantName from '../src/screens/EditPlantName';
 import ListPlants from '../src/screens/ListPlants';
 import Plant from '../src/screens/Plant';
 import AboutApp from '../src/screens/AboutApp';
@@ -56,8 +56,8 @@ const AppNavigator = createSwitchNavigator(
             drawerLabel: () => null
           },
         },
-        EditPlant: {
-          screen: EditPlant,
+        EditPlantName: {
+          screen: EditPlantName,
           navigationOptions: {
             drawerLabel: () => null
           }

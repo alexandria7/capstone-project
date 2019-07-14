@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Text, View, Button, Alert, TextInput, StyleSheet } from 'react-native';
-import EditPlant from './EditPlant';
+import EditPlantName from './EditPlantName';
 
 const Plant = (props) => {
 
@@ -11,7 +11,7 @@ const Plant = (props) => {
     const plantKey = props.navigation.getParam('plantKey');
 
     const onEditNamePress = () => {
-        props.navigation.navigate('EditPlant', {
+        props.navigation.navigate('EditPlantName', {
             plantKey: plantKey,
             plantName: plantName
             // pass in function for rendering of firebase list here
