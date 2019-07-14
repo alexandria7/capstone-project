@@ -92,9 +92,9 @@ class AddPlant extends Component {
           </View>
 
           <View>
-          <Text>Date Received: </Text>
+            <Text>Date Received: </Text>
             <DatePicker
-              style={{width: 200}}
+              style={styles.datePickerStyle}
               date={this.state.dateReceived}
               mode="date"
               placeholder="select date"
@@ -159,6 +159,9 @@ const styles = StyleSheet.create({
       backgroundColor: '#BDE1C9', 
       // justifyContent: 'space-between'
   },
+  datePickerStyle: {
+    width: 200
+  }
 });
 
 export default AddPlant;

@@ -22,6 +22,13 @@ class EditPlantName extends Component {
             }
         )
     }
+
+    onCancelPress = () => {
+        this.props.navigation.navigate('Plant', {
+            dateReceived: this.state.dateReceived,
+            plantKey: this.state.plantKey,
+        });
+    }
         
     updateInfoToDatabase = () => {
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
@@ -48,7 +55,12 @@ class EditPlantName extends Component {
                     onChangeText={(plantName) => this.setState({plantName})}
                     clearButtonMode='always'
                 />
-                
+
+                <Button 
+                    title="Cancel"
+                    onPress={() => this.onCancelPress()}
+                />
+
                 <Button 
                     title="Update"
                     onPress={() => this.updateInfoToDatabase()}
