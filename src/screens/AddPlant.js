@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
 import firebase from 'firebase';
+import DatePicker from 'react-native-datepicker';
+
 // import ImagePicker from 'react-native-image-picker';
 // import AddPhoto from '../components/AddPhoto';
 
@@ -90,13 +92,38 @@ class AddPlant extends Component {
           </View>
 
           <View>
-            <Text>Date Received: </Text>
+          <Text>Date Received: </Text>
+            <DatePicker
+              style={{width: 200}}
+              date={this.state.dateReceived}
+              mode="date"
+              placeholder="select date"
+              format="MMMM Do YYYY"
+              minDate="1980-01-01"
+              maxDate="2050-12-31"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                }
+              }}
+              onDateChange={(dateReceived) => this.handleDateChange(dateReceived)}
+            />
+
+            {/* <Text>Date Received: </Text>
             <TextInput 
               placeholder="June 28, 2019"
               value={this.state.dateReceived}
               onChangeText={(name) => this.handleDateChange(name)}
               clearButtonMode='always'
-            />
+            /> */}
           </View>
 
           <View>
