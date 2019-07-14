@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Text, View, Button, Alert, TextInput, StyleSheet } from 'react-native';
-import EditPlantName from './EditPlantName';
 
 const Plant = (props) => {
 
@@ -14,9 +13,15 @@ const Plant = (props) => {
         props.navigation.navigate('EditPlantName', {
             plantKey: plantKey,
             plantName: plantName
-            // pass in function for rendering of firebase list here
         })
 
+    }
+
+    const onEditDatePress = () => {
+        props.navigation.navigate('EditPlantReceivedDate', {
+            plantKey: plantKey,
+            dateReceived: dateReceived
+        })
     }
 
     const onDeletePress = () => {
@@ -67,6 +72,12 @@ const Plant = (props) => {
                 />
         
                 <Text>Date Received: {dateReceived}</Text>
+                <Button 
+                    title='Edit Date'
+                    onPress={() => onEditDatePress()}
+                />
+
+
                 <View>
                     <Text>
                         The plant key is {plantKey}

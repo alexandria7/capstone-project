@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Button, Alert, TextInput, StyleSheet } from 'react-native';
+import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
 
-class EditPlantName extends Component {
+class EditPlantReceivedDate extends Component {
     constructor(props) {
         super(props);
         
         this.state = {
             plantKey: this.props.navigation.getParam('plantKey'),
-            plantName: this.props.navigation.getParam('plantName'),
+            dateReceived: this.props.navigation.getParam('dateReceived'),
         };
         
         // tells react-navigation to focus/look at these params
@@ -17,7 +17,7 @@ class EditPlantName extends Component {
             () => {
                 this.setState({
                     plantKey: this.props.navigation.getParam('plantKey'),
-                    plantName: this.props.navigation.getParam('plantName'),
+                    dateReceived: this.props.navigation.getParam('dateReceived'),
                 })
             }
         )
@@ -26,16 +26,14 @@ class EditPlantName extends Component {
     updateInfoToDatabase = () => {
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
         .update({
-            plant_name: this.state.plantName
+            date_received: this.state.dateReceived
         })
-        .then(() => {
-            
+        .then(() => {            
             this.props.navigation.navigate('Plant', {
-                plantName: this.state.plantName,
+                dateReceived: this.state.dateReceived,
                 plantKey: this.state.plantKey
                 // pass in function for rendering of firebase list here
             });
-            
         })
     }
     
@@ -43,9 +41,9 @@ class EditPlantName extends Component {
         return (
             <View style={styles.mainEditForm}>
                 <TextInput 
-                    placeholder="new plant name"
-                    value={this.state.plantName}
-                    onChangeText={(plantName) => this.setState({plantName})}
+                    placeholder="new date"
+                    value={this.state.dateReceived}
+                    onChangeText={(dateReceived) => this.setState({dateReceived})}
                     clearButtonMode='always'
                 />
                 
@@ -64,4 +62,4 @@ const styles = StyleSheet.create({
     }
 })
         
-export default EditPlantName;
+export default EditPlantReceivedDate;
