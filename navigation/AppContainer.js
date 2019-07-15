@@ -8,6 +8,7 @@ import EditPlantName from '../src/screens/EditPlantName';
 import EditPlantReceivedDate from '../src/screens/EditPlantReceivedDate';
 import EditPlantNote from '../src/screens/EditPlantNote';
 import AddWateringDate from '../src/screens/AddWateringDate';
+import AddFertilizingDate from '../src/screens/AddFertilizingDate';
 import ListPlants from '../src/screens/ListPlants';
 import Plant from '../src/screens/Plant';
 import AboutApp from '../src/screens/AboutApp';
@@ -79,6 +80,12 @@ const AppNavigator = createSwitchNavigator(
         },
         AddWateringDate: {
           screen: AddWateringDate, 
+          navigationOptions: {
+            drawerLabel: () => null
+          }
+        }, 
+        AddFertilizingDate: {
+          screen: AddFertilizingDate,
           navigationOptions: {
             drawerLabel: () => null
           }

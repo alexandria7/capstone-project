@@ -12,6 +12,7 @@ const Plant = (props) => {
     console.log(plantKey)
     const wateringDates = props.navigation.getParam('wateringDates');
     console.log(wateringDates)
+    const fertilizingDates = props.navigation.getParam('fertilizingDates');
 
     // props.navigation.replace('Plant', {
     //     plantKey: props.navigation.getParam('plantKey'), 
@@ -26,28 +27,35 @@ const Plant = (props) => {
             plantKey: plantKey,
             plantName: plantName
         })
-    }
+    };
 
     const onEditDatePress = () => {
         props.navigation.navigate('EditPlantReceivedDate', {
             plantKey: plantKey,
             dateReceived: dateReceived
         })
-    }
+    };
 
     const onEditNotePress = () => {
         props.navigation.navigate('EditPlantNote', {
             plantKey: plantKey,
             note: note
         })
-    }
+    };
 
     const onUpdateWaterLogPress = () => {
         props.navigation.navigate('AddWateringDate', {
             plantKey: plantKey,
             wateringDates: wateringDates
         })
-    }
+    };
+
+    const onUpdateFertilizingLogPress = () => {
+        props.navigation.navigate('AddFertilizingDate', {
+            plantKey: plantKey,
+            fertilizingDates: fertilizingDates
+        })
+    };
 
     const onDeletePress = () => {
         Alert.alert(
@@ -82,12 +90,26 @@ const Plant = (props) => {
           <Text key={i}>{date["watering_date"]}</Text>
         );
 
-        if (allWaterings.length <= 5) {
+        if (allWaterings.length <= 5 && allWaterings.length > 0) {
             wateringDisplay = allWaterings;
-        } else {
+        } else if (allWaterings.length > 5){
             wateringDisplay = allWaterings.slice(-5);
         }
     } 
+
+    let fertilizingDisplay = <Text>No record of any past fertilizations</Text>;
+
+    if (fertilizingDates) {
+        const allFertilizings = fertilizingDates.map((date, i) => 
+            <Text key={i}>{date["fertilizing_date"]}</Text>
+        );
+
+        if (allFertilizings.length <= 5 && allFertilizings.length > 0) {
+            fertilizingDisplay = allFertilizings;
+        } else if (allFertilizings.length > 5) {
+            fertilizingDisplay = allFertilizings.slice(-5);
+        }
+    }
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -143,6 +165,18 @@ const Plant = (props) => {
                         onPress={() => onUpdateWaterLogPress()}
                     />
                 </View>
+
+                <View>
+                    <Text>Fertilizing Log:</Text>
+                    <View>
+                        {fertilizingDisplay}
+                    </View>
+                    <Button 
+                        title="I just fertilized! Update Log"
+                        onPress={() => onUpdateFertilizingLogPress()}
+                    />
+                </View>
+
                 
             </View>
 

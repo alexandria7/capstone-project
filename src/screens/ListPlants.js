@@ -46,12 +46,18 @@ class ListPlants extends Component {
       return wateringObject;
     });
 
+    const fertilizingList = _.map(plant["fertilizings"], (fertilizingObject, key) => {
+      fertilizingObject.key = key;
+      return fertilizingObject;
+    });
+
     this.props.navigation.navigate('Plant', {
       plantName: plant["plant_name"],
       receivedDate: plant["date_received"],
       note: plant["note"],
       plantKey: plant["key"],
-      wateringDates: wateringList
+      wateringDates: wateringList,
+      fertilizingDates: fertilizingList
       // pass in function for rendering of firebase list here
     }); 
 
