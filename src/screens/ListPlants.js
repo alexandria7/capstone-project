@@ -41,11 +41,17 @@ class ListPlants extends Component {
   onPlantNameButtonPress = (plant) => {
     console.log('this is the selected plant:', plant["plant_name"]);
 
+    const wateringList = _.map(plant["waterings"], (wateringObject, key) => {
+      wateringObject.key = key;
+      return wateringObject;
+    });
+
     this.props.navigation.navigate('Plant', {
       plantName: plant["plant_name"],
       receivedDate: plant["date_received"],
       note: plant["note"],
-      plantKey: plant["key"]
+      plantKey: plant["key"],
+      wateringDates: wateringList
       // pass in function for rendering of firebase list here
     }); 
 

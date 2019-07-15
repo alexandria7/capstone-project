@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { Text, View, Button, Alert, TextInput, ScrollView, StyleSheet } from 'react-native';
+import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Plant = (props) => {
 
@@ -9,7 +9,9 @@ const Plant = (props) => {
     const dateReceived = props.navigation.getParam('receivedDate');
     const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
-    const wateringDates = [];
+    console.log(plantKey)
+    const wateringDates = props.navigation.getParam('wateringDates');
+    console.log(wateringDates)
 
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
@@ -67,9 +69,11 @@ const Plant = (props) => {
 
     let wateringDisplay = <Text>No record of any past waterings</Text>;
 
-    // if (wateringDates.length !== 0) {
-    //     wateringDisplay = wateringDates.
-    // } 
+    if (wateringDates) {
+        wateringDisplay = wateringDates.map((date, i) => 
+          <Text key={i}>{date["watering_date"]}</Text>
+        )
+    } 
 
 
     return (
@@ -118,7 +122,9 @@ const Plant = (props) => {
 
                 <View>
                     <Text>Watering Log:</Text>
-                    {wateringDisplay}
+                    <View>
+                        {wateringDisplay}
+                    </View>
                     <Button 
                         title="I just watered this! Update Log"
                         onPress={() => onUpdateWaterLogPress()}

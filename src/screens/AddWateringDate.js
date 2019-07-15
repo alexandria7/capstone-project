@@ -48,7 +48,7 @@ class AddWateringDate extends Component {
             
             firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}/waterings`)
                 .on('value', snapshot => {
-                    console.log(snapshot.val());
+                    console.log('this is what i pulled from waterings: ', snapshot.val());
                     const wateringDates = _.map(snapshot.val(), (wateringObject, key) => {
                         wateringObject.key = key;
                         return wateringObject;
@@ -64,7 +64,14 @@ class AddWateringDate extends Component {
                 //         // pass in function for rendering of firebase list here
                 //     });
                 // })
-
+            this.props.navigation.navigate('Plant', {
+                wateringDates: this.state.wateringDates,
+                plantKey: this.state.plantKey,
+                // pass in function for rendering of firebase list here
+            });
+        })
+        .catch((error) => {
+            console.log('there was an error with adding a watering date: ', error)
         })
     }
 
