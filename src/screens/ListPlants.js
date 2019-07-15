@@ -44,7 +44,7 @@ class ListPlants extends Component {
     this.props.navigation.navigate('Plant', {
       plantName: plant["plant_name"],
       receivedDate: plant["date_received"],
-      notes: plant["notes"],
+      note: plant["note"],
       plantKey: plant["key"]
       // pass in function for rendering of firebase list here
     }); 

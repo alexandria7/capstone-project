@@ -14,24 +14,9 @@ class AddPlant extends Component {
       plantKey: '',
       plantName: '',
       dateReceived: '',
-      notes: [],
+      note: ''
       // photos: [], 
     };
-  }
-
-  handleNameChange = (plantName) => {
-    console.log('this was the name entered', plantName)
-    this.setState({plantName});
-  }
-
-  handleDateChange = (dateReceived) => {
-    console.log('this was the date entered', dateReceived)
-    this.setState({dateReceived});
-  }
-
-  handleNoteChange = (note) => {
-    console.log('this was the note entered', note)
-    this.setState({notes: [note]});
   }
 
   addInfoToDatabaseAndClear = () => {
@@ -39,9 +24,10 @@ class AddPlant extends Component {
       .push({
         plant_name: this.state.plantName,
         date_received: this.state.dateReceived,
-        notes: this.state.notes,
+        note: this.state.note,
       }).key
-   
+
+
       console.log('the state of plantKey is', this.state.plantKey )
 
         console.log('the childId of this new plant is', dataRef)
@@ -50,7 +36,7 @@ class AddPlant extends Component {
         this.props.navigation.navigate('Plant', {
           plantName: this.state.plantName,
           receivedDate: this.state.dateReceived,
-          notes: this.state.notes, 
+          note: this.state.note, 
           plantKey: dataRef
           // plantKey: this.state.plantKey
         })
@@ -60,7 +46,7 @@ class AddPlant extends Component {
           plantKey: '',
           plantName: '',
           dateReceived: '',
-          notes: [],
+          note: ''
           // photos: [], 
         });
         console.log('i should have just reset my state!!!!')
@@ -86,7 +72,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="Monstera deliciosa"
               value={this.state.plantName}
-              onChangeText={(name) => this.handleNameChange(name)}
+              onChangeText={(plantName) => this.setState({plantName})}
               clearButtonMode='always'
             />
           </View>
@@ -114,7 +100,7 @@ class AddPlant extends Component {
                   marginLeft: 36
                 }
               }}
-              onDateChange={(dateReceived) => this.handleDateChange(dateReceived)}
+              onDateChange={(dateReceived) => this.setState({dateReceived})}
             />
 
           </View>
@@ -124,7 +110,7 @@ class AddPlant extends Component {
             <TextInput 
               placeholder="only water when soil is completely dry"
               value={this.state.value}
-              onChangeText={(name) => this.handleNoteChange(name)}
+              onChangeText={(note) => this.setState({note})}
               clearButtonMode='always'
             />
           </View>

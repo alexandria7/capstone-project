@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, StyleSheet } from 'react-native';
 
 const Plant = (props) => {
 
     const plantName = props.navigation.getParam('plantName');
     const dateReceived = props.navigation.getParam('receivedDate');
-    const notes = props.navigation.getParam('notes');
+    const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
 
     const onEditNamePress = () => {
@@ -14,13 +15,19 @@ const Plant = (props) => {
             plantKey: plantKey,
             plantName: plantName
         })
-
     }
 
     const onEditDatePress = () => {
         props.navigation.navigate('EditPlantReceivedDate', {
             plantKey: plantKey,
             dateReceived: dateReceived
+        })
+    }
+
+    const onEditNotePress = () => {
+        props.navigation.navigate('EditPlantNote', {
+            plantKey: plantKey,
+            note: note
         })
     }
 
@@ -41,6 +48,7 @@ const Plant = (props) => {
         const currentUser = firebase.auth().currentUser.uid;
 
         const plantToDelete = firebase.database().ref(`/users/${currentUser}/plants/${plantKey}`);
+
         plantToDelete
             .remove()
             .then(() => {
@@ -49,13 +57,6 @@ const Plant = (props) => {
             })
     }
 
-    let allNotes = <Text style={styles.noNotesStyle}>No notes for this plant</Text>;
-
-    if (notes) {
-        allNotes = notes.map((note, i) => {
-            return (<Text key={i}>{note}</Text>)
-        })
-    }
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -88,9 +89,16 @@ const Plant = (props) => {
 
 
                 <View>
-                    <Text>Notes:</Text>
+                    <Text>A bit about this plant:</Text>
                 
-                    <ScrollView>{allNotes}</ScrollView> 
+                    {note === '' ? 
+                        <Text style={styles.noNotesStyle}>No notes for this plant</Text> :
+                        <Text>{note}</Text>
+                    }
+                    <Button 
+                        title='Edit Note'
+                        onPress={() => onEditNotePress()}
+                    />
                     
                 </View>
 
