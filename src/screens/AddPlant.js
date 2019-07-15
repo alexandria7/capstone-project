@@ -14,7 +14,8 @@ class AddPlant extends Component {
       plantKey: '',
       plantName: '',
       dateReceived: '',
-      note: ''
+      note: '',
+      wateringDates: ''
       // photos: [], 
     };
   }
@@ -26,7 +27,6 @@ class AddPlant extends Component {
         date_received: this.state.dateReceived,
         note: this.state.note,
       }).key
-
 
       console.log('the state of plantKey is', this.state.plantKey )
 

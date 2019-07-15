@@ -9,6 +9,7 @@ const Plant = (props) => {
     const dateReceived = props.navigation.getParam('receivedDate');
     const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
+    const wateringDates = [];
 
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
@@ -28,6 +29,13 @@ const Plant = (props) => {
         props.navigation.navigate('EditPlantNote', {
             plantKey: plantKey,
             note: note
+        })
+    }
+
+    const onUpdateWaterLogPress = () => {
+        props.navigation.navigate('AddWateringDate', {
+            plantKey: plantKey,
+            wateringDates: wateringDates
         })
     }
 
@@ -56,6 +64,12 @@ const Plant = (props) => {
                 props.navigation.navigate('ListPlants'); 
             })
     }
+
+    let wateringDisplay = <Text>No record of any past waterings</Text>;
+
+    // if (wateringDates.length !== 0) {
+    //     wateringDisplay = wateringDates.
+    // } 
 
 
     return (
@@ -102,6 +116,15 @@ const Plant = (props) => {
                     
                 </View>
 
+                <View>
+                    <Text>Watering Log:</Text>
+                    {wateringDisplay}
+                    <Button 
+                        title="I just watered this! Update Log"
+                        onPress={() => onUpdateWaterLogPress()}
+                    />
+                </View>
+                
             </View>
 
             <View>
