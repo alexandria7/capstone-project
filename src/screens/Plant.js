@@ -13,6 +13,14 @@ const Plant = (props) => {
     const wateringDates = props.navigation.getParam('wateringDates');
     console.log(wateringDates)
 
+    // props.navigation.replace('Plant', {
+    //     plantKey: props.navigation.getParam('plantKey'), 
+    //     plantName: props.navigation.getParam('plantName'), 
+    //     note: props.navigation.getParam('note'), 
+    //     wateringDates: props.navigation.getParam('wateringDates'),
+    //     dateReceived: props.navigation.getParam('receivedDate')
+    // })
+
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
             plantKey: plantKey,
@@ -70,11 +78,16 @@ const Plant = (props) => {
     let wateringDisplay = <Text>No record of any past waterings</Text>;
 
     if (wateringDates) {
-        wateringDisplay = wateringDates.map((date, i) => 
+        const allWaterings = wateringDates.map((date, i) => 
           <Text key={i}>{date["watering_date"]}</Text>
-        )
-    } 
+        );
 
+        if (allWaterings.length <= 5) {
+            wateringDisplay = allWaterings;
+        } else {
+            wateringDisplay = allWaterings.slice(-5);
+        }
+    } 
 
     return (
         <View style={styles.aboutAppMainStyle}>

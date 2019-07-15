@@ -10,7 +10,6 @@ class EditPlantReceivedDate extends Component {
         this.state = {
             plantKey: this.props.navigation.getParam('plantKey'),
             dateReceived: this.props.navigation.getParam('dateReceived'),
-            plantName: this.props.navigation.getParam('plantName')
         };
         
         // tells react-navigation to focus/look at these params
