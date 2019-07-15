@@ -125,7 +125,7 @@ const Plant = (props) => {
 
             </View>    
 
-            <View style={styles.mainPlantInfo}>
+            <ScrollView style={styles.mainPlantInfo}>
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
                 <Text>{plantKey}</Text>
@@ -182,15 +182,13 @@ const Plant = (props) => {
                     />
                 </View>
 
-                
-            </View>
-
-            <View>
-                <Button 
-                    title='Delete Plant'
-                    onPress={() => onDeletePress()}
-                />
-            </View>
+                <View>
+                    <Button 
+                        title='Delete Plant'
+                        onPress={() => onDeletePress()}
+                    />
+                </View>
+            </ScrollView>
         </View>
         
     )
@@ -209,7 +207,7 @@ const styles = StyleSheet.create({
         fontSize: 25
     },
     mainPlantInfo: {
-        justifyContent: 'space-between'
+        // justifyContent: 'space-between'
     },
     plantImageStyle: {
         width: 125, 
