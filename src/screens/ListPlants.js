@@ -53,7 +53,7 @@ class ListPlants extends Component {
 
     this.props.navigation.navigate('Plant', {
       plantName: plant["plant_name"],
-      receivedDate: plant["date_received"],
+      dateReceived: plant["date_received"],
       note: plant["note"],
       plantKey: plant["key"],
       wateringDates: wateringList,

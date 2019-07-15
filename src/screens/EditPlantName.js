@@ -25,8 +25,8 @@ class EditPlantName extends Component {
 
     onCancelPress = () => {
         this.props.navigation.navigate('Plant', {
-            dateReceived: this.state.dateReceived,
-            plantKey: this.state.plantKey,
+            plantName: this.props.navigation.getParam('plantName'),
+            plantKey: this.props.navigation.getParam('plantKey'),
         });
     }
         

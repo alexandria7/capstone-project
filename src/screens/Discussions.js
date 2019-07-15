@@ -18,6 +18,10 @@ class Discussions extends Component {
                 <View>
                     <Text>All Discussions</Text>
                     <Text>Find and offer planty advice!</Text>
+                    <Button 
+                        title="Start a Thread"
+                        onPress={ () => console.log('button pressed in discussion page!') }
+                    />
                 </View>
             </View>
         )

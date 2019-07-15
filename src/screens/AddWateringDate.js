@@ -34,8 +34,8 @@ class AddWateringDate extends Component {
 
     onCancelPress = () => {
         this.props.navigation.navigate('Plant', {
-            wateringDates: this.state.wateringDates,
-            plantKey: this.state.plantKey,
+            wateringDates: this.props.navigation.getParam('wateringDates'),
+            plantKey: this.props.navigation.getParam('plantKey'),
         });
     }
         

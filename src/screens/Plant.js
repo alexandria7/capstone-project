@@ -6,7 +6,7 @@ import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Ima
 const Plant = (props) => {
 
     const plantName = props.navigation.getParam('plantName');
-    const dateReceived = props.navigation.getParam('receivedDate');
+    const dateReceived = props.navigation.getParam('dateReceived');
     const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
     console.log(plantKey)

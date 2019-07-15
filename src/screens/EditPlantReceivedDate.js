@@ -26,8 +26,8 @@ class EditPlantReceivedDate extends Component {
 
     onCancelPress = () => {
         this.props.navigation.navigate('Plant', {
-            dateReceived: this.state.dateReceived,
-            plantKey: this.state.plantKey,
+            dateReceived: this.props.navigation.getParam('dateReceived'),
+            plantKey: this.props.navigation.getParam('plantKey'),
         });
     }
         

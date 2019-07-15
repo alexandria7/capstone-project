@@ -23,6 +23,13 @@ class EditPlantNote extends Component {
         )
     }
 
+    onCancelPress = () => {
+        this.props.navigation.navigate('Plant', {
+            note: this.props.navigation.getParam('note'),
+            plantKey: this.props.navigation.getParam('plantKey'),
+        });
+    }
+
     updateInfoToDatabase = () => {
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
         .update({
