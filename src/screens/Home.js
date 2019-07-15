@@ -42,6 +42,7 @@ class Home extends Component {
 
           <Button 
             title="Discussion Forum"
+            onPress={ () => this.props.navigation.navigate('Discussions') }
           />
 
           <Button 

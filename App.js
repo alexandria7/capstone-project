@@ -9,7 +9,7 @@ class App extends Component {
 
   // componentDidMount() {
   //   firebase.initializeApp(firebaseConfig);
-  //   }
+  // }
 
   render() {
     return <AppContainer />;

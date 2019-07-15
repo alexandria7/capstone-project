@@ -11,6 +11,7 @@ import AddWateringDate from '../src/screens/AddWateringDate';
 import AddFertilizingDate from '../src/screens/AddFertilizingDate';
 import ListPlants from '../src/screens/ListPlants';
 import Plant from '../src/screens/Plant';
+import Discussions from '../src/screens/Discussions';
 import AboutApp from '../src/screens/AboutApp';
 
 const AppNavigator = createSwitchNavigator(
@@ -89,6 +90,12 @@ const AppNavigator = createSwitchNavigator(
           navigationOptions: {
             drawerLabel: () => null
           }
+        },
+        Discussions: {
+          screen: Discussions,
+          navigationOptions: {
+            drawerLabel: 'Discussion Forum'
+          }, 
         }
       })
     }
