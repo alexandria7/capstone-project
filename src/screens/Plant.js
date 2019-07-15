@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 const Plant = (props) => {
 
@@ -133,6 +133,11 @@ const Plant = (props) => {
                     title='Edit Name'
                     onPress={() => onEditNamePress()}
                 />
+
+                <Image 
+                    style={styles.plantImageStyle}
+                    source={require('../images/sm-plant-placeholder.png')}
+                />
         
                 <Text>Date Received: {dateReceived}</Text>
                 <Button 
@@ -205,6 +210,14 @@ const styles = StyleSheet.create({
     },
     mainPlantInfo: {
         justifyContent: 'space-between'
+    },
+    plantImageStyle: {
+        width: 125, 
+        height: 125,
+        alignSelf: 'center',
+        marginTop: 10,
+        marginBottom: 30,
+        borderRadius: 120 / 2
     },
     noNotesStyle: {
         fontStyle: 'italic',
