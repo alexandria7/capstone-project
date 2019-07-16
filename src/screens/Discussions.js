@@ -31,6 +31,15 @@ class Discussions extends Component {
                 console.log('this is the discussions list from firebase', discussions)
             })
     }
+
+    onDiscussionButtonPress = (discussion) => {
+        this.props.navigation.navigate('IndividualThread', {
+            question: discussion["question"],
+            questionBody: discussion["question_body"],
+            userId: discussion["userId"],
+            userName: discussion["userName"]
+        }); 
+    }
     
     render() {
         const discussionList = this.state.discussions.map((discussion, i) => 
