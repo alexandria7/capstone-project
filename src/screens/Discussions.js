@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
 class Discussions extends Component {
+    
     render() {
         return (
             <View>
@@ -20,7 +21,7 @@ class Discussions extends Component {
                     <Text>Find and offer planty advice!</Text>
                     <Button 
                         title="Start a Thread"
-                        onPress={ () => console.log('button pressed in discussion page!') }
+                        onPress={ () => this.props.navigation.navigate('AddDiscussionThread') }
                     />
                 </View>
             </View>
