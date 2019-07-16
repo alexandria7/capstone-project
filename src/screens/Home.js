@@ -36,9 +36,9 @@ class Home extends Component {
               onPress={ () => this.props.navigation.navigate('AddPlant') }
           />
 
-          <Button 
+          {/* <Button 
             title="My Notifications"
-          />
+          /> */}
 
           <Button 
             title="Discussion Forum"

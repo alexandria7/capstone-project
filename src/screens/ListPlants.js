@@ -12,7 +12,7 @@ class ListPlants extends Component {
 
     this.state = {
       plants: [],
-      selectedPlant: null
+      // selectedPlant: null
     }
   }
 
