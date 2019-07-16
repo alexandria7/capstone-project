@@ -11,7 +11,9 @@ import AddWateringDate from '../src/screens/AddWateringDate';
 import AddFertilizingDate from '../src/screens/AddFertilizingDate';
 import ListPlants from '../src/screens/ListPlants';
 import Plant from '../src/screens/Plant';
+import CreateLocalNotif from '../src/screens/CreateLocalNotif';
 import Discussions from '../src/screens/Discussions';
+import AddDiscussionThread from '../src/screens/AddDiscussionThread';
 import AboutApp from '../src/screens/AboutApp';
 
 const AppNavigator = createSwitchNavigator(
@@ -91,11 +93,23 @@ const AppNavigator = createSwitchNavigator(
             drawerLabel: () => null
           }
         },
+        CreateLocalNotif: {
+          screen: CreateLocalNotif,
+          navigationOptions: {
+            drawerLabel: () => null
+          }
+        },
         Discussions: {
           screen: Discussions,
           navigationOptions: {
             drawerLabel: 'Discussion Forum'
           }, 
+        },
+        AddDiscussionThread: {
+          screen: AddDiscussionThread,
+          navigationOptions: {
+            drawerLabel: 'Start a Discussion Thread'
+          },
         }
       })
     }
@@ -108,4 +122,3 @@ const AppNavigator = createSwitchNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 export default AppContainer;
-
