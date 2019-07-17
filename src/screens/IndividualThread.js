@@ -23,8 +23,8 @@ const IndividualThread = (props) => {
         })
 
     const allComments = comments.map((comment, i) => 
-        <View key={i}>
-            <Text>{comment["comment_user_name"]}</Text>
+        <View key={i} style={styles.commentSectionStyle}>
+            <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
             <Text>{comment["comment"]}</Text>
         </View>
     );
@@ -51,9 +51,9 @@ const IndividualThread = (props) => {
                     </View>
                 </View>
 
-                <View>
+                <View style={styles.discussionCommentSection}>
                     <View>
-                        <Text>{allComments.length} Comments</Text>
+                        <Text style={styles.commentNumber}>{allComments.length} Comments</Text>
                         {allComments.length !== 0 ? 
                             <View>{allComments}</View> :
                             <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
@@ -69,7 +69,6 @@ const IndividualThread = (props) => {
                 </View>
             </ScrollView>
 
-            
         </View>
     )
 };
@@ -108,11 +107,29 @@ const styles = StyleSheet.create({
         marginTop: 15,
         fontSize: 17
     },
+    discussionCommentSection: {
+        margin: 10, 
+    },
     noCommentsNoticeStyle: {
         fontWeight: 'bold',
         fontStyle: 'italic',
         textAlign: 'center',
         marginTop: 25
+    },
+    commentNumber: {
+        marginBottom: 10,
+        fontWeight: 'bold'
+    },
+    commentUserNameStyle: {
+        color: '#055607',
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
+    commentSectionStyle: {
+        borderColor: '#7A7E7B',
+        borderBottomWidth: 0.5,
+        paddingTop: 10, 
+        paddingBottom: 10
     }
 });
 
