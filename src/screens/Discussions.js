@@ -9,6 +9,7 @@ class Discussions extends Component {
     
         this.state = {
           discussions: [],
+          comments: []
         }
     }
 
@@ -30,15 +31,44 @@ class Discussions extends Component {
                 this.setState({discussions})
                 console.log('this is the discussions list from firebase', discussions)
             })
+
+        // firebase.database().ref(`/discussions/${this.state.discussion["key"]}/comments`)
+        //     .on('value', snapshot => {
+        //         console.log('snapshot of all comments', snapshot.val());
+        //         const comments = _.map(snapshot.val(), (commentObject, key) => {
+        //             commentObject.key = key;
+        //             return commentObject;
+        //         });
+
+        //         this.setState({comments})
+        //     })
     }
 
     onDiscussionButtonPress = (discussion) => {
+        // firebase.database().ref(`/discussions/${discussion["key"]}/comments`)
+        //     .on('value', snapshot => {
+        //         console.log('snapshot of all comments', snapshot.val());
+        //         const comments = _.map(snapshot.val(), (commentObject, key) => {
+        //             commentObject.key = key;
+        //             return commentObject;
+        //         });
+
+        //         console.log('this is the comments array as a result of mapping', comments)
+        //         this.setState({comments})
+        //     })
+
+        // const commentsList = _.map(discussion["comments"], (commentObject, key) => {
+        //     commentObject.key = key;
+        //     return commentObject;
+        // });
+
         this.props.navigation.navigate('IndividualThread', {
             question: discussion["question"],
             questionBody: discussion["question_body"],
             userId: discussion["userId"],
             userName: discussion["userName"],
-            discussionKey: discussion["key"]
+            discussionKey: discussion["key"],
+            // comments: commentsList
         }); 
     }
     

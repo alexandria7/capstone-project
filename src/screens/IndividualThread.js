@@ -10,6 +10,8 @@ const IndividualThread = (props) => {
     const userName = props.navigation.getParam('userName');
     const discussionKey = props.navigation.getParam('discussionKey');
     let comments = undefined;
+    // const comments = props.navigation.getParam('comments');
+    console.log(comments)
 
     firebase.database().ref(`/discussions/${discussionKey}/comments`)
         .on('value', snapshot => {
@@ -39,30 +41,35 @@ const IndividualThread = (props) => {
                 <Text style={styles.headerText}>Wet Your Plants</Text>
             </View> 
 
-            <View style={styles.discussionMainSectionStyle}>
-                <Text style={styles.discussionHeader}>Discussion Thread</Text>
-                <View style={styles.questionTitleStyle}>
-                    <Text style={styles.questionTitleText}>{question}</Text>
-                    <Text style={styles.aboutPostText}>Posted by {userName}</Text>
-                    <Text style={styles.postBodyStyle}>{questionBody}</Text>
+            <ScrollView>
+                <View style={styles.discussionMainSectionStyle}>
+                    <Text style={styles.discussionHeader}>Discussion Thread</Text>
+                    <View style={styles.questionTitleStyle}>
+                        <Text style={styles.questionTitleText}>{question}</Text>
+                        <Text style={styles.aboutPostText}>Posted by {userName}</Text>
+                        <Text style={styles.postBodyStyle}>{questionBody}</Text>
+                    </View>
                 </View>
 
                 <View>
-                    <Text>{allComments.length} Comments</Text>
-                    {allComments.length !== 0 ? 
-                        <ScrollView>{allComments}</ScrollView> :
-                        <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
-                    }
-                </View>
+                    <View>
+                        <Text>{allComments.length} Comments</Text>
+                        {allComments.length !== 0 ? 
+                            <View>{allComments}</View> :
+                            <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
+                        }
+                    </View>
 
-                <View>
-                    <Button 
-                        title="Add a comment"
-                        onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
-                    />
+                    <View>
+                        <Button 
+                            title="Add a comment"
+                            onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
+                        />
+                    </View>
                 </View>
+            </ScrollView>
 
-            </View>
+            
         </View>
     )
 };
