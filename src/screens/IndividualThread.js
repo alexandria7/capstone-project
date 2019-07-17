@@ -29,6 +29,17 @@ const IndividualThread = (props) => {
                     <Text style={styles.postBodyStyle}>{questionBody}</Text>
                 </View>
 
+                <View>
+                    <Text>5 Comments</Text>
+                </View>
+
+                <View>
+                    <Button 
+                        title="Add a comment"
+                        onPress={() => console.log('add a comment was pressed')}
+                    />
+                </View>
+
             </View>
         </View>
     )
