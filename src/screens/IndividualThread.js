@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import AddComment from '../components/AddComment';
 
 const IndividualThread = (props) => {
     const question = props.navigation.getParam('question');
@@ -61,9 +62,8 @@ const IndividualThread = (props) => {
                     </View>
 
                     <View>
-                        <Button 
-                            title="Add a comment"
-                            onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
+                        <AddComment 
+                            discussionKey={discussionKey}
                         />
                     </View>
                 </View>
