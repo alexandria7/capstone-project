@@ -54,7 +54,7 @@ const IndividualThread = (props) => {
 
                 <View style={styles.discussionCommentSection}>
                     <View>
-                        <Text style={styles.commentNumber}>{allComments.length} Comments</Text>
+                        <Text style={styles.commentNumber}>{allComments.length} Comment(s)</Text>
                         {allComments.length !== 0 ? 
                             <View>{allComments}</View> :
                             <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
