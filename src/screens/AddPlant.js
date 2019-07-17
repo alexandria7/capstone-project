@@ -15,7 +15,7 @@ class AddPlant extends Component {
       plantName: '',
       dateReceived: '',
       note: '',
-      wateringDates: undefined
+      // wateringDates: undefined
       // photos: [], 
     };
   }
@@ -38,7 +38,7 @@ class AddPlant extends Component {
           receivedDate: this.state.dateReceived,
           note: this.state.note, 
           plantKey: dataRef,
-          wateringDates: this.state.wateringDates
+          // wateringDates: this.state.wateringDates
           // plantKey: this.state.plantKey
         })
 
@@ -48,7 +48,7 @@ class AddPlant extends Component {
           plantName: '',
           dateReceived: '',
           note: '',
-          wateringDates: undefined
+          // wateringDates: undefined
           // photos: [], 
         });
         console.log('i should have just reset my state!!!!')

@@ -49,7 +49,7 @@ const IndividualThread = (props) => {
 
                 <View>
                     <Text>{allComments.length} Comments</Text>
-                    {comments !== null ? 
+                    {allComments.length !== 0 ? 
                         <ScrollView>{allComments}</ScrollView> :
                         <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
                     }
