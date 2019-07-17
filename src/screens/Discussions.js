@@ -53,7 +53,7 @@ class Discussions extends Component {
         );
 
         return (
-            <View>
+            <View style={styles.aboutAppMainStyle}>
                 <View style={styles.headerStyle}>
                     <View style={styles.headerNavButton}>
                     <Button
@@ -64,8 +64,8 @@ class Discussions extends Component {
                     <Text style={styles.headerText}>Wet Your Plants</Text>
                 </View>
 
-                <View>
-                    <Text>All Discussions</Text>
+                <View style={styles.mainDiscussionListSection}>
+                    <Text style={styles.ListTitle}>All Discussions</Text>
                     <Text>Find and offer planty advice!</Text>
                     <Button 
                         title="Start a Thread"
@@ -84,17 +84,52 @@ class Discussions extends Component {
 }
 
 const styles = StyleSheet.create({
-    headerStyle: {
-        height: 70,
-        paddingTop: 30, 
-        borderColor: 'lightgrey',
-        borderBottomWidth: 0.5,
-        justifyContent: 'space-evenly',
-        // alignItems: 'center'
-      },
-    headerNavButton: {
-        justifyContent: 'flex-end'
+    aboutAppMainStyle: {
+        // marginTop: 20,
+        flex: 1,
+        backgroundColor: '#BDE1C9', 
     },
-})
+    headerStyle: {
+      height: 70,
+      paddingTop: 30, 
+      borderColor: 'lightgrey',
+      borderBottomWidth: 0.5,
+      justifyContent: 'space-evenly',
+      // alignItems: 'center'
+    },
+    headerText: {
+      alignSelf: 'center',
+      textAlign: 'center'
+    },
+    headerNavButton: {
+      justifyContent: 'flex-end'
+    },
+    mainDiscussionListSection: {
+      paddingTop: 20,
+      flex: 1
+    },
+    ListTitle: {
+      fontSize: 35,
+      fontWeight: 'bold',
+      color: '#055607',
+      textAlign: 'center',
+    },
+    listOfDiscussionsStyle: {
+      marginLeft: 15,
+      marginRight: 15,
+      marginTop: 15,
+      // flex: 1
+    },
+    noticeStyleName : {
+      fontWeight: 'bold',
+      fontStyle: 'italic',
+      textAlign: 'center',
+      marginTop: 25
+    },
+    discussionNameButtonStyle: {
+      fontSize: 20,
+      paddingBottom: 10
+    }
+  });
 
 export default Discussions;
