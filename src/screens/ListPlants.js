@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { StackActions, NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { View, Text, Button, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import Plant from './Plant';
-// import { FlatList } from 'react-native-gesture-handler';
 
 class ListPlants extends Component {
   constructor(props) {

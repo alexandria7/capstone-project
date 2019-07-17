@@ -37,7 +37,8 @@ class Discussions extends Component {
             question: discussion["question"],
             questionBody: discussion["question_body"],
             userId: discussion["userId"],
-            userName: discussion["userName"]
+            userName: discussion["userName"],
+            discussionKey: discussion["key"]
         }); 
     }
     

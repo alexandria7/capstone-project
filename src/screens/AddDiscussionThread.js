@@ -32,7 +32,8 @@ class AddDiscussionThread extends Component {
         question: this.state.question,
         questionBody: this.state.questionBody,
         userId: firebase.auth().currentUser.uid,
-        userName: firebase.auth().currentUser.displayName
+        userName: firebase.auth().currentUser.displayName,
+        discussionKey: dataRef
       })
 
       console.log('about to reset the state!!!!!')

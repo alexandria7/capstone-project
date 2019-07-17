@@ -14,6 +14,7 @@ import Plant from '../src/screens/Plant';
 import Discussions from '../src/screens/Discussions';
 import AddDiscussionThread from '../src/screens/AddDiscussionThread';
 import IndividualThread from '../src/screens/IndividualThread';
+import AddComment from '../src/screens/AddComment';
 import AboutApp from '../src/screens/AboutApp';
 
 // import { 
@@ -125,6 +126,12 @@ const AppNavigator = createSwitchNavigator(
         },
         IndividualThread: {
           screen: IndividualThread,
+          navigationOptions: {
+            drawerLabel: () => null
+          }
+        },
+        AddComment: {
+          screen: AddComment,
           navigationOptions: {
             drawerLabel: () => null
           }
