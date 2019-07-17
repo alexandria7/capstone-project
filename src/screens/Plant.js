@@ -14,14 +14,6 @@ const Plant = (props) => {
     console.log(wateringDates)
     const fertilizingDates = props.navigation.getParam('fertilizingDates');
 
-    // props.navigation.replace('Plant', {
-    //     plantKey: props.navigation.getParam('plantKey'), 
-    //     plantName: props.navigation.getParam('plantName'), 
-    //     note: props.navigation.getParam('note'), 
-    //     wateringDates: props.navigation.getParam('wateringDates'),
-    //     dateReceived: props.navigation.getParam('receivedDate')
-    // })
-
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
             plantKey: plantKey,

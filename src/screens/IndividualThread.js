@@ -10,12 +10,64 @@ const IndividualThread = (props) => {
     const userName = props.navigation.getParam('userName');
 
     return (
-        <View>
-            <Text style={{marginTop: 50}}>{question}</Text>
-            <Text>{questionBody}</Text>
-            <Text>Asked by {userName}</Text>
+        <View style={styles.aboutAppMainStyle}>
+            <View style={styles.headerStyle}>
+                <View style={styles.headerNavButton}>
+                    <Button
+                        title='Open'
+                        onPress={ () => props.navigation.openDrawer() }
+                    />
+                </View>
+                <Text style={styles.headerText}>Wet Your Plants</Text>
+            </View> 
+
+            <View style={styles.discussionMainSectionStyle}>
+                <Text style={styles.discussionHeader}>Discussion Thread</Text>
+                <View style={styles.questionTitleStyle}>
+                    <Text style={styles.questionTitleText}>{question}</Text>
+                    <Text style={styles.aboutPostText}>Posted by {userName}</Text>
+                    <Text style={styles.postBodyStyle}>{questionBody}</Text>
+                </View>
+
+            </View>
         </View>
     )
-}
+};
+
+const styles = StyleSheet.create({
+    aboutAppMainStyle: {
+        // marginTop: 20,
+        flex: 1,
+        backgroundColor: '#BDE1C9', 
+    },
+    discussionMainSectionStyle: {
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15,
+    },
+    discussionHeader: {
+        fontWeight: 'bold',
+        color: '#7A7E7B',
+        fontSize: 15,
+        marginTop: 20
+    },
+    questionTitleStyle: {
+        marginTop: 20,
+        paddingBottom: 12,
+        borderColor: '#7A7E7B',
+        borderBottomWidth: 0.5,
+    },
+    questionTitleText: {
+        fontSize: 30,
+    },
+    aboutPostText: {
+        fontStyle: 'italic',
+        marginTop: 10
+    },
+    postBodyStyle: {
+        marginTop: 15,
+        fontSize: 17
+    }
+});
 
 export default IndividualThread;
