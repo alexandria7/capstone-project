@@ -45,6 +45,7 @@ class Discussions extends Component {
         const discussionList = this.state.discussions.map((discussion, i) => 
             <TouchableOpacity 
                 onPress={ () => this.onDiscussionButtonPress(discussion) }
+                style={styles.discussionContainerStyle}
                 key={i}
             >
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
@@ -66,7 +67,7 @@ class Discussions extends Component {
 
                 <View style={styles.mainDiscussionListSection}>
                     <Text style={styles.ListTitle}>All Discussions</Text>
-                    <Text>Find and offer planty advice!</Text>
+                    <Text style={styles.subTitleStyle}>Find and offer planty advice!</Text>
                     <Button 
                         title="Start a Thread"
                         onPress={ () => this.props.navigation.navigate('AddDiscussionThread') }
@@ -101,12 +102,20 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       textAlign: 'center'
     },
+    subTitleStyle: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: '#7A7E7B',
+        fontSize: 20,
+        marginBottom: 20
+    },
     headerNavButton: {
       justifyContent: 'flex-end'
     },
     mainDiscussionListSection: {
       paddingTop: 20,
-      flex: 1
+    //   flex: 1
     },
     ListTitle: {
       fontSize: 35,
@@ -129,6 +138,10 @@ const styles = StyleSheet.create({
     discussionNameButtonStyle: {
       fontSize: 20,
       paddingBottom: 10
+    },
+    discussionContainerStyle: {
+        borderColor: 'black',
+        borderBottomWidth: 0.5,
     }
   });
 
