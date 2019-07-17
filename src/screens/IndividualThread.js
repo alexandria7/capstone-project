@@ -8,6 +8,24 @@ const IndividualThread = (props) => {
     const questionBody = props.navigation.getParam('questionBody');
     const userId = props.navigation.getParam('userId');
     const userName = props.navigation.getParam('userName');
+    const discussionKey = props.navigation.getParam('discussionKey');
+    let comments = undefined;
+
+    firebase.database().ref(`/discussions/${discussionKey}/comments`)
+        .on('value', snapshot => {
+            console.log('snapshot of all comments', snapshot.val());
+            comments = _.map(snapshot.val(), (commentObject, key) => {
+                commentObject.key = key;
+                return commentObject;
+            });
+        })
+
+    const allComments = comments.map((comment, i) => 
+        <View key={i}>
+            <Text>{comment["comment_user_name"]}</Text>
+            <Text>{comment["comment"]}</Text>
+        </View>
+    );
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -30,13 +48,17 @@ const IndividualThread = (props) => {
                 </View>
 
                 <View>
-                    <Text>5 Comments</Text>
+                    <Text>{allComments.length} Comments</Text>
+                    {comments !== null ? 
+                        <ScrollView>{allComments}</ScrollView> :
+                        <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
+                    }
                 </View>
 
                 <View>
                     <Button 
                         title="Add a comment"
-                        onPress={() => console.log('add a comment was pressed')}
+                        onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
                     />
                 </View>
 
@@ -78,6 +100,12 @@ const styles = StyleSheet.create({
     postBodyStyle: {
         marginTop: 15,
         fontSize: 17
+    },
+    noCommentsNoticeStyle: {
+        fontWeight: 'bold',
+        fontStyle: 'italic',
+        textAlign: 'center',
+        marginTop: 25
     }
 });
 
