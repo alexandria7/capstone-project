@@ -11,11 +11,28 @@ import AddWateringDate from '../src/screens/AddWateringDate';
 import AddFertilizingDate from '../src/screens/AddFertilizingDate';
 import ListPlants from '../src/screens/ListPlants';
 import Plant from '../src/screens/Plant';
-// import CreateLocalNotif from '../src/screens/CreateLocalNotif';
 import Discussions from '../src/screens/Discussions';
 import AddDiscussionThread from '../src/screens/AddDiscussionThread';
 import IndividualThread from '../src/screens/IndividualThread';
 import AboutApp from '../src/screens/AboutApp';
+
+// import { 
+//   Loading, 
+//   Auth, 
+//   Home, 
+//   AddPlant, 
+//   EditPlantName, 
+//   EditPlantReceivedDate, 
+//   EditPlantNote, 
+//   AddWateringDate, 
+//   AddFertilizingDate, 
+//   ListPlants, 
+//   Plant, 
+//   Discussions, 
+//   AddDiscussionThread, 
+//   IndividualThread, 
+//   AboutApp 
+// } from '../src/screens';
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -51,6 +68,18 @@ const AppNavigator = createSwitchNavigator(
           navigationOptions: {
             drawerLabel: 'Add a New Plant'
           },  
+        },
+        Discussions: {
+          screen: Discussions,
+          navigationOptions: {
+            drawerLabel: 'Discussion Forum'
+          }, 
+        },
+        AddDiscussionThread: {
+          screen: AddDiscussionThread,
+          navigationOptions: {
+            drawerLabel: 'Start a Discussion Thread'
+          },
         },
         AboutApp: { 
           screen: AboutApp,
@@ -93,24 +122,6 @@ const AppNavigator = createSwitchNavigator(
           navigationOptions: {
             drawerLabel: () => null
           }
-        },
-        // CreateLocalNotif: {
-        //   screen: CreateLocalNotif,
-        //   navigationOptions: {
-        //     drawerLabel: () => null
-        //   }
-        // },
-        Discussions: {
-          screen: Discussions,
-          navigationOptions: {
-            drawerLabel: 'Discussion Forum'
-          }, 
-        },
-        AddDiscussionThread: {
-          screen: AddDiscussionThread,
-          navigationOptions: {
-            drawerLabel: 'Start a Discussion Thread'
-          },
         },
         IndividualThread: {
           screen: IndividualThread,
