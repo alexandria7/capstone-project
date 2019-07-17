@@ -68,6 +68,7 @@ class ListPlants extends Component {
     const plantList = this.state.plants.map((plant, i) => 
       <TouchableOpacity 
         onPress={ () => this.onPlantNameButtonPress(plant) }
+        style={styles.plantContainerStyle}
         key={i}
       >
         <Text style={styles.plantNameButtonStyle}>{plant["plant_name"]}</Text>
@@ -155,6 +156,12 @@ const styles = StyleSheet.create({
   },
   plantNameButtonStyle: {
     fontSize: 20,
+    // paddingBottom: 10
+  },
+  plantContainerStyle: {
+    borderColor: '#7A7E7B',
+    borderBottomWidth: 0.5,
+    paddingTop: 10, 
     paddingBottom: 10
   }
 });

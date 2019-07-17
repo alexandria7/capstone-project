@@ -140,8 +140,10 @@ const styles = StyleSheet.create({
       paddingBottom: 10
     },
     discussionContainerStyle: {
-        borderColor: 'black',
+        borderColor: '#7A7E7B',
         borderBottomWidth: 0.5,
+        paddingTop: 10, 
+        paddingBottom: 10
     }
   });
 
