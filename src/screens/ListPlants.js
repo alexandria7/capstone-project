@@ -77,10 +77,21 @@ class ListPlants extends Component {
           <View style={styles.headerStyle}>
 
             <View style={styles.headerNavButton}>
-              <Button
+
+            <TouchableOpacity 
+              onPress={ () => this.props.navigation.openDrawer() }
+            >
+              <View>
+                <Text>-</Text>
+                <Text>-</Text>
+                <Text>-</Text>
+              </View>
+            </TouchableOpacity>
+
+              {/* <Button
                 title='Open'
                 onPress={ () => this.props.navigation.openDrawer() }
-              />
+              /> */}
             </View>
             <Text style={styles.headerText}>Wet Your Plants</Text>
 

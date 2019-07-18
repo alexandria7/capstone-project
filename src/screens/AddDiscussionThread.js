@@ -16,6 +16,7 @@ class AddDiscussionThread extends Component {
 
   addInfoToDatabaseAndClear = () => {
     console.log('submit was pressed')
+    // console.log(new Date().getDate())
     // this.setState({user: firebase.auth().currentUser.uid})
 
     const dataRef = firebase.database().ref('/discussions')
