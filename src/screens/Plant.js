@@ -121,7 +121,7 @@ const Plant = (props) => {
             <ScrollView style={styles.mainPlantInfo}>
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
-                <Text>{plantKey}</Text>
+                
                 <Button 
                     title='Edit Name'
                     onPress={() => onEditNamePress()}
@@ -132,7 +132,7 @@ const Plant = (props) => {
                     source={require('../images/sm-plant-placeholder.png')}
                 />
         
-                <Text>Date Received: {dateReceived}</Text>
+                <Text style={styles.sectionNameText}>Date Received: {dateReceived}</Text>
                 <Button 
                     title='Edit Date'
                     onPress={() => onEditDatePress()}
@@ -140,7 +140,7 @@ const Plant = (props) => {
 
 
                 <View>
-                    <Text>A bit about this plant:</Text>
+                    <Text style={styles.sectionNameText}>A bit about this plant:</Text>
                 
                     {note === '' ? 
                         <Text style={styles.noNotesStyle}>No notes for this plant</Text> :
@@ -154,7 +154,7 @@ const Plant = (props) => {
                 </View>
 
                 <View>
-                    <Text>Watering Log:</Text>
+                    <Text style={styles.sectionNameText}>Watering Log:</Text>
                     <View>
                         {wateringDisplay}
                     </View>
@@ -165,7 +165,7 @@ const Plant = (props) => {
                 </View>
 
                 <View>
-                    <Text>Fertilizing Log:</Text>
+                    <Text style={styles.sectionNameText}>Fertilizing Log:</Text>
                     <View>
                         {fertilizingDisplay}
                     </View>
@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25
     },
-    mainPlantInfo: {
-        // justifyContent: 'space-between'
+    sectionNameText: {
+        fontWeight: 'bold'
     },
     plantImageStyle: {
         width: 125, 
