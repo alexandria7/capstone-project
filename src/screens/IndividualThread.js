@@ -30,6 +30,30 @@ const IndividualThread = (props) => {
         </View>
     );
 
+    const onDeletePostPress = () => {
+        Alert.alert(
+            `Are you sure you want to delete this thread?`,
+            'All of it will be deleted including the comments.',
+            [
+              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
+              {text: 'Delete', onPress: () => deletePost()}
+            ]
+          )
+    }
+
+    const deletePost = () => {
+        console.log(`post with id ${discussionKey} is about to be deleted`)
+        
+        const postToDelete = firebase.database().ref(`/discussions/${discussionKey}`);
+
+        postToDelete
+            .remove()
+            .then(() => {
+                console.log('post was deleted...')
+                props.navigation.navigate('Discussions'); 
+            })
+    }
+
     return (
         <View style={styles.aboutAppMainStyle}>
             <View style={styles.headerStyle}>
@@ -56,7 +80,7 @@ const IndividualThread = (props) => {
                             firebase.auth().currentUser.uid === userId ? 
                             <Button 
                                 title="Delete Thread"
-                                onPress={() => console.log('i am allowed to press this!')}
+                                onPress={() => onDeletePostPress()}
                             /> : null 
 
                         }
