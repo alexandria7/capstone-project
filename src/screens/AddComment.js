@@ -67,6 +67,13 @@ class AddComment extends Component {
                         />
 
                         <Button 
+                            title="Cancel"
+                            onPress={() => this.props.navigation.navigate('IndividualThread', {
+                                discussionKey: this.props.navigation.getParam('discussionKey')
+                            })}
+                        />
+
+                        <Button 
                             title="Submit Comment"
                             onPress={() => this.onSubmitCommentPress()}
                         />
