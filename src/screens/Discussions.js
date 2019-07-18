@@ -31,17 +31,6 @@ class Discussions extends Component {
                 this.setState({discussions})
                 console.log('this is the discussions list from firebase', discussions)
             })
-
-        // firebase.database().ref(`/discussions/${this.state.discussion["key"]}/comments`)
-        //     .on('value', snapshot => {
-        //         console.log('snapshot of all comments', snapshot.val());
-        //         const comments = _.map(snapshot.val(), (commentObject, key) => {
-        //             commentObject.key = key;
-        //             return commentObject;
-        //         });
-
-        //         this.setState({comments})
-        //     })
     }
 
     onDiscussionButtonPress = (discussion) => {

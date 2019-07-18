@@ -7,10 +7,7 @@ class AddComment extends Component {
         super(props);
     
         this.state = {
-        //   commentUserId: '',
           comment: '',
-        //   discussionKey: ''
-          // photos: [], 
         };
     }
 
@@ -23,13 +20,20 @@ class AddComment extends Component {
                 comment_user_id: firebase.auth().currentUser.uid,
                 comment_user_name: firebase.auth().currentUser.displayName,
             })
-            
+            // .then(() => {
+                this.props.navigation.navigate("IndividualThread", {
+                    discussionKey: this.props.discussionKey,
+                })
+
+                this.setState({ comment: '' })
+
+            // })
             // this.props.navigation.navigate('IndividualThread', {
             //     comment: this.state.comment,
             //     commentUserName: firebase.auth().currentUser.displayName
             // })
 
-            this.setState({ comment: '' })
+            // this.setState({ comment: '' })
     }
 
     render() {
