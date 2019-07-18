@@ -1,67 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react';
 import firebase from 'firebase';
 import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-class Home extends Component {
-  render() {
+const Home = (props) => {
+  const loggedInUser = firebase.auth().currentUser;
 
-    const loggedInUser = firebase.auth().currentUser;
+  return (
+    <View style={styles.mainHomepageContainer}>
+      <Text style={styles.titleStyle}>Wet Your Plants</Text>
 
-    return (
-      <View style={styles.mainHomepageContainer}>
-        <Text style={styles.titleStyle}>Wet Your Plants</Text>
+      <Image 
+        style={styles.imageStyle}
+        source={require('../images/adansonii-transparent.png')}
+      />
 
-        <Image 
-          style={styles.imageStyle}
-          source={require('../images/adansonii-transparent.png')}
+      <View style={styles.greetingStyle}>
+        <Text style={styles.greetingText}>{`Hello, ${loggedInUser.displayName}!`}</Text>
+        <TouchableOpacity 
+            onPress={ () => firebase.auth().signOut() }
+        >
+          <Text style={styles.greetingButtonText}>Log Out</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.buttonContainerStyle}>
+        <Button 
+            title="My Plants"
+            onPress={ () => props.navigation.navigate('ListPlants') }
         />
 
-        <View style={styles.greetingStyle}>
-          <Text style={styles.greetingText}>{`Hello, ${loggedInUser.displayName}!`}</Text>
-          <TouchableOpacity 
-              onPress={ () => firebase.auth().signOut() }
-          >
-            <Text style={styles.greetingButtonText}>Log Out</Text>
-          </TouchableOpacity>
-        </View>
+        <Button 
+            title="Add Plant"
+            onPress={ () => props.navigation.navigate('AddPlant') }
+        />
 
-        <View style={styles.buttonContainerStyle}>
-          <Button 
-              title="My Plants"
-              onPress={ () => this.props.navigation.navigate('ListPlants') }
-          />
+        <Button 
+          title="Discussion Forum"
+          onPress={ () => props.navigation.navigate('Discussions') }
+        />
 
-          <Button 
-              title="Add Plant"
-              onPress={ () => this.props.navigation.navigate('AddPlant') }
-          />
-
-          {/* <Button 
-            title="My Notifications"
-          /> */}
-
-          <Button 
-            title="Discussion Forum"
-            onPress={ () => this.props.navigation.navigate('Discussions') }
-          />
-
-          <Button 
-            title="My Conversations"
-          />
-        </View>
-
-        <View style={styles.aboutAppStyle}>
-          <TouchableOpacity 
-            onPress={ () => this.props.navigation.navigate('AboutApp') }
-          >
-            <Text style={styles.aboutAppButtonText}>About Wet Your Plants</Text>
-          </TouchableOpacity>
-        </View>
-
+        <Button 
+          title="My Conversations"
+          onPress={ () => props.navigation.navigate('MyConversations') }
+        />
       </View>
-    );
-  }
-}
+
+      <View style={styles.aboutAppStyle}>
+        <TouchableOpacity 
+          onPress={ () => props.navigation.navigate('AboutApp') }
+        >
+          <Text style={styles.aboutAppButtonText}>About Wet Your Plants</Text>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   mainHomepageContainer: {

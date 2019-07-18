@@ -15,6 +15,7 @@ import Discussions from '../src/screens/Discussions';
 import AddDiscussionThread from '../src/screens/AddDiscussionThread';
 import IndividualThread from '../src/screens/IndividualThread';
 import AddComment from '../src/screens/AddComment';
+import MyConversations from '../src/screens/MyConversations';
 import AboutApp from '../src/screens/AboutApp';
 
 // import { 
@@ -80,6 +81,12 @@ const AppNavigator = createSwitchNavigator(
           screen: AddDiscussionThread,
           navigationOptions: {
             drawerLabel: 'Start a Discussion Thread'
+          },
+        },
+        MyConversations: {
+          screen: MyConversations, 
+          navigationOptions: {
+            drawerLabel: 'My Conversations'
           },
         },
         AboutApp: { 
