@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 import _ from 'lodash';
 
@@ -8,9 +8,7 @@ class MyConversations extends Component {
         super(props);
     
         this.state = {
-            allDiscussions: [],
-            startedDiscussions: [],
-            commentedDiscussions: []
+            discussions: []
         }
     }
 
@@ -22,57 +20,46 @@ class MyConversations extends Component {
         firebase.database().ref(`/discussions`)
             .on('value', snapshot => {
                 console.log(snapshot.val());
-                const allDiscussions = _.map(snapshot.val(), (discussionObject, key) => {
+                const discussions = _.map(snapshot.val(), (discussionObject, key) => {
                     discussionObject.key = key;
                     return discussionObject;
                 });
-                console.log('all discussions:', allDiscussions)
 
-                this.setState({allDiscussions});
-
-                // allDiscussions.forEach((post) => {
-                //     if (post["userId"] === firebase.auth().currentUser.uid) {
-                //         let currentPostList = this.state.startedDiscussions;
-                //         currentPostList.push(post);
-                //         this.setState({startedDiscussions: currentPostList})
-                //     }
-                // })
+                this.setState({discussions})
+                console.log('this is the discussions list from firebase', discussions)
             })
-
-            // this.createWrittenPostsList();
-            // .then(() => {
-            //     this.state.allDiscussions.forEach((post) => {
-            //         if (post["userId"] === firebase.auth().currentUser.uid) {
-            //             let currentPostList = this.state.startedDiscussions;
-            //             currentPostList.push(post);
-            //             this.setState({startedDiscussions: currentPostList})
-            //         }
-            //     })
-                // this.createWrittenPostsList();
-            // })
     }
 
-    // createWrittenPostsList = () => {
-    //     this.state.allDiscussions.forEach((post) => {
-    //         if (post["userId"] === firebase.auth().currentUser.uid) {
-    //             let currentPostList = this.state.startedDiscussions;
-    //             currentPostList.push(post);
-    //             this.setState({startedDiscussions: currentPostList})
-    //         }
-    //     })
-    // }
+    onPostQuestionPress = (discussion) => {
+        this.props.navigation.navigate('IndividualThread', {
+            discussionKey: discussion["key"],
+            question: discussion["question"],
+            questionBody: discussion["question_body"],
+            userId: discussion["userId"],
+            userName: discussion["userName"]
+        })
+    }
+
 
     render() {
+        const startedDiscussions = [];
 
-        // const writtenPosts = this.state.allDiscussions.map((post, i) => {
-        //     <TouchableOpacity 
-        //         onPress={ () => console.log('post title was pressed!') }
-        //         // style={styles.plantContainerStyle}
-        //         key={i}
-        //     >
-        //         <Text>{post["question"]}</Text>
-        //     </TouchableOpacity> 
-        // });
+        this.state.discussions.forEach((post) => {
+            if (post["userId"] === firebase.auth().currentUser.uid) {
+                startedDiscussions.push(post)
+            }
+        })
+
+        const writtenPosts = startedDiscussions.map((discussion, i) => 
+        <TouchableOpacity 
+            onPress={ () => this.onPostQuestionPress(discussion) }
+            style={styles.discussionContainerStyle}
+            key={i}
+        >
+            <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
+    
+        </TouchableOpacity> 
+        );
 
         return (
             <View style={styles.aboutAppMainStyle}>
@@ -92,19 +79,24 @@ class MyConversations extends Component {
                 <View style={styles.mainPageSection}>
                     <Text style={styles.mainTitleStyle}>Your Conversations</Text>
 
-                    <View style={styles.mainPostViewingSection}>
+                    <ScrollView style={styles.mainPostViewingSection}>
                         <View>
                             <Text style={styles.postSectionHeader}>Posts You've Written</Text>
                             {/* { this.state.allDiscussions.length !== 0 ? 
                                 {writtenPosts} :
                                 <Text>You haven't written any posts yet.</Text>
                             } */}
+                            {
+                                startedDiscussions.length === 0 ? 
+                                <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
+                                <View style={styles.listOfDiscussionsStyle}>{writtenPosts}</View>
+                            }
                         </View>
 
                         <View>
                             <Text style={styles.postSectionHeader}>Posts You've Commented On</Text>
                         </View>
-                    </View>
+                    </ScrollView>
                 </View>
             </View>
         )
