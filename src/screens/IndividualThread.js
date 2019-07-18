@@ -82,7 +82,6 @@ const IndividualThread = (props) => {
                                 title="Delete Thread"
                                 onPress={() => onDeletePostPress()}
                             /> : null 
-
                         }
                     </View>
                 </View>

@@ -23,13 +23,18 @@ class AddComment extends Component {
                 comment_user_id: firebase.auth().currentUser.uid,
                 comment_user_name: firebase.auth().currentUser.displayName,
             })
-            
-            this.props.navigation.navigate('IndividualThread', {
-                comment: this.state.comment,
-                commentUserName: firebase.auth().currentUser.displayName
+            .then(() => {
+                this.props.navigation.navigate('IndividualThread', {
+                    comment: this.state.comment,
+                    commentUserName: firebase.auth().currentUser.displayName
+                })
+    
+                this.setState({ comment: '' })
             })
-
-            this.setState({ comment: '' })
+            .catch((error) => {
+                console.log('there was an error with adding this comment: ', error)
+                this.props.navigation.navigate('Discussions')
+            })
     }
 
     render() {
