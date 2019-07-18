@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
 
@@ -58,10 +58,18 @@ class AddPlant extends Component {
   render() {
     return (
       <View style={styles.addPlantMainStyle}>
-        <Button
-          title='Open'
-          onPress={ () => this.props.navigation.openDrawer() }
-        />
+        <View style={styles.headerStyle}>
+          <TouchableOpacity 
+            onPress={ () => this.props.navigation.openDrawer() }
+          >
+            <Image 
+              style={styles.headerImageStyle}
+              source={require('../images/nav-burger-transparent.png')}
+            />
+          </TouchableOpacity>
+
+          <Text style={styles.headerText}>Wet Your Plants</Text>
+        </View>
 
         <ScrollView style={styles.addPlantForm}>
         
@@ -139,6 +147,29 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#BDE1C9', 
       // justifyContent: 'space-between'
+  },
+  headerStyle: {
+    height: 70,
+    paddingTop: 30, 
+    borderColor: '#7A7E7B',
+    borderBottomWidth: 0.5,
+    justifyContent: 'space-around',
+    backgroundColor: '#EFDECE'
+  },
+  headerText: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontSize: 22,
+    color: '#055607',
+    fontWeight: 'bold',
+    paddingBottom: 40,
+    paddingTop: 0
+  },
+  headerImageStyle: {
+    width: 28, 
+    height: 28,
+    marginLeft: 10,
+    marginTop: 10
   },
   datePickerStyle: {
     width: 200

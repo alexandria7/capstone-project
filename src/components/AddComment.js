@@ -21,9 +21,9 @@ class AddComment extends Component {
                 comment_user_name: firebase.auth().currentUser.displayName,
             })
             // .then(() => {
-                this.props.navigation.navigate("IndividualThread", {
-                    discussionKey: this.props.discussionKey,
-                })
+                // this.props.navigation.navigate("IndividualThread", {
+                //     discussionKey: this.props.discussionKey,
+                // })
 
                 this.setState({ comment: '' })
 

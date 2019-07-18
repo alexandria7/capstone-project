@@ -33,14 +33,17 @@ const IndividualThread = (props) => {
     return (
         <View style={styles.aboutAppMainStyle}>
             <View style={styles.headerStyle}>
-                <View style={styles.headerNavButton}>
-                    <Button
-                        title='Open'
-                        onPress={ () => props.navigation.openDrawer() }
+                <TouchableOpacity 
+                onPress={ () => props.navigation.openDrawer() }
+                >
+                    <Image 
+                        style={styles.headerImageStyle}
+                        source={require('../images/nav-burger-transparent.png')}
                     />
-                </View>
+                </TouchableOpacity>
+
                 <Text style={styles.headerText}>Wet Your Plants</Text>
-            </View> 
+            </View>
 
             <ScrollView>
                 <View style={styles.discussionMainSectionStyle}>
@@ -79,6 +82,29 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#BDE1C9', 
     },
+    headerStyle: {
+        height: 70,
+        paddingTop: 30, 
+        borderColor: '#7A7E7B',
+        borderBottomWidth: 0.5,
+        justifyContent: 'space-around',
+        backgroundColor: '#EFDECE'
+      },
+      headerText: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        fontSize: 22,
+        color: '#055607',
+        fontWeight: 'bold',
+        paddingBottom: 40,
+        paddingTop: 0
+      },
+      headerImageStyle: {
+        width: 28, 
+        height: 28,
+        marginLeft: 10,
+        marginTop: 10
+      },
     discussionMainSectionStyle: {
         marginLeft: 15,
         marginRight: 15,

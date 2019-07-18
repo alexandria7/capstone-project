@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Button, TextInput, StyleSheet } from 'react-native';
+import { Text, View, Button, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import _ from 'lodash';
 import DatePicker from 'react-native-datepicker';
 
@@ -77,48 +77,92 @@ class AddWateringDate extends Component {
 
     render() {
         return (
-            <View style={styles.mainEditForm}>
-                <Text>Set New Watering Date for Your Plant:</Text>
+            <View style={styles.aboutAppMainStyle}>
 
-                <DatePicker
-                    style={styles.datePickerStyle}
-                    date={this.state.newWateringDate}
-                    mode="date"
-                    placeholder='choose date'
-                    format="MMMM Do YYYY"
-                    minDate="1980-01-01"
-                    maxDate="2050-12-31"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                        dateIcon: {
-                        position: 'absolute',
-                        left: 0,
-                        top: 4,
-                        marginLeft: 0
-                        },
-                        dateInput: {
-                        marginLeft: 36
-                        }
-                    }}
-                    onDateChange={(newWateringDate) => this.onAddDateButtonPress(newWateringDate)}
-                />
+                <View style={styles.headerStyle}>
+                    <TouchableOpacity 
+                    onPress={ () => this.props.navigation.openDrawer() }
+                    >
+                        <Image 
+                            style={styles.headerImageStyle}
+                            source={require('../images/nav-burger-transparent.png')}
+                        />
+                    </TouchableOpacity>
 
-                <Button 
-                    title="Cancel"
-                    onPress={() => this.onCancelPress()}
-                />
+                    <Text style={styles.headerText}>Wet Your Plants</Text>
+                </View>
 
-                <Button 
-                    title="Update"
-                    onPress={() => this.updateInfoToDatabase()}
-                />
+                <View style={styles.mainEditForm}>
+                    <Text>Set New Watering Date for Your Plant:</Text>
+
+                    <DatePicker
+                        style={styles.datePickerStyle}
+                        date={this.state.newWateringDate}
+                        mode="date"
+                        placeholder='choose date'
+                        format="MMMM Do YYYY"
+                        minDate="1980-01-01"
+                        maxDate="2050-12-31"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                            position: 'absolute',
+                            left: 0,
+                            top: 4,
+                            marginLeft: 0
+                            },
+                            dateInput: {
+                            marginLeft: 36
+                            }
+                        }}
+                        onDateChange={(newWateringDate) => this.onAddDateButtonPress(newWateringDate)}
+                    />
+
+                    <Button 
+                        title="Cancel"
+                        onPress={() => this.onCancelPress()}
+                    />
+
+                    <Button 
+                        title="Update"
+                        onPress={() => this.updateInfoToDatabase()}
+                    />
+                </View>
             </View>
         )
     }
 } 
 
 const styles = StyleSheet.create({
+    aboutAppMainStyle: {
+        // marginTop: 20,
+        flex: 1,
+        backgroundColor: '#BDE1C9', 
+    },
+    headerStyle: {
+      height: 70,
+      paddingTop: 30, 
+      borderColor: '#7A7E7B',
+      borderBottomWidth: 0.5,
+      justifyContent: 'space-around',
+      backgroundColor: '#EFDECE'
+    },
+    headerText: {
+      alignSelf: 'center',
+      textAlign: 'center',
+      fontSize: 22,
+      color: '#055607',
+      fontWeight: 'bold',
+      paddingBottom: 40,
+      paddingTop: 0
+    },
+    headerImageStyle: {
+      width: 28, 
+      height: 28,
+      marginLeft: 10,
+      marginTop: 10
+    },
     mainEditForm: {
         marginTop: 30,
     }
