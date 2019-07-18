@@ -52,6 +52,14 @@ const IndividualThread = (props) => {
                         <Text style={styles.questionTitleText}>{question}</Text>
                         <Text style={styles.aboutPostText}>Posted by {userName}</Text>
                         <Text style={styles.postBodyStyle}>{questionBody}</Text>
+                        {
+                            firebase.auth().currentUser.uid === userId ? 
+                            <Button 
+                                title="Delete Thread"
+                                onPress={() => console.log('i am allowed to press this!')}
+                            /> : null 
+
+                        }
                     </View>
                 </View>
 
