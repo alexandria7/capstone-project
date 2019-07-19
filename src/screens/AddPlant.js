@@ -117,12 +117,17 @@ class AddPlant extends Component {
 
           <View>
             <Text>Add a note about this plant: </Text>
-            <TextInput 
-              placeholder="only water when soil is completely dry"
-              value={this.state.note}
-              onChangeText={(note) => this.setState({note})}
-              clearButtonMode='always'
-            />
+            <View style={styles.textAreaContainer} >
+              <TextInput 
+                placeholder="only water when soil is completely dry"
+                multiline = {true}
+                numberOfLines = {4}
+                editable = {true}
+                value={this.state.note}
+                onChangeText={(note) => this.setState({note})}
+                clearButtonMode='always'
+              />
+            </View>
           </View>
 
           <View>
@@ -173,7 +178,12 @@ const styles = StyleSheet.create({
   },
   datePickerStyle: {
     width: 200
-  }
+  },
+  textAreaContainer: {
+    // borderColor: COLORS.grey20,
+    borderWidth: 0.5,
+    padding: 20
+  },
 });
 
 export default AddPlant;
