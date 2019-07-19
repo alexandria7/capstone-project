@@ -4,9 +4,6 @@ import { Text, View, Alert, Button, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-// Permissions.CAMERA
-// Permissions.CAMERA_ROLL
-
 class AddImage extends Component {
     state = {
         hasCameraPermission: null 
@@ -38,12 +35,16 @@ class AddImage extends Component {
         let result = await ImagePicker.launchImageLibraryAsync();
 
         if (!result.cancelled) {
-            this.uploadImage(result.uri, "test-image")
+            console.log(result);
+            this.uploadImage(result.uri, "test-image2")
               .then(() => {
                 Alert.alert("Success!")
               })
               .catch((error) => {
                 Alert.alert(`there was an error: ${error}`)
+              })
+              .then(() => {
+                  this.saveImageToDatabase(result);
               })
         }
     }
@@ -54,6 +55,21 @@ class AddImage extends Component {
 
         const ref = firebase.storage().ref().child(`images/${imageName}`);
         return ref.put(blob);
+    }
+
+    saveImageToDatabase = async (imageResult) => {
+        const plantKey = this.props.navigation.getParam('plantKey');
+
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}`)
+        .update({
+            image: imageResult
+        })
+        // .then(() => {
+        //     this.props.navigation.navigate('Plant', {
+        //         plantName: this.state.plantName,
+        //         plantKey: this.state.plantKey
+        //     });
+        // })
     }
 
     render() {
