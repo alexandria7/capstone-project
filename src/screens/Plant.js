@@ -133,7 +133,7 @@ const Plant = (props) => {
                 />
                 <Button 
                     title="Add Plant Image"
-                    onPress={() => props.navigation.navigate('AddImage')}
+                    onPress={() => props.navigation.navigate('AddImage', {plantKey})}
                 />
         
                 <Text style={styles.sectionNameText}>Date Received: {dateReceived}</Text>

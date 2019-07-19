@@ -1,12 +1,41 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Text, View, Alert, Button, StyleSheet } from 'react-native';
-import * as ImagePicker from 'expo-image-picker'
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
+
+// Permissions.CAMERA
+// Permissions.CAMERA_ROLL
 
 class AddImage extends Component {
+    state = {
+        hasCameraPermission: null 
+    }
+    componentDidMount() {
+        this.checkImagePermission();
+    }
+
+    checkImagePermission = async () => {
+        // const { status, expires, permissions } = await Permissions.getAsync(
+        //     Permissions.CAMERA,
+        //     Permissions.CAMERA_ROLL
+        // );
+
+        const camera = await Permissions.askAsync(Permissions.CAMERA);
+        const cameraRoll = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+        const hasCameraPermission = (camera.status === 'granted' || cameraRoll.status === 'granted')
+
+        this.setState({hasCameraPermission});
+
+        // if (status !== 'granted') {
+        //     Alert.alert("you didn't grant access")
+        // }
+    }
+
     onChooseImagePress = async () => {
-        let result = await ImagePicker.launchCameraAsync();
-        //let result = await ImagePicker.launchImageLibraryAsync();
+        // let result = await ImagePicker.launchCameraAsync();
+        let result = await ImagePicker.launchImageLibraryAsync();
 
         if (!result.cancelled) {
             this.uploadImage(result.uri, "test-image")
