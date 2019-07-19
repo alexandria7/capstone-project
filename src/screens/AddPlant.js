@@ -119,7 +119,7 @@ class AddPlant extends Component {
             <Text>Add a note about this plant: </Text>
             <TextInput 
               placeholder="only water when soil is completely dry"
-              value={this.state.value}
+              value={this.state.note}
               onChangeText={(note) => this.setState({note})}
               clearButtonMode='always'
             />
