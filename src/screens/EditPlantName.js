@@ -29,6 +29,21 @@ class EditPlantName extends Component {
             plantKey: this.props.navigation.getParam('plantKey'),
         });
     }
+
+    onEditPlantButtonPress = () => {
+        if (this.state.plantName.trim() === "" ) {
+          Alert.alert(
+            `Error: No plant name given.`,
+            'Plants cannot be nameless in our database.',
+            [
+              {text: 'Ok', onPress: () => console.log('ok was pressed')}
+              // {text: 'Delete', onPress: () => deletePlant()}
+            ]
+          )
+        } else {
+          this.updateInfoToDatabase();
+        }
+      }
         
     updateInfoToDatabase = () => {
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
@@ -77,7 +92,7 @@ class EditPlantName extends Component {
 
                     <Button 
                         title="Update"
-                        onPress={() => this.updateInfoToDatabase()}
+                        onPress={() => this.onEditPlantButtonPress()}
                     />
                 </View>
             </View>

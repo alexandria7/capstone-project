@@ -131,6 +131,10 @@ const Plant = (props) => {
                     style={styles.plantImageStyle}
                     source={require('../images/sm-plant-placeholder.png')}
                 />
+                <Button 
+                    title="Add Plant Image"
+                    onPress={() => props.navigation.navigate('AddImage')}
+                />
         
                 <Text style={styles.sectionNameText}>Date Received: {dateReceived}</Text>
                 <Button 

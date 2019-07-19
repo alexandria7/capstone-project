@@ -16,6 +16,7 @@ import AddDiscussionThread from '../src/screens/AddDiscussionThread';
 import IndividualThread from '../src/screens/IndividualThread';
 import AddComment from '../src/screens/AddComment';
 import MyConversations from '../src/screens/MyConversations';
+import AddImage from '../src/screens/AddImage';
 import AboutApp from '../src/screens/AboutApp';
 
 // import { 
@@ -139,6 +140,12 @@ const AppNavigator = createSwitchNavigator(
         },
         AddComment: {
           screen: AddComment,
+          navigationOptions: {
+            drawerLabel: () => null
+          }
+        },
+        AddImage: {
+          screen: AddImage,
           navigationOptions: {
             drawerLabel: () => null
           }
