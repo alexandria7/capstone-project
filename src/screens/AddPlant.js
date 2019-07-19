@@ -126,6 +126,7 @@ class AddPlant extends Component {
                 value={this.state.note}
                 onChangeText={(note) => this.setState({note})}
                 clearButtonMode='always'
+                style={styles.noteTextArea}
               />
             </View>
           </View>
@@ -136,8 +137,13 @@ class AddPlant extends Component {
           </View>
 
           <Button 
+              title="Cancel"
+              onPress={ () => this.props.navigation.navigate('ListPlants') }
+          />
+
+          <Button 
             title="Add Plant!"
-            onPress={ () => {this.addInfoToDatabaseAndClear()} }
+            onPress={ () => this.addInfoToDatabaseAndClear() }
           />
         </ScrollView>
 
@@ -179,10 +185,16 @@ const styles = StyleSheet.create({
   datePickerStyle: {
     width: 200
   },
+  noteTextArea: {
+    
+    height: 100,
+    justifyContent: "flex-start"
+
+  },
   textAreaContainer: {
     // borderColor: COLORS.grey20,
     borderWidth: 0.5,
-    padding: 20
+    // padding: 20
   },
 });
 
