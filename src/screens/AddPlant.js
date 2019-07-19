@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
 
@@ -20,7 +20,23 @@ class AddPlant extends Component {
     };
   }
 
+  onAddPlantButtonPress = () => {
+    if (this.state.plantName.trim() === "" ) {
+      Alert.alert(
+        `You have not given your plant a name!`,
+        'You must name your plant before it can be added to the database.',
+        [
+          {text: 'Ok', onPress: () => console.log('ok was pressed')}
+          // {text: 'Delete', onPress: () => deletePlant()}
+        ]
+      )
+    } else {
+      this.addInfoToDatabaseAndClear();
+    }
+  }
+
   addInfoToDatabaseAndClear = () => {
+
     const dataRef = firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants`)
       .push({
         plant_name: this.state.plantName,
@@ -143,7 +159,7 @@ class AddPlant extends Component {
 
           <Button 
             title="Add Plant!"
-            onPress={ () => this.addInfoToDatabaseAndClear() }
+            onPress={ () => this.onAddPlantButtonPress() }
           />
         </ScrollView>
 
