@@ -10,7 +10,8 @@ class AddDiscussionThread extends Component {
         question: '',
         questionBody: '',
         userId: '',
-        userName: ''
+        userName: '',
+        // date: ''
     };
   }
 
@@ -18,13 +19,15 @@ class AddDiscussionThread extends Component {
     console.log('submit was pressed')
     // console.log(new Date().getDate())
     // this.setState({user: firebase.auth().currentUser.uid})
+    let todaysDate = (new Date()).toDateString();
 
     const dataRef = firebase.database().ref('/discussions')
       .push({
         question: this.state.question,
         question_body: this.state.questionBody,
         userId: firebase.auth().currentUser.uid,
-        userName: firebase.auth().currentUser.displayName
+        userName: firebase.auth().currentUser.displayName,
+        date: todaysDate
       }).key
 
       console.log('the discussion thread key that was just created is', dataRef)
@@ -34,7 +37,8 @@ class AddDiscussionThread extends Component {
         questionBody: this.state.questionBody,
         userId: firebase.auth().currentUser.uid,
         userName: firebase.auth().currentUser.displayName,
-        discussionKey: dataRef
+        discussionKey: dataRef,
+        date: todaysDate
       })
 
       console.log('about to reset the state!!!!!')

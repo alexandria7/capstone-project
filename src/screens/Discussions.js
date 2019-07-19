@@ -34,29 +34,14 @@ class Discussions extends Component {
     }
 
     onDiscussionButtonPress = (discussion) => {
-        // firebase.database().ref(`/discussions/${discussion["key"]}/comments`)
-        //     .on('value', snapshot => {
-        //         console.log('snapshot of all comments', snapshot.val());
-        //         const comments = _.map(snapshot.val(), (commentObject, key) => {
-        //             commentObject.key = key;
-        //             return commentObject;
-        //         });
-
-        //         console.log('this is the comments array as a result of mapping', comments)
-        //         this.setState({comments})
-        //     })
-
-        // const commentsList = _.map(discussion["comments"], (commentObject, key) => {
-        //     commentObject.key = key;
-        //     return commentObject;
-        // });
-
+    
         this.props.navigation.navigate('IndividualThread', {
             question: discussion["question"],
             questionBody: discussion["question_body"],
             userId: discussion["userId"],
             userName: discussion["userName"],
             discussionKey: discussion["key"],
+            date: discussion["date"]
             // comments: commentsList
         }); 
     }
@@ -69,6 +54,7 @@ class Discussions extends Component {
                 key={i}
             >
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
+                <Text>{discussion["date"]}</Text>
                 <Text>By: {discussion["userName"]}</Text>
             </TouchableOpacity> 
         );

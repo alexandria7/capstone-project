@@ -36,7 +36,8 @@ class MyConversations extends Component {
             question: discussion["question"],
             questionBody: discussion["question_body"],
             userId: discussion["userId"],
-            userName: discussion["userName"]
+            userName: discussion["userName"],
+            date: discussion["date"]
         })
     }
 
