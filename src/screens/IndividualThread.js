@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
-// import AddComment from '../components/AddComment';
+import CommentsList from "../components/CommentsList";
 
 const IndividualThread = (props) => {
     const question = props.navigation.getParam('question');
@@ -13,7 +13,7 @@ const IndividualThread = (props) => {
     const date = props.navigation.getParam('date');
     let comments = undefined;
     // const comments = props.navigation.getParam('comments');
-    console.log(comments)
+    // console.log(comments)
 
     firebase.database().ref(`/discussions/${discussionKey}/comments`)
         .on('value', snapshot => {
@@ -104,6 +104,8 @@ const IndividualThread = (props) => {
                             onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
                         />
                     </View>
+                    {/* <CommentsList discussionKey={discussionKey}/> */}
+
                 </View>
             </ScrollView>
 
