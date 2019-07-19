@@ -5,19 +5,31 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
 class AddImage extends Component {
-    state = {
-        hasCameraPermission: null 
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            // plantKey: this.props.navigation.getParam('plantKey'),
+            hasCameraPermission: null
+        }
+
+        // this.props.navigation.addListener(
+        //     'willFocus',
+        //     () => {
+        //         this.setState({
+        //             plantKey: this.props.navigation.getParam('plantKey'),
+        //             hasCameraPermission: null
+        //         })
+        //     }
+        // )
     }
+
     componentDidMount() {
         this.checkImagePermission();
     }
 
     checkImagePermission = async () => {
-        // const { status, expires, permissions } = await Permissions.getAsync(
-        //     Permissions.CAMERA,
-        //     Permissions.CAMERA_ROLL
-        // );
-
         const camera = await Permissions.askAsync(Permissions.CAMERA);
         const cameraRoll = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
@@ -64,12 +76,12 @@ class AddImage extends Component {
         .update({
             image: imageResult
         })
-        // .then(() => {
-        //     this.props.navigation.navigate('Plant', {
-        //         plantName: this.state.plantName,
-        //         plantKey: this.state.plantKey
-        //     });
-        // })
+        .then(() => {
+            this.props.navigation.navigate('Plant', {
+                plantImage: imageResult,
+                plantKey
+            });
+        })
     }
 
     render() {

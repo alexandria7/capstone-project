@@ -6,6 +6,7 @@ import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Ima
 const Plant = (props) => {
 
     const plantName = props.navigation.getParam('plantName');
+    const plantImage = props.navigation.getParam('plantImage');
     const dateReceived = props.navigation.getParam('dateReceived');
     const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
@@ -75,8 +76,12 @@ const Plant = (props) => {
             })
     }
 
-    let wateringDisplay = <Text>No record of any past waterings</Text>;
+    let imageSource = require('../images/sm-plant-placeholder.png');
+    if (plantImage) {
+        imageSource = {uri: plantImage["uri"]}
+    }
 
+    let wateringDisplay = <Text>No record of any past waterings</Text>;
     if (wateringDates) {
         const allWaterings = wateringDates.map((date, i) => 
           <Text key={i}>{date["watering_date"]}</Text>
@@ -90,7 +95,6 @@ const Plant = (props) => {
     } 
 
     let fertilizingDisplay = <Text>No record of any past fertilizations</Text>;
-
     if (fertilizingDates) {
         const allFertilizings = fertilizingDates.map((date, i) => 
             <Text key={i}>{date["fertilizing_date"]}</Text>
@@ -129,10 +133,11 @@ const Plant = (props) => {
 
                 <Image 
                     style={styles.plantImageStyle}
-                    source={require('../images/sm-plant-placeholder.png')}
+                    source={imageSource}
                 />
+
                 <Button 
-                    title="Add Plant Image"
+                    title="Update Plant Image"
                     onPress={() => props.navigation.navigate('AddImage', {plantKey})}
                 />
         
