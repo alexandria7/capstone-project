@@ -16,17 +16,20 @@ class AddComment extends Component {
 
     onSubmitCommentPress = () => {
         const discussionKey = this.props.navigation.getParam('discussionKey');
+        const todaysDate = (new Date()).toDateString();
 
         firebase.database().ref(`/discussions/${discussionKey}/comments`)
             .push({
                 comment: this.state.comment,
                 comment_user_id: firebase.auth().currentUser.uid,
                 comment_user_name: firebase.auth().currentUser.displayName,
+                date: todaysDate
             })
             .then(() => {
                 this.props.navigation.navigate('IndividualThread', {
                     comment: this.state.comment,
-                    commentUserName: firebase.auth().currentUser.displayName
+                    commentUserName: firebase.auth().currentUser.displayName,
+                    date: todaysDate
                 })
     
                 this.setState({ comment: '' })

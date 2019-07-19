@@ -27,6 +27,7 @@ const IndividualThread = (props) => {
     const allComments = comments.map((comment, i) => 
         <View key={i} style={styles.commentSectionStyle}>
             <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
+            <Text>{comment["date"]}</Text>
             <Text>{comment["comment"]}</Text>
         </View>
     );
