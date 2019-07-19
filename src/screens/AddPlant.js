@@ -23,7 +23,7 @@ class AddPlant extends Component {
   onAddPlantButtonPress = () => {
     if (this.state.plantName.trim() === "" ) {
       Alert.alert(
-        `You have not given your plant a name!`,
+        `Error: No plant name given.`,
         'You must name your plant before it can be added to the database.',
         [
           {text: 'Ok', onPress: () => console.log('ok was pressed')}

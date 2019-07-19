@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 
 class AddComment extends Component {
@@ -7,14 +7,26 @@ class AddComment extends Component {
         super(props);
     
         this.state = {
-        //   commentUserId: '',
           comment: '',
-        //   discussionKey: ''
-          // photos: [], 
         };
     }
 
     onSubmitCommentPress = () => {
+        if (this.state.comment.trim() === "" ) {
+            Alert.alert(
+              `Error: Comment cannot be blank.`,
+              'Please enter a comment before submitting.',
+              [
+                {text: 'Ok', onPress: () => console.log('ok was pressed')}
+                // {text: 'Delete', onPress: () => deletePlant()}
+              ]
+            )
+          } else {
+            this.addCommentToDatabase();
+          }
+    }
+
+    addCommentToDatabase = () => {
         const discussionKey = this.props.navigation.getParam('discussionKey');
         const todaysDate = (new Date()).toDateString();
 

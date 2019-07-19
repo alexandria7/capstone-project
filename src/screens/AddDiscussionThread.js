@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, Image, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, Alert, StyleSheet, TextInput, ScrollView } from 'react-native';
 import firebase from 'firebase';
 
 class AddDiscussionThread extends Component {
@@ -13,6 +13,21 @@ class AddDiscussionThread extends Component {
         userName: '',
         // date: ''
     };
+  }
+
+  onSubmitDiscussionThreadPress = () => {
+    if (this.state.question.trim() === "" ) {
+      Alert.alert(
+        `Error: No text in your post title.`,
+        'Please enter a question or comment before submitting.',
+        [
+          {text: 'Ok', onPress: () => console.log('ok was pressed')}
+          // {text: 'Delete', onPress: () => deletePlant()}
+        ]
+      )
+    } else {
+      this.addInfoToDatabaseAndClear();
+    }
   }
 
   addInfoToDatabaseAndClear = () => {
@@ -96,7 +111,7 @@ class AddDiscussionThread extends Component {
 
           <Button 
             title="Submit"
-            onPress={() => this.addInfoToDatabaseAndClear()}
+            onPress={() => this.onSubmitDiscussionThreadPress()}
           />
 
         </ScrollView>
