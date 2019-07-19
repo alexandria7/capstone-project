@@ -19,18 +19,18 @@ class MyConversations extends Component {
     getDiscussionsFromFirebase = () => {
         firebase.database().ref(`/discussions`)
             .on('value', snapshot => {
-                console.log(snapshot.val());
+                // console.log(snapshot.val());
                 const discussions = _.map(snapshot.val(), (discussionObject, key) => {
                     discussionObject.key = key;
                     return discussionObject;
                 });
 
                 this.setState({discussions})
-                console.log('this is the discussions list from firebase', discussions)
+                // console.log('this is the discussions list from firebase', discussions)
             })
     }
 
-    onPostQuestionPress = (discussion) => {
+    onDiscussionTitlePress = (discussion) => {
         this.props.navigation.navigate('IndividualThread', {
             discussionKey: discussion["key"],
             question: discussion["question"],
@@ -43,16 +43,37 @@ class MyConversations extends Component {
 
     render() {
         const startedDiscussions = [];
+        const commentedDiscussions = [];
 
         this.state.discussions.forEach((post) => {
+            // console.log('this is a post...', post)
             if (post["userId"] === firebase.auth().currentUser.uid) {
                 startedDiscussions.push(post)
             }
+        });
+
+        this.state.discussions.forEach((post) => {
+            // each post is an object
+            // it includes an object with the key "comments"
+            // the object "comments" is made up of individual objects
+            // these objects represent a single comment
         })
+
+
+        // const allComments = this.state.discussions.map((post) => {
+        //     return post["comments"]
+        // });
+        // console.log('this is an array of comments?', allComments)
+
+        // allComments.forEach((comment) => {
+        //     if (comment["comment_user_id"] === firebase.auth().currentUser.uid) {
+        //         commentedDiscussions.push(comment)
+        //     }
+        // })
 
         const writtenPosts = startedDiscussions.map((discussion, i) => 
         <TouchableOpacity 
-            onPress={ () => this.onPostQuestionPress(discussion) }
+            onPress={ () => this.onDiscussionTitlePress(discussion) }
             style={styles.discussionContainerStyle}
             key={i}
         >
@@ -60,6 +81,17 @@ class MyConversations extends Component {
     
         </TouchableOpacity> 
         );
+
+        const commentedPosts = commentedDiscussions.map((discussion, i) => {
+            <TouchableOpacity 
+                onPress={ () => this.onDiscussionTitlePress(discussion) }
+                style={styles.discussionContainerStyle}
+                key={i}
+            >
+                <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
+    
+            </TouchableOpacity> 
+        })
 
         return (
             <View style={styles.aboutAppMainStyle}>
@@ -82,10 +114,6 @@ class MyConversations extends Component {
                     <ScrollView style={styles.mainPostViewingSection}>
                         <View>
                             <Text style={styles.postSectionHeader}>Posts You've Written</Text>
-                            {/* { this.state.allDiscussions.length !== 0 ? 
-                                {writtenPosts} :
-                                <Text>You haven't written any posts yet.</Text>
-                            } */}
                             {
                                 startedDiscussions.length === 0 ? 
                                 <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
@@ -95,6 +123,11 @@ class MyConversations extends Component {
 
                         <View>
                             <Text style={styles.postSectionHeader}>Posts You've Commented On</Text>
+                            {
+                                commentedDiscussions.length === 0 ?
+                                <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
+                                <View style={styles.listOfDiscussionsStyle}>{commentedPosts}</View>
+                            }
                         </View>
                     </ScrollView>
                 </View>
