@@ -3,9 +3,6 @@ import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
 
-// import ImagePicker from 'react-native-image-picker';
-// import AddPhoto from '../components/AddPhoto';
-
 class AddPlant extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +12,6 @@ class AddPlant extends Component {
       plantName: '',
       dateReceived: '',
       note: '',
-      // wateringDates: undefined
-      // photos: [], 
     };
   }
 
@@ -87,81 +82,78 @@ class AddPlant extends Component {
           <Text style={styles.headerText}>Wet Your Plants</Text>
         </View>
 
-        <ScrollView style={styles.addPlantForm}>
+        <View style={styles.addPlantForm}>
         
           <View>
-            <Text style={styles.addPlantTitle}>Add New Plant</Text>
+            <Text style={styles.addPlantTitle}>Add A New Plant</Text>
           </View>
 
-          <View>
-            <Text>Plant Name: </Text>
-            <TextInput 
-              placeholder="Monstera deliciosa"
-              value={this.state.plantName}
-              onChangeText={(plantName) => this.setState({plantName})}
-              clearButtonMode='always'
-            />
-          </View>
-
-          <View>
-            <Text>Date Received: </Text>
-            <DatePicker
-              style={styles.datePickerStyle}
-              date={this.state.dateReceived}
-              mode="date"
-              placeholder="select date"
-              format="MMMM Do YYYY"
-              minDate="1980-01-01"
-              maxDate="2050-12-31"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: 'absolute',
-                  left: 0,
-                  top: 4,
-                  marginLeft: 0
-                },
-                dateInput: {
-                  marginLeft: 36
-                }
-              }}
-              onDateChange={(dateReceived) => this.setState({dateReceived})}
-            />
-
-          </View>
-
-          <View>
-            <Text>Add a note about this plant: </Text>
-            <View style={styles.textAreaContainer} >
+          <ScrollView>
+            <View style={styles.inputSectionStyle}>
+              <Text style={styles.inputTitleStyle}>Plant Name: </Text>
               <TextInput 
-                placeholder="only water when soil is completely dry"
-                multiline = {true}
-                numberOfLines = {4}
-                editable = {true}
-                value={this.state.note}
-                onChangeText={(note) => this.setState({note})}
+                placeholder="Monstera deliciosa"
+                value={this.state.plantName}
+                onChangeText={(plantName) => this.setState({plantName})}
                 clearButtonMode='always'
-                style={styles.noteTextArea}
               />
             </View>
-          </View>
 
-          <View>
-            <Text>Add a photo of your plant!</Text>
-            {/* <AddPhoto /> */}
-          </View>
+            <View style={styles.inputSectionStyle}>
+              <Text style={styles.inputTitleStyle}>Date Received: </Text>
+              <DatePicker
+                style={styles.datePickerStyle}
+                date={this.state.dateReceived}
+                mode="date"
+                placeholder="select date"
+                format="MMMM Do YYYY"
+                minDate="1980-01-01"
+                maxDate="2050-12-31"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
+                  }
+                }}
+                onDateChange={(dateReceived) => this.setState({dateReceived})}
+              />
 
-          <Button 
-              title="Cancel"
-              onPress={ () => this.props.navigation.navigate('ListPlants') }
-          />
+            </View>
 
-          <Button 
-            title="Add Plant!"
-            onPress={ () => this.onAddPlantButtonPress() }
-          />
-        </ScrollView>
+            <View style={styles.inputSectionStyle}>
+              <Text style={styles.inputTitleStyle}>Add a note about this plant: </Text>
+              <View style={styles.textAreaContainer} >
+                <TextInput 
+                  placeholder="only water when soil is completely dry"
+                  multiline = {true}
+                  numberOfLines = {4}
+                  editable = {true}
+                  value={this.state.note}
+                  onChangeText={(note) => this.setState({note})}
+                  clearButtonMode='always'
+                  style={styles.noteTextArea}
+                />
+              </View>
+            </View>
+
+            <Button 
+                title="Cancel"
+                onPress={ () => this.props.navigation.navigate('ListPlants') }
+            />
+
+            <Button 
+              title="Add Plant!"
+              onPress={ () => this.onAddPlantButtonPress() }
+            />
+          </ScrollView>
+        </View>
 
       </View>
     );
@@ -198,20 +190,39 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10
   },
+  addPlantForm: {
+    marginLeft: 10,
+    marginRight: 10,
+    paddingTop: 20,
+    flex: 1
+  },
+  addPlantTitle: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: '#055607',
+    textAlign: 'center',
+    marginBottom: 15
+  },
+  inputSectionStyle: {
+    marginBottom: 20
+  },
   datePickerStyle: {
     width: 200
   },
   noteTextArea: {
-    
     height: 100,
     justifyContent: "flex-start"
-
   },
   textAreaContainer: {
     // borderColor: COLORS.grey20,
     borderWidth: 0.5,
     // padding: 20
   },
+  inputTitleStyle: {
+    fontSize: 15,
+    color: '#055607',
+    fontWeight: 'bold'
+  }
 });
 
 export default AddPlant;
