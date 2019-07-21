@@ -51,7 +51,7 @@ class MyConversations extends Component {
             userId: discussion["userId"],
             userName: discussion["userName"],
             date: discussion["date"],
-            // comments: discussion["comments"]
+            comments: discussion["comments"]
         })
     }
 
@@ -76,21 +76,21 @@ class MyConversations extends Component {
         })
 
         const commentedNoDups = [];
-        // const map = new Map();
-        // for (const post of commentedDiscussions) {
-        //     if(!map.has(post["key"])){
-        //         map.set(post["key"], true);    // set any value to Map
-        //         commentedNoDups.push({
-        //             discussionKey: post["key"],
-        //             question: post["question"],
-        //             questionBody: post["question_body"],
-        //             userId: post["userId"],
-        //             userName: post["userName"],
-        //             date: post["date"],
-        //             comments: post["comments"]
-        //         });
-        //     }
-        // }
+        const map = new Map();
+        for (const post of commentedDiscussions) {
+            if(!map.has(post["key"])){
+                map.set(post["key"], true);    // set any value to Map
+                commentedNoDups.push({
+                    discussionKey: post["key"],
+                    question: post["question"],
+                    questionBody: post["question_body"],
+                    userId: post["userId"],
+                    userName: post["userName"],
+                    date: post["date"],
+                    comments: post["comments"]
+                });
+            }
+        }
 
         console.log('the commented discussions are: ', commentedDiscussions)
         console.log('the commented discussions without dups are, ', commentedNoDups)
@@ -102,17 +102,18 @@ class MyConversations extends Component {
             key={i}
         >
             <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-    
+            <Text style={styles.discussionDateButtonStyle}>{discussion["date"]}</Text>
         </TouchableOpacity> 
         );
 
-        const commentedPosts = commentedDiscussions.map((discussion, i) => 
+        const commentedPosts = commentedNoDups.map((discussion, i) => 
             <TouchableOpacity 
                 onPress={ () => this.onDiscussionTitlePress(discussion) }
                 style={styles.discussionContainerStyle}
                 key={i}
             >
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
+                <Text style={styles.discussionDateButtonStyle}>{discussion["date"]}</Text>
             </TouchableOpacity> 
         )
 
@@ -137,20 +138,24 @@ class MyConversations extends Component {
                     <ScrollView style={styles.mainPostViewingSection}>
                         <View>
                             <Text style={styles.postSectionHeader}>Posts You've Written</Text>
-                            {
-                                startedDiscussions.length === 0 ? 
-                                <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
-                                <View style={styles.listOfDiscussionsStyle}>{writtenPosts}</View>
-                            }
+                            <View style={styles.listPostsSection}>
+                                {
+                                    startedDiscussions.length === 0 ? 
+                                    <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
+                                    <View style={styles.listOfDiscussionsStyle}>{writtenPosts}</View>
+                                }
+                            </View>
                         </View>
 
                         <View>
                             <Text style={styles.postSectionHeader}>Posts You've Commented On</Text>
-                            {
-                                commentedDiscussions.length === 0 ?
-                                <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
-                                <View style={styles.listOfDiscussionsStyle}>{commentedPosts}</View>
-                            }
+                            <View style={styles.listPostsSection}>
+                                {
+                                    commentedDiscussions.length === 0 ?
+                                    <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
+                                    <View style={styles.listOfDiscussionsStyle}>{commentedPosts}</View>
+                                }
+                            </View>
                         </View>
                     </ScrollView>
                 </View>
@@ -205,7 +210,27 @@ const styles = StyleSheet.create({
     },
     postSectionHeader: {
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        textAlign: 'center',
+        backgroundColor: '#ADADAD',
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderColor: 'black',
+        borderWidth: 0.5
+    },
+    listPostsSection: {
+        paddingTop: 10, 
+        paddingBottom: 10
+    },
+    discussionContainerStyle: {
+        borderBottomColor: 'black',
+        borderBottomWidth: 0.5,
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+    discussionDateButtonStyle: {
+        paddingLeft: 5,
+        fontStyle: 'italic'
     }
 })
 
