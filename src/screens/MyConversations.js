@@ -8,7 +8,8 @@ class MyConversations extends Component {
         super(props);
     
         this.state = {
-            discussions: []
+            allDiscussions: [],
+            discussionsCommented: []
         }
     }
 
@@ -20,13 +21,25 @@ class MyConversations extends Component {
         firebase.database().ref(`/discussions`)
             .on('value', snapshot => {
                 // console.log(snapshot.val());
-                const discussions = _.map(snapshot.val(), (discussionObject, key) => {
+                const allDiscussions = _.map(snapshot.val(), (discussionObject, key) => {
                     discussionObject.key = key;
                     return discussionObject;
                 });
 
-                this.setState({discussions})
+                this.setState({allDiscussions});
                 // console.log('this is the discussions list from firebase', discussions)
+            })
+        
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/discussionsCommented`)
+            .on('value', snapshot => {
+                // console.log(snapshot.val());
+                const discussionsCommented = _.map(snapshot.val(), (discussionObject, key) => {
+                    discussionObject.key = key;
+                    return discussionObject;
+                });
+
+                this.setState({discussionsCommented});
+                console.log(discussionsCommented)
             })
     }
 
@@ -46,31 +59,23 @@ class MyConversations extends Component {
         const startedDiscussions = [];
         const commentedDiscussions = [];
 
-        this.state.discussions.forEach((post) => {
+        this.state.allDiscussions.forEach((post) => {
             // console.log('this is a post...', post)
             if (post["userId"] === firebase.auth().currentUser.uid) {
                 startedDiscussions.push(post)
             }
         });
 
-        this.state.discussions.forEach((post) => {
-            // each post is an object
-            // it includes an object with the key "comments"
-            // the object "comments" is made up of individual objects
-            // these objects represent a single comment
+        this.state.allDiscussions.forEach((post) => {
+            this.state.discussionsCommented.forEach((discussion) => {
+                if (post["key"] === discussion["id"]) {
+                    commentedDiscussions.push(post)
+                }
+            })
         })
 
+        console.log('the commented discussions are: ', commentedDiscussions)
 
-        // const allComments = this.state.discussions.map((post) => {
-        //     return post["comments"]
-        // });
-        // console.log('this is an array of comments?', allComments)
-
-        // allComments.forEach((comment) => {
-        //     if (comment["comment_user_id"] === firebase.auth().currentUser.uid) {
-        //         commentedDiscussions.push(comment)
-        //     }
-        // })
 
         const writtenPosts = startedDiscussions.map((discussion, i) => 
         <TouchableOpacity 
@@ -83,16 +88,15 @@ class MyConversations extends Component {
         </TouchableOpacity> 
         );
 
-        const commentedPosts = commentedDiscussions.map((discussion, i) => {
+        const commentedPosts = commentedDiscussions.map((discussion, i) => 
             <TouchableOpacity 
                 onPress={ () => this.onDiscussionTitlePress(discussion) }
                 style={styles.discussionContainerStyle}
                 key={i}
             >
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-    
             </TouchableOpacity> 
-        })
+        )
 
         return (
             <View style={styles.aboutAppMainStyle}>
