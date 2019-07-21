@@ -38,14 +38,30 @@ class AddComment extends Component {
                 date: todaysDate
             })
             .then(() => {
-                this.props.navigation.navigate('IndividualThread', {
-                    comment: this.state.comment,
-                    commentUserName: firebase.auth().currentUser.displayName,
-                    date: todaysDate
-                })
-    
-                this.setState({ comment: '' })
+                firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/discussionsCommented`)
+                    .push({
+                        id: discussionKey,
+                    })
+                    .then(() => {
+                        this.props.navigation.navigate('IndividualThread', {
+                            discussionKey,
+                            comment: this.state.comment,
+                            commentUserName: firebase.auth().currentUser.displayName,
+                            date: todaysDate
+                        })
+            
+                        this.setState({ comment: '' })
+                    })
             })
+                // .then(() => {
+                //     this.props.navigation.navigate('IndividualThread', {
+                //         comment: this.state.comment,
+                //         commentUserName: firebase.auth().currentUser.displayName,
+                //         date: todaysDate
+                //     })
+        
+                //     this.setState({ comment: '' })
+                // })
             .catch((error) => {
                 console.log('there was an error with adding this comment: ', error)
                 this.props.navigation.navigate('Discussions')
