@@ -39,7 +39,7 @@ class MyConversations extends Component {
                 });
 
                 this.setState({discussionsCommented});
-                console.log(discussionsCommented)
+                // console.log(discussionsCommented)
             })
     }
 
@@ -50,7 +50,8 @@ class MyConversations extends Component {
             questionBody: discussion["question_body"],
             userId: discussion["userId"],
             userName: discussion["userName"],
-            date: discussion["date"]
+            date: discussion["date"],
+            // comments: discussion["comments"]
         })
     }
 
@@ -74,8 +75,25 @@ class MyConversations extends Component {
             })
         })
 
-        console.log('the commented discussions are: ', commentedDiscussions)
+        const commentedNoDups = [];
+        // const map = new Map();
+        // for (const post of commentedDiscussions) {
+        //     if(!map.has(post["key"])){
+        //         map.set(post["key"], true);    // set any value to Map
+        //         commentedNoDups.push({
+        //             discussionKey: post["key"],
+        //             question: post["question"],
+        //             questionBody: post["question_body"],
+        //             userId: post["userId"],
+        //             userName: post["userName"],
+        //             date: post["date"],
+        //             comments: post["comments"]
+        //         });
+        //     }
+        // }
 
+        console.log('the commented discussions are: ', commentedDiscussions)
+        console.log('the commented discussions without dups are, ', commentedNoDups)
 
         const writtenPosts = startedDiscussions.map((discussion, i) => 
         <TouchableOpacity 
