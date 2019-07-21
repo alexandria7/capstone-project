@@ -17,13 +17,15 @@ const AboutApp = (props) => {
                 <Text style={styles.headerText}>Wet Your Plants</Text>
             </View>
 
-            <Text>
-                Welcome to Wet Your Plants!
-            </Text>
+            <View style={styles.mainAboutSection}>
+                <Text style={styles.aboutTitleStyle}>
+                    Welcome to Wet Your Plants!
+                </Text>
 
-            <Text>
-                This app was created by Alex McCarthy for her capstone project for Ada Developers Academy Cohort 11. It exists so Alex could build an iOS app from scratch, but also so she could help solve a problem she was having (i.e. she has too many plants and can't keep track of all their needs!).
-            </Text>
+                <Text style={styles.aboutMainBlurbStyle}>
+                    This app was created by Alex McCarthy for her capstone project for Ada Developers Academy Cohort 11. It exists so Alex could build an iOS app from scratch, but also so she could help solve a problem she was having (i.e. she has too many plants and can't keep track of all their needs!).
+                </Text>
+            </View>
         </View>
     );
 }
@@ -41,8 +43,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
         justifyContent: 'space-around',
         backgroundColor: '#EFDECE'
-      },
-      headerText: {
+    },
+    headerText: {
         alignSelf: 'center',
         textAlign: 'center',
         fontSize: 22,
@@ -50,13 +52,27 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         paddingBottom: 40,
         paddingTop: 0
-      },
-      headerImageStyle: {
+    },
+    headerImageStyle: {
         width: 28, 
         height: 28,
         marginLeft: 10,
         marginTop: 10
-      },
+    },
+    mainAboutSection: {
+        marginLeft: 10,
+        marginRight: 10,
+        paddingTop: 20,
+        flex: 1
+    },
+    aboutTitleStyle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
+    aboutMainBlurbStyle: {
+        fontSize: 15
+    }
   });
 
 export default AboutApp;
