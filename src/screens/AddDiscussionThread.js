@@ -82,39 +82,51 @@ class AddDiscussionThread extends Component {
           <Text style={styles.headerText}>Wet Your Plants</Text>
         </View>
 
-        <ScrollView style={styles.addPlantForm}>
+        <View style={styles.addDiscussionForm}>
         
           <View>
-            <Text>Start a Discussion Thread</Text>
-            <Text>Got a planty question, concern, or comment? Post away and other users can comment with their thoughts!</Text>
+            <Text style={styles.addDiscussionTitle}>Start a Discussion Thread</Text>
+            <Text style={styles.addDiscussionBlurb}>Got a planty question, concern, or comment? Post away and other users can comment with their thoughts!</Text>
           </View>
 
-          <View>
-            <Text>Question: </Text>
-            <TextInput 
-              placeholder="My pothos' leaves are turning brown. Help?"
-              value={this.state.question}
-              onChangeText={(question) => this.setState({question})}
-              clearButtonMode='always'
+          <ScrollView>
+            <View style={styles.inputSectionStyle}>
+              <Text style={styles.inputTitleStyle}>Question/Thread Title: </Text>
+              <TextInput 
+                placeholder="My pothos' leaves are turning brown. Help?"
+                value={this.state.question}
+                onChangeText={(question) => this.setState({question})}
+                clearButtonMode='always'
+              />
+            </View>
+
+            <View style={styles.inputSectionStyle}>
+              <Text style={styles.inputTitleStyle}>Body: </Text>
+              <View style={styles.textAreaContainer} >
+                <TextInput 
+                  placeholder="expand on your question, post pictures, etc."
+                  multiline = {true}
+                  numberOfLines = {4}
+                  editable = {true}
+                  value={this.state.questionBody}
+                  onChangeText={(questionBody) => this.setState({questionBody})}
+                  clearButtonMode='always'
+                  style={styles.questionBodyTextArea}
+                />
+              </View>
+            </View>
+
+            <Button 
+                title="Cancel"
+                onPress={ () => this.props.navigation.navigate('Discussions') }
             />
-          </View>
 
-          <View>
-            <Text>Body: </Text>
-            <TextInput 
-              placeholder="expand on your question, post pictures, etc."
-              value={this.state.questionBody}
-              onChangeText={(questionBody) => this.setState({questionBody})}
-              clearButtonMode='always'
+            <Button 
+              title="Submit"
+              onPress={() => this.onSubmitDiscussionThreadPress()}
             />
-          </View>
-
-          <Button 
-            title="Submit"
-            onPress={() => this.onSubmitDiscussionThreadPress()}
-          />
-
-        </ScrollView>
+          </ScrollView>
+        </View>
 
       </View>
     );
@@ -151,9 +163,44 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10
   },
+  addDiscussionForm: {
+    marginLeft: 10,
+    marginRight: 10,
+    paddingTop: 20,
+    flex: 1
+  },
+  addDiscussionTitle: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: '#055607',
+    textAlign: 'center',
+    marginBottom: 15
+  },  
+  addDiscussionBlurb: {
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '800',
+    marginBottom: 20
+    // fontStyle: 'italic'
+  },
+  inputSectionStyle: {
+    marginBottom: 20
+  }, 
+  inputTitleStyle: {
+    fontSize: 15,
+    color: '#055607',
+    fontWeight: 'bold'
+  }, 
   datePickerStyle: {
     width: 200
-  }
+  },
+  questionBodyTextArea: {
+    height: 100,
+    justifyContent: "flex-start"
+  },
+  textAreaContainer: {
+    borderWidth: 0.5,
+  },
 });
 
 export default AddDiscussionThread;
