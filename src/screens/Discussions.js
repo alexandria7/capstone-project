@@ -41,8 +41,8 @@ class Discussions extends Component {
             userId: discussion["userId"],
             userName: discussion["userName"],
             discussionKey: discussion["key"],
-            date: discussion["date"]
-            // comments: commentsList
+            date: discussion["date"],
+            comments: discussion["comments"]
         }); 
     }
     

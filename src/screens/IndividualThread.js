@@ -11,18 +11,23 @@ const IndividualThread = (props) => {
     const userName = props.navigation.getParam('userName');
     const discussionKey = props.navigation.getParam('discussionKey');
     const date = props.navigation.getParam('date');
-    let comments = undefined;
-    // const comments = props.navigation.getParam('comments');
+    // let comments = undefined;
+    let comments = props.navigation.getParam('comments');
     // console.log(comments)
 
-    firebase.database().ref(`/discussions/${discussionKey}/comments`)
-        .on('value', snapshot => {
-            console.log('snapshot of all comments', snapshot.val());
-            comments = _.map(snapshot.val(), (commentObject, key) => {
-                commentObject.key = key;
-                return commentObject;
-            });
-        })
+    // firebase.database().ref(`/discussions/${discussionKey}/comments`)
+    //     .on('value', snapshot => {
+    //         console.log('snapshot of all comments', snapshot.val());
+            // comments = _.map(snapshot.val(), (commentObject, key) => {
+            //     commentObject.key = key;
+            //     return commentObject;
+            // });
+    //     })
+
+    comments = _.map(comments, (commentObject, key) => {
+        commentObject.key = key;
+        return commentObject;
+    });
 
     const allComments = comments.map((comment, i) => 
         <View key={i} style={styles.commentSectionStyle}>

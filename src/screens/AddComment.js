@@ -47,7 +47,8 @@ class AddComment extends Component {
                             discussionKey,
                             comment: this.state.comment,
                             commentUserName: firebase.auth().currentUser.displayName,
-                            date: todaysDate
+                            date: todaysDate,
+                            // comments: firebase.database().ref(`/discussions/${discussionKey}/comments`)
                         })
             
                         this.setState({ comment: '' })
