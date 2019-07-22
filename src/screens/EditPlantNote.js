@@ -78,15 +78,17 @@ class EditPlantNote extends Component {
                         />
                     </View> 
 
-                    <Button 
-                        title="Cancel"
-                        onPress={() => this.onCancelPress()}
-                    />
+                    <View style={styles.buttonContainer}>
+                        <Button 
+                            title="Cancel"
+                            onPress={() => this.onCancelPress()}
+                        />
 
-                    <Button 
-                        title="Update"
-                        onPress={() => this.updateInfoToDatabase()}
-                    />
+                        <Button 
+                            title="Update"
+                            onPress={() => this.updateInfoToDatabase()}
+                        />
+                    </View>
                 </View>
             </View>
         )
@@ -142,6 +144,9 @@ const styles = StyleSheet.create({
     textAreaContainer: {
         borderWidth: 0.5,
     },
+    buttonContainer: {
+        marginTop: 20
+    }
 })
 
 export default EditPlantNote;

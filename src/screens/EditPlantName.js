@@ -77,7 +77,10 @@ class EditPlantName extends Component {
                     <Text style={styles.headerText}>Wet Your Plants</Text>
                 </View>
 
-                <View style={styles.mainEditForm}>
+                <View style={styles.mainEditSectionStyle}>
+
+                    <Text style={styles.editTextHeaderStyle}>Edit plant name</Text>
+
                     <TextInput 
                         placeholder="new plant name"
                         value={this.state.plantName}
@@ -85,15 +88,17 @@ class EditPlantName extends Component {
                         clearButtonMode='always'
                     />
 
-                    <Button 
-                        title="Cancel"
-                        onPress={() => this.onCancelPress()}
-                    />
+                    <View style={styles.buttonContainer}>
+                        <Button 
+                            title="Cancel"
+                            onPress={() => this.onCancelPress()}
+                        />
 
-                    <Button 
-                        title="Update"
-                        onPress={() => this.onEditPlantButtonPress()}
-                    />
+                        <Button 
+                            title="Update"
+                            onPress={() => this.onEditPlantButtonPress()}
+                        />
+                    </View>
                 </View>
             </View>
         )
@@ -129,8 +134,21 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       marginTop: 10
     },
-    mainEditForm: {
-        marginTop: 30
+    mainEditSectionStyle: {
+        paddingTop: 20,
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    editTextHeaderStyle: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: '#055607',
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    buttonContainer: {
+        marginTop: 20
     }
 })
         
