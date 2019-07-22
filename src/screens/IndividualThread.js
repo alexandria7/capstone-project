@@ -87,6 +87,15 @@ const IndividualThread = (props) => {
                         {
                             firebase.auth().currentUser.uid === userId ? 
                             <Button 
+                                title="Edit Thread"
+                                onPress={() => props.navigation.navigate('EditThread', {
+                                    discussionKey, questionBody, question
+                                })}
+                            /> : null
+                        }
+                        {
+                            firebase.auth().currentUser.uid === userId ? 
+                            <Button 
                                 title="Delete Thread"
                                 onPress={() => onDeletePostPress()}
                             /> : null 
