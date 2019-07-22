@@ -142,7 +142,11 @@ const Plant = (props) => {
                     onPress={() => props.navigation.navigate('AddImage', {plantKey})}
                 />
         
-                <Text style={styles.plantSectionNameText}>Date Received: {dateReceived}</Text>
+                <View style={styles.plantDateStyle}>
+                    <Text style={styles.plantSectionNameText}>Date Received: </Text>
+                    <Text>{dateReceived}</Text>
+                </View>
+
                 <Button 
                     title='Edit Date'
                     onPress={() => onEditDatePress()}
