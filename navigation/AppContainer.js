@@ -17,6 +17,7 @@ import IndividualThread from '../src/screens/IndividualThread';
 import AddComment from '../src/screens/AddComment';
 import MyConversations from '../src/screens/MyConversations';
 import AddImage from '../src/screens/AddImage';
+import EditThread from '../src/screens/EditThread';
 import AboutApp from '../src/screens/AboutApp';
 
 // import { 
@@ -146,6 +147,12 @@ const AppNavigator = createSwitchNavigator(
         },
         AddImage: {
           screen: AddImage,
+          navigationOptions: {
+            drawerLabel: () => null
+          }
+        },
+        EditThread: {
+          screen: EditThread,
           navigationOptions: {
             drawerLabel: () => null
           }
