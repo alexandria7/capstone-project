@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { View, Text, Button, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import styles from '../components/Styles';
 
 class Discussions extends Component {
     constructor(props) {
@@ -93,78 +94,78 @@ class Discussions extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    aboutAppMainStyle: {
-        // marginTop: 20,
-        flex: 1,
-        backgroundColor: '#BDE1C9', 
-    },
-    headerStyle: {
-        height: 70,
-        paddingTop: 30, 
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        justifyContent: 'space-around',
-        backgroundColor: '#EFDECE'
-    },
-    headerText: {
-        alignSelf: 'center',
-        textAlign: 'center',
-        fontSize: 22,
-        color: '#055607',
-        fontWeight: 'bold',
-        paddingBottom: 40,
-        paddingTop: 0
-    },
-    headerImageStyle: {
-        width: 28, 
-        height: 28,
-        marginLeft: 10,
-        marginTop: 10
-    },
-    subTitleStyle: {
-        alignSelf: 'center',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: '#7A7E7B',
-        fontSize: 20,
-        marginBottom: 20
-    },
-    headerNavButton: {
-      justifyContent: 'flex-end'
-    },
-    mainDiscussionListSection: {
-      paddingTop: 20,
-    //   flex: 1
-    },
-    ListTitle: {
-      fontSize: 35,
-      fontWeight: 'bold',
-      color: '#055607',
-      textAlign: 'center',
-    },
-    listOfDiscussionsStyle: {
-      marginLeft: 15,
-      marginRight: 15,
-      marginTop: 15,
-      // flex: 1
-    },
-    noticeStyleName : {
-      fontWeight: 'bold',
-      fontStyle: 'italic',
-      textAlign: 'center',
-      marginTop: 25
-    },
-    discussionNameButtonStyle: {
-      fontSize: 20,
-      paddingBottom: 10
-    },
-    discussionContainerStyle: {
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        paddingTop: 10, 
-        paddingBottom: 10
-    }
-  });
+// const styles = StyleSheet.create({
+    // aboutAppMainStyle: {
+    //     // marginTop: 20,
+    //     flex: 1,
+    //     backgroundColor: '#BDE1C9', 
+    // },
+    // headerStyle: {
+    //     height: 70,
+    //     paddingTop: 30, 
+    //     borderColor: '#7A7E7B',
+    //     borderBottomWidth: 0.5,
+    //     justifyContent: 'space-around',
+    //     backgroundColor: '#EFDECE'
+    // },
+    // headerText: {
+    //     alignSelf: 'center',
+    //     textAlign: 'center',
+    //     fontSize: 22,
+    //     color: '#055607',
+    //     fontWeight: 'bold',
+    //     paddingBottom: 40,
+    //     paddingTop: 0
+    // },
+    // headerImageStyle: {
+    //     width: 28, 
+    //     height: 28,
+    //     marginLeft: 10,
+    //     marginTop: 10
+    // },
+    // subTitleStyle: {
+    //     alignSelf: 'center',
+    //     textAlign: 'center',
+    //     fontWeight: 'bold',
+    //     color: '#7A7E7B',
+    //     fontSize: 20,
+    //     marginBottom: 20
+    // },
+    // headerNavButton: {
+    //   justifyContent: 'flex-end'
+    // },
+    // mainDiscussionListSection: {
+    //   paddingTop: 20,
+    // //   flex: 1
+    // },
+    // ListTitle: {
+    //   fontSize: 35,
+    //   fontWeight: 'bold',
+    //   color: '#055607',
+    //   textAlign: 'center',
+    // },
+    // listOfDiscussionsStyle: {
+    //   marginLeft: 15,
+    //   marginRight: 15,
+    //   marginTop: 15,
+    //   // flex: 1
+    // },
+    // noticeStyleName : {
+    //   fontWeight: 'bold',
+    //   fontStyle: 'italic',
+    //   textAlign: 'center',
+    //   marginTop: 25
+    // },
+    // discussionNameButtonStyle: {
+    //   fontSize: 20,
+    //   paddingBottom: 10
+    // },
+    // discussionContainerStyle: {
+    //     borderColor: '#7A7E7B',
+    //     borderBottomWidth: 0.5,
+    //     paddingTop: 10, 
+    //     paddingBottom: 10
+    // }
+//   });
 
 export default Discussions;

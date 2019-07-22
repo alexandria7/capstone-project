@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { Text, View, Button, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import _ from 'lodash';
 import DatePicker from 'react-native-datepicker';
+import styles from '../components/Styles';
 
 class AddFertilizingDate extends Component {
     constructor(props) {
@@ -86,8 +87,8 @@ class AddFertilizingDate extends Component {
                     <Text style={styles.headerText}>Wet Your Plants</Text>
                 </View>
 
-                <View style={styles.mainEditForm}>
-                    <Text>Set New Fertilizing Date for Your Plant:</Text>
+                <View style={styles.mainEditSectionStyle}>
+                    <Text style={styles.editTextHeaderStyle}>Set New Fertilizing Date for Your Plant:</Text>
 
                     <DatePicker
                         style={styles.datePickerStyle}
@@ -113,53 +114,55 @@ class AddFertilizingDate extends Component {
                         onDateChange={(newFertilizingDate) => this.onAddDateButtonPress(newFertilizingDate)}
                     />
 
-                    <Button 
-                        title="Cancel"
-                        onPress={() => this.onCancelPress()}
-                    />
+                    <View style={styles.buttonContainer}>
+                        <Button 
+                            title="Cancel"
+                            onPress={() => this.onCancelPress()}
+                        />
 
-                    <Button 
-                        title="Update"
-                        onPress={() => this.updateInfoToDatabase()}
-                    />
+                        <Button 
+                            title="Update"
+                            onPress={() => this.updateInfoToDatabase()}
+                        />
+                    </View>
                 </View>
             </View>
         )
     }
 } 
 
-const styles = StyleSheet.create({
-    aboutAppMainStyle: {
-        // marginTop: 20,
-        flex: 1,
-        backgroundColor: '#BDE1C9', 
-    },
-    headerStyle: {
-      height: 70,
-      paddingTop: 30, 
-      borderColor: '#7A7E7B',
-      borderBottomWidth: 0.5,
-      justifyContent: 'space-around',
-      backgroundColor: '#EFDECE'
-    },
-    headerText: {
-      alignSelf: 'center',
-      textAlign: 'center',
-      fontSize: 22,
-      color: '#055607',
-      fontWeight: 'bold',
-      paddingBottom: 40,
-      paddingTop: 0
-    },
-    headerImageStyle: {
-      width: 28, 
-      height: 28,
-      marginLeft: 10,
-      marginTop: 10
-    },
-    mainEditForm: {
-        marginTop: 30,
-    }
-})
+// const styles = StyleSheet.create({
+//     aboutAppMainStyle: {
+//         // marginTop: 20,
+//         flex: 1,
+//         backgroundColor: '#BDE1C9', 
+//     },
+//     headerStyle: {
+//       height: 70,
+//       paddingTop: 30, 
+//       borderColor: '#7A7E7B',
+//       borderBottomWidth: 0.5,
+//       justifyContent: 'space-around',
+//       backgroundColor: '#EFDECE'
+//     },
+//     headerText: {
+//       alignSelf: 'center',
+//       textAlign: 'center',
+//       fontSize: 22,
+//       color: '#055607',
+//       fontWeight: 'bold',
+//       paddingBottom: 40,
+//       paddingTop: 0
+//     },
+//     headerImageStyle: {
+//       width: 28, 
+//       height: 28,
+//       marginLeft: 10,
+//       marginTop: 10
+//     },
+//     mainEditForm: {
+//         marginTop: 30,
+//     }
+// })
 
 export default AddFertilizingDate;

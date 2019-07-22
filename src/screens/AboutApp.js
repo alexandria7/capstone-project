@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
+import styles from '../components/Styles';
 
 const AboutApp = (props) => {
     return (
@@ -17,7 +18,7 @@ const AboutApp = (props) => {
                 <Text style={styles.headerText}>Wet Your Plants</Text>
             </View>
 
-            <View style={styles.mainAboutSection}>
+            <View style={styles.aboutAppMainStyle}>
                 <Text style={styles.aboutTitleStyle}>
                     Welcome to Wet Your Plants!
                 </Text>
@@ -30,49 +31,49 @@ const AboutApp = (props) => {
     );
 }
 
-const styles = StyleSheet.create({
-    aboutAppMainStyle: {
-        // marginTop: 20,
-        flex: 1,
-        backgroundColor: '#BDE1C9', 
-    },
-    headerStyle: {
-        height: 70,
-        paddingTop: 30, 
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        justifyContent: 'space-around',
-        backgroundColor: '#EFDECE'
-    },
-    headerText: {
-        alignSelf: 'center',
-        textAlign: 'center',
-        fontSize: 22,
-        color: '#055607',
-        fontWeight: 'bold',
-        paddingBottom: 40,
-        paddingTop: 0
-    },
-    headerImageStyle: {
-        width: 28, 
-        height: 28,
-        marginLeft: 10,
-        marginTop: 10
-    },
-    mainAboutSection: {
-        marginLeft: 10,
-        marginRight: 10,
-        paddingTop: 20,
-        flex: 1
-    },
-    aboutTitleStyle: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        marginBottom: 10
-    },
-    aboutMainBlurbStyle: {
-        fontSize: 15
-    }
-  });
+// const styles = StyleSheet.create({
+    // aboutAppMainStyle: {
+    //     // marginTop: 20,
+    //     flex: 1,
+    //     backgroundColor: '#BDE1C9', 
+    // },
+    // headerStyle: {
+    //     height: 70,
+    //     paddingTop: 30, 
+    //     borderColor: '#7A7E7B',
+    //     borderBottomWidth: 0.5,
+    //     justifyContent: 'space-around',
+    //     backgroundColor: '#EFDECE'
+    // },
+    // headerText: {
+    //     alignSelf: 'center',
+    //     textAlign: 'center',
+    //     fontSize: 22,
+    //     color: '#055607',
+    //     fontWeight: 'bold',
+    //     paddingBottom: 40,
+    //     paddingTop: 0
+    // },
+    // headerImageStyle: {
+    //     width: 28, 
+    //     height: 28,
+    //     marginLeft: 10,
+    //     marginTop: 10
+    // },
+//     mainAboutSection: {
+//         marginLeft: 10,
+//         marginRight: 10,
+//         paddingTop: 20,
+//         flex: 1
+//     },
+//     aboutTitleStyle: {
+//         fontSize: 15,
+//         fontWeight: 'bold',
+//         marginBottom: 10
+//     },
+//     aboutMainBlurbStyle: {
+//         fontSize: 15
+//     }
+//   });
 
 export default AboutApp;

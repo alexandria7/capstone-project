@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
+import styles from '../components/Styles';
 
 const Plant = (props) => {
 
@@ -122,7 +123,7 @@ const Plant = (props) => {
                 <Text style={styles.headerText}>Wet Your Plants</Text>
             </View>   
 
-            <ScrollView style={styles.mainPlantInfo}>
+            <ScrollView style={styles.mainPlantSectionStyle}>
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
                 
@@ -141,7 +142,7 @@ const Plant = (props) => {
                     onPress={() => props.navigation.navigate('AddImage', {plantKey})}
                 />
         
-                <Text style={styles.sectionNameText}>Date Received: {dateReceived}</Text>
+                <Text style={styles.plantSectionNameText}>Date Received: {dateReceived}</Text>
                 <Button 
                     title='Edit Date'
                     onPress={() => onEditDatePress()}
@@ -149,10 +150,10 @@ const Plant = (props) => {
 
 
                 <View>
-                    <Text style={styles.sectionNameText}>A bit about this plant:</Text>
+                    <Text style={styles.plantSectionNameText}>A bit about this plant:</Text>
                 
                     {note === '' ? 
-                        <Text style={styles.noNotesStyle}>No notes for this plant</Text> :
+                        <Text style={styles.plantNoNotesStyle}>No notes for this plant</Text> :
                         <Text>{note}</Text>
                     }
                     <Button 
@@ -163,7 +164,7 @@ const Plant = (props) => {
                 </View>
 
                 <View>
-                    <Text style={styles.sectionNameText}>Watering Log:</Text>
+                    <Text style={styles.plantSectionNameText}>Watering Log:</Text>
                     <View>
                         {wateringDisplay}
                     </View>
@@ -174,7 +175,7 @@ const Plant = (props) => {
                 </View>
 
                 <View>
-                    <Text style={styles.sectionNameText}>Fertilizing Log:</Text>
+                    <Text style={styles.plantSectionNameText}>Fertilizing Log:</Text>
                     <View>
                         {fertilizingDisplay}
                     </View>
@@ -196,56 +197,56 @@ const Plant = (props) => {
     )
 };
 
-const styles = StyleSheet.create({
-    aboutAppMainStyle: {
-        // marginTop: 20,
-        flex: 1,
-        backgroundColor: '#BDE1C9', 
-    },
-    headerStyle: {
-        height: 70,
-        paddingTop: 30, 
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        justifyContent: 'space-around',
-        backgroundColor: '#EFDECE'
-    },
-    headerText: {
-        alignSelf: 'center',
-        textAlign: 'center',
-        fontSize: 22,
-        color: '#055607',
-        fontWeight: 'bold',
-        paddingBottom: 40,
-        paddingTop: 0
-    },
-    headerImageStyle: {
-        width: 28, 
-        height: 28,
-        marginLeft: 10,
-        marginTop: 10
-    },
-    plantNameTitle: {
-        marginTop: 30,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 25
-    },
-    sectionNameText: {
-        fontWeight: 'bold'
-    },
-    plantImageStyle: {
-        width: 125, 
-        height: 125,
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 30,
-        borderRadius: 120 / 2
-    },
-    noNotesStyle: {
-        fontStyle: 'italic',
-        textAlign: 'center',
-      }
-});
+// const styles = StyleSheet.create({
+    // aboutAppMainStyle: {
+    //     // marginTop: 20,
+    //     flex: 1,
+    //     backgroundColor: '#BDE1C9', 
+    // },
+    // headerStyle: {
+    //     height: 70,
+    //     paddingTop: 30, 
+    //     borderColor: '#7A7E7B',
+    //     borderBottomWidth: 0.5,
+    //     justifyContent: 'space-around',
+    //     backgroundColor: '#EFDECE'
+    // },
+    // headerText: {
+    //     alignSelf: 'center',
+    //     textAlign: 'center',
+    //     fontSize: 22,
+    //     color: '#055607',
+    //     fontWeight: 'bold',
+    //     paddingBottom: 40,
+    //     paddingTop: 0
+    // },
+    // headerImageStyle: {
+    //     width: 28, 
+    //     height: 28,
+    //     marginLeft: 10,
+    //     marginTop: 10
+    // },
+    // plantNameTitle: {
+    //     marginTop: 30,
+    //     fontWeight: 'bold',
+    //     textAlign: 'center',
+    //     fontSize: 25
+    // },
+    // plantSectionNameText: {
+    //     fontWeight: 'bold'
+    // },
+    // plantImageStyle: {
+    //     width: 125, 
+    //     height: 125,
+    //     alignSelf: 'center',
+    //     marginTop: 10,
+    //     marginBottom: 30,
+    //     borderRadius: 120 / 2
+    // },
+    // plantNoNotesStyle: {
+    //     fontStyle: 'italic',
+    //     textAlign: 'center',
+    //   }
+// });
 
 export default Plant;
