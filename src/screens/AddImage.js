@@ -10,19 +10,19 @@ class AddImage extends Component {
         super(props);
     
         this.state = {
-            // plantKey: this.props.navigation.getParam('plantKey'),
+            plantKey: this.props.navigation.getParam('plantKey'),
             hasCameraPermission: null
         }
 
-        // this.props.navigation.addListener(
-        //     'willFocus',
-        //     () => {
-        //         this.setState({
-        //             plantKey: this.props.navigation.getParam('plantKey'),
-        //             hasCameraPermission: null
-        //         })
-        //     }
-        // )
+        this.props.navigation.addListener(
+            'willFocus',
+            () => {
+                this.setState({
+                    plantKey: this.props.navigation.getParam('plantKey'),
+                    hasCameraPermission: null
+                })
+            }
+        )
     }
 
     componentDidMount() {
@@ -42,13 +42,18 @@ class AddImage extends Component {
         // }
     }
 
-    onChooseImagePress = async () => {
-        // let result = await ImagePicker.launchCameraAsync();
-        let result = await ImagePicker.launchImageLibraryAsync();
+    onGetImagePress = async (type) => {
+        let result = undefined;
+
+        if (type === 'camera') {
+            result = await ImagePicker.launchCameraAsync();
+        } else if (type === 'library') {
+            result = await ImagePicker.launchImageLibraryAsync();
+        }
 
         if (!result.cancelled) {
             console.log(result);
-            this.uploadImage(result.uri, "test-image2")
+            this.uploadImage(result.uri, "test-image3")
               .then(() => {
                 Alert.alert("Success!")
               })
@@ -69,27 +74,32 @@ class AddImage extends Component {
         return ref.put(blob);
     }
 
-    saveImageToDatabase = async (imageResult) => {
-        const plantKey = this.props.navigation.getParam('plantKey');
+    saveImageToDatabase = (imageResult) => {
+        // const plantKey = this.state.plantKey;
 
-        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}`)
+        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
         .update({
             image: imageResult
         })
         .then(() => {
             this.props.navigation.navigate('Plant', {
                 plantImage: imageResult,
-                plantKey
+                plantKey: this.state.plantKey
             });
         })
     }
 
     render() {
         return (
-            <View style={{marginTop: 30}}>
+            <View style={{marginTop: 70}}>
                 <Button 
-                    title="Choose Image"
-                    onPress={this.onChooseImagePress}
+                    title="Take Photo"
+                    onPress={() => this.onGetImagePress('camera')}
+                />
+
+                <Button 
+                    title="Choose Photo From Library"
+                    onPress={() => this.onGetImagePress('library')}
                 />
             </View>
         )

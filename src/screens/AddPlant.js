@@ -50,8 +50,6 @@ class AddPlant extends Component {
           receivedDate: this.state.dateReceived,
           note: this.state.note, 
           plantKey: dataRef,
-          // wateringDates: this.state.wateringDates
-          // plantKey: this.state.plantKey
         })
 
         console.log('about to reset the state!!!!!')
@@ -60,8 +58,6 @@ class AddPlant extends Component {
           plantName: '',
           dateReceived: '',
           note: '',
-          // wateringDates: undefined
-          // photos: [], 
         });
         console.log('i should have just reset my state!!!!')
     
