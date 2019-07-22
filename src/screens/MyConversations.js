@@ -9,7 +9,9 @@ class MyConversations extends Component {
     
         this.state = {
             allDiscussions: [],
-            discussionsCommented: []
+            discussionsCommented: [],
+            writtenPostsAreVisible: false,
+            commentedPostsAreVisible: false
         }
     }
 
@@ -41,6 +43,14 @@ class MyConversations extends Component {
                 this.setState({discussionsCommented});
                 // console.log(discussionsCommented)
             })
+    }
+
+    onCategoryPress = (category) => {
+        if (category === 'written') {
+            this.setState({writtenPostsAreVisible: !this.state.writtenPostsAreVisible})
+        } else if (category === 'commented') {
+            this.setState({commentedPostsAreVisible: !this.state.commentedPostsAreVisible})
+        }
     }
 
     onDiscussionTitlePress = (discussion) => {
@@ -133,29 +143,44 @@ class MyConversations extends Component {
                 </View>
 
                 <View style={styles.mainPageSection}>
+                    
                     <Text style={styles.mainTitleStyle}>Your Conversations</Text>
-
+                    
                     <ScrollView style={styles.mainPostViewingSection}>
                         <View>
-                            <Text style={styles.postSectionHeader}>Posts You've Written</Text>
-                            <View style={styles.listPostsSection}>
-                                {
-                                    startedDiscussions.length === 0 ? 
-                                    <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
-                                    <View style={styles.listOfDiscussionsStyle}>{writtenPosts}</View>
-                                }
-                            </View>
+                            <TouchableOpacity
+                                onPress={() => this.onCategoryPress('written')}
+                            >
+                                <Text style={styles.postSectionHeader}>Posts You've Written</Text>
+                            </TouchableOpacity>
+
+                            {this.state.writtenPostsAreVisible ?
+                                <View style={styles.listPostsSection}>
+                                    {
+                                        startedDiscussions.length === 0 ? 
+                                        <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
+                                        <View style={styles.listOfDiscussionsStyle}>{writtenPosts}</View>
+                                    }
+                                </View> : null
+                            }
                         </View>
 
                         <View>
-                            <Text style={styles.postSectionHeader}>Posts You've Commented On</Text>
-                            <View style={styles.listPostsSection}>
-                                {
-                                    commentedDiscussions.length === 0 ?
-                                    <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
-                                    <View style={styles.listOfDiscussionsStyle}>{commentedPosts}</View>
-                                }
-                            </View>
+                            <TouchableOpacity
+                                onPress={() => this.onCategoryPress('commented')}
+                            >
+                                <Text style={styles.postSectionHeader}>Posts You've Commented On</Text>
+                            </TouchableOpacity>
+
+                            {this.state.commentedPostsAreVisible ? 
+                                <View style={styles.listPostsSection}>
+                                    {
+                                        commentedDiscussions.length === 0 ?
+                                        <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
+                                        <View style={styles.listOfDiscussionsStyle}>{commentedPosts}</View>
+                                    }
+                                </View> : null
+                            }
                         </View>
                     </ScrollView>
                 </View>
