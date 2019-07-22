@@ -214,9 +214,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start"
   },
   textAreaContainer: {
-    // borderColor: COLORS.grey20,
     borderWidth: 0.5,
-    // padding: 20
   },
   inputTitleStyle: {
     fontSize: 15,

@@ -63,14 +63,20 @@ class EditPlantNote extends Component {
                     <Text style={styles.headerText}>Wet Your Plants</Text>
                 </View>
 
-                <View>
-                    <Text>Add a New Note About this plant!</Text>
-                    <TextInput 
-                        placeholder="new note"
-                        value={this.state.note}
-                        onChangeText={(note) => this.setState({note})}
-                        clearButtonMode='always'
-                    />
+                <View style={styles.mainEditSectionStyle}>
+                    <Text style={styles.editTextHeaderStyle}>Edit plant note</Text>
+                    <View style={styles.textAreaContainer} >
+                        <TextInput 
+                            placeholder="new note"
+                            multiline = {true}
+                            numberOfLines = {4}
+                            editable = {true}
+                            value={this.state.note}
+                            onChangeText={(note) => this.setState({note})}
+                            clearButtonMode='always'
+                            style={styles.noteTextArea}
+                        />
+                    </View> 
 
                     <Button 
                         title="Cancel"
@@ -115,6 +121,26 @@ const styles = StyleSheet.create({
       height: 28,
       marginLeft: 10,
       marginTop: 10
+    },
+    mainEditSectionStyle: {
+        paddingTop: 20,
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    editTextHeaderStyle: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: '#055607',
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    noteTextArea: {
+        height: 100,
+        justifyContent: "flex-start"
+    },
+    textAreaContainer: {
+        borderWidth: 0.5,
     },
 })
 
