@@ -228,6 +228,22 @@ const styles = StyleSheet.create({
     },
     plantDateStyle: {
         flexDirection: 'row'
+    },
+    plantLogSectionNameText: {
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    plantLogDatesDisplay: {
+        borderColor: '#7A7E7B',
+        borderWidth: 0.5,
+        marginLeft: 15,
+        marginRight: 15
+    },
+    dateLogStyle: {
+        textAlign: 'center',
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 15
     }
 })
 

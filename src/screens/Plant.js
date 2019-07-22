@@ -85,7 +85,7 @@ const Plant = (props) => {
     let wateringDisplay = <Text>No record of any past waterings</Text>;
     if (wateringDates) {
         const allWaterings = wateringDates.map((date, i) => 
-          <Text key={i}>{date["watering_date"]}</Text>
+          <Text key={i} style={styles.dateLogStyle}>{date["watering_date"]}</Text>
         );
 
         if (allWaterings.length <= 5 && allWaterings.length > 0) {
@@ -98,7 +98,7 @@ const Plant = (props) => {
     let fertilizingDisplay = <Text>No record of any past fertilizations</Text>;
     if (fertilizingDates) {
         const allFertilizings = fertilizingDates.map((date, i) => 
-            <Text key={i}>{date["fertilizing_date"]}</Text>
+            <Text key={i} style={styles.dateLogStyle}>{date["fertilizing_date"]}</Text>
         );
 
         if (allFertilizings.length <= 5 && allFertilizings.length > 0) {
@@ -168,8 +168,8 @@ const Plant = (props) => {
                 </View>
 
                 <View>
-                    <Text style={styles.plantSectionNameText}>Watering Log:</Text>
-                    <View>
+                    <Text style={styles.plantLogSectionNameText}>Watering Log</Text>
+                    <View style={styles.plantLogDatesDisplay}>
                         {wateringDisplay}
                     </View>
                     <Button 
@@ -179,8 +179,8 @@ const Plant = (props) => {
                 </View>
 
                 <View>
-                    <Text style={styles.plantSectionNameText}>Fertilizing Log:</Text>
-                    <View>
+                    <Text style={styles.plantLogSectionNameText}>Fertilizing Log</Text>
+                    <View style={styles.plantLogDatesDisplay}>
                         {fertilizingDisplay}
                     </View>
                     <Button 
