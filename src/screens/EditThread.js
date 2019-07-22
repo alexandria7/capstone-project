@@ -86,28 +86,31 @@ class EditThread extends Component {
 
                     <Text style={styles.editTextHeaderStyle}>Edit Discussion Thread</Text>
 
-                    <Text style={styles.inputTitleStyle}>Question:</Text>
-                    <TextInput 
-                        placeholder="new question"
-                        value={this.state.question}
-                        onChangeText={(question) => this.setState({question})}
-                        clearButtonMode='always'
-                    />
-
-                    <Text style={styles.inputTitleStyle}>Body: </Text>
-                    <View style={styles.textAreaContainer} >
+                    <View style={styles.inputSectionStyle}>
+                        <Text style={styles.inputTitleStyle}>Question:</Text>
                         <TextInput 
-                        placeholder="expand on your question, post pictures, etc."
-                        multiline = {true}
-                        numberOfLines = {4}
-                        editable = {true}
-                        value={this.state.questionBody}
-                        onChangeText={(questionBody) => this.setState({questionBody})}
-                        clearButtonMode='always'
-                        style={styles.noteTextArea}
+                            placeholder="new question"
+                            value={this.state.question}
+                            onChangeText={(question) => this.setState({question})}
+                            clearButtonMode='always'
                         />
                     </View>
 
+                    <View style={styles.inputSectionStyle}>
+                        <Text style={styles.inputTitleStyle}>Body: </Text>
+                        <View style={styles.textAreaContainer} >
+                            <TextInput 
+                            placeholder="expand on your question, post pictures, etc."
+                            multiline = {true}
+                            numberOfLines = {4}
+                            editable = {true}
+                            value={this.state.questionBody}
+                            onChangeText={(questionBody) => this.setState({questionBody})}
+                            clearButtonMode='always'
+                            style={styles.noteTextArea}
+                            />
+                        </View>
+                    </View>
 
                     <View style={styles.buttonContainer}>
                         <Button 
