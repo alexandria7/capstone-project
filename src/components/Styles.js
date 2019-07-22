@@ -206,7 +206,8 @@ const styles = StyleSheet.create({
         fontSize: 25
     },
     plantSectionNameText: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 15
     },
     plantImageStyle: {
         width: 125, 
@@ -231,7 +232,8 @@ const styles = StyleSheet.create({
     },
     plantLogSectionNameText: {
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 15
     },
     plantLogDatesDisplay: {
         borderColor: '#7A7E7B',
