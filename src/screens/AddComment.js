@@ -40,19 +40,19 @@ class AddComment extends Component {
             .then(() => {
                 firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/discussionsCommented`)
                     .push({
-                        id: discussionKey,
+                        id: this.props.navigation.getParam('discussionKey'),
                     })
-                    .then(() => {
-                        this.props.navigation.navigate('IndividualThread', {
-                            discussionKey,
-                            comment: this.state.comment,
-                            commentUserName: firebase.auth().currentUser.displayName,
-                            date: todaysDate,
-                            // comments: firebase.database().ref(`/discussions/${discussionKey}/comments`)
-                        })
-            
-                        this.setState({ comment: '' })
-                    })
+                    // .then(() => {
+                this.props.navigation.navigate('IndividualThread', {
+                    discussionKey: this.props.navigation.getParam('discussionKey'),
+                    // comment: this.state.comment,
+                    // commentUserName: firebase.auth().currentUser.displayName,
+                    // date: todaysDate,
+                    // comments: firebase.database().ref(`/discussions/${discussionKey}/comments`)
+                })
+    
+                this.setState({ comment: '' })
+                    // })
             })
                 // .then(() => {
                 //     this.props.navigation.navigate('IndividualThread', {
@@ -66,6 +66,10 @@ class AddComment extends Component {
             .catch((error) => {
                 console.log('there was an error with adding this comment: ', error)
                 this.props.navigation.navigate('Discussions')
+
+                // there was an error with adding this comment:  
+                // [Error: Reference.push failed: first argument contains undefined in property 
+                // 'users.2cjXqWke1LYHpaLRBYGw2WGoaX53.discussionsCommented.id']
             })
     }
 

@@ -10,9 +10,21 @@ class CommentsList extends Component {
         this.state = {
             // discussionKey: this.props.discussionKey,
             comments: [],
-            newComment: ''
+            newComment: '',
+            // discussionKey: this.props.discussionKey
           // selectedPlant: null
         }
+
+        // this.props.navigation.addListener(
+        //     'willFocus',
+        //     () => {
+        //         this.setState({
+        //             comments: [],
+        //             newComment: '',
+        //             discussionKey: this.props.discussionKey
+        //         })
+        //     }
+        // )
     }
 
     componentDidMount() {
@@ -32,36 +44,36 @@ class CommentsList extends Component {
         })
     }
 
-    onSubmitCommentPress = () => {
-        const currentComment = this.state.newComment;
-        let currentCommentList = this.state.comments;
-        const todaysDate = (new Date()).toDateString();
+    // onSubmitCommentPress = () => {
+    //     const currentComment = this.state.newComment;
+    //     let currentCommentList = this.state.comments;
+    //     const todaysDate = (new Date()).toDateString();
 
-        let newCommentObject = {
-            comment: currentComment,
-            comment_user_id: firebase.auth().currentUser.uid,
-            comment_user_name: firebase.auth().currentUser.displayName,
-            date: todaysDate
-        }
+    //     let newCommentObject = {
+    //         comment: currentComment,
+    //         comment_user_id: firebase.auth().currentUser.uid,
+    //         comment_user_name: firebase.auth().currentUser.displayName,
+    //         date: todaysDate
+    //     }
 
-        currentCommentList.push(newCommentObject);
+    //     currentCommentList.push(newCommentObject);
 
-        this.setState({comments: currentCommentList});
+    //     this.setState({comments: currentCommentList});
 
-        firebase.database().ref(`/discussions/${this.props.discussionKey}/comments`)
-            .push({
-                comment: currentComment,
-                comment_user_id: firebase.auth().currentUser.uid,
-                comment_user_name: firebase.auth().currentUser.displayName,
-                date: todaysDate
-            })
-            .then(() => {
-                this.setState({
-                    comments: [],
-                    newComment: ''
-                })
-            })
-    }
+    //     firebase.database().ref(`/discussions/${this.props.discussionKey}/comments`)
+    //         .push({
+    //             comment: currentComment,
+    //             comment_user_id: firebase.auth().currentUser.uid,
+    //             comment_user_name: firebase.auth().currentUser.displayName,
+    //             date: todaysDate
+    //         })
+    //         .then(() => {
+    //             this.setState({
+    //                 comments: [],
+    //                 newComment: ''
+    //             })
+    //         })
+    // }
     
     render() {
 
@@ -84,16 +96,16 @@ class CommentsList extends Component {
                 </View>
 
                 <View>
-                    <TextInput 
+                    {/* <TextInput 
                         placeholder="your comment here"
                         value={this.state.newComment}
                         onChangeText={(newComment) => this.setState({newComment})}
                         clearButtonMode='always'
-                    />
+                    /> */}
 
                     <Button 
                         title="Add Comment"
-                        onPress={() => {this.onSubmitCommentPress()}}
+                        onPress={() => this.props.navigation.navigate('AddComment', {discussionKey: this.props.discussionKey})}
                     />
                 </View>
                 {/* <View>
