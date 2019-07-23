@@ -21,6 +21,55 @@ const IndividualThread = (props) => {
             });
         })
 
+    const onDeletePostPress = () => {
+        Alert.alert(
+            `Are you sure you want to delete this thread?`,
+            'All of it will be deleted including the comments.',
+            [
+              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
+              {text: 'Delete', onPress: () => deletePost()}
+            ]
+          )
+    };
+
+    const deletePost = () => {
+        console.log(`post with id ${discussionKey} is about to be deleted`)
+        
+        const postToDelete = firebase.database().ref(`/discussions/${discussionKey}`);
+
+        postToDelete
+            .remove()
+            .then(() => {
+                console.log('post was deleted...')
+                props.navigation.navigate('Discussions'); 
+            })
+    };
+
+    const onDeleteCommentPress = (commentKey) => {
+        console.log('i\'m in onDeleteCommentPress and the comment id is: ', commentKey);
+        Alert.alert(
+            `Are you sure you want to delete this comment?`,
+            'It will be permanently deleted from this discussion thread.',
+            [
+              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
+              {text: 'Delete', onPress: () => deleteComment(commentKey)}
+            ]
+          )
+    };
+
+    const deleteComment = (commentKey) => {
+        console.log(`comment with id ${commentKey} is about to be deleted`)
+        
+        const commentToDelete = firebase.database().ref(`/discussions/${discussionKey}/comments/${commentKey}`);
+
+        commentToDelete
+            .remove()
+            .then(() => {
+                console.log('comment was deleted...')
+                props.navigation.navigate('IndividualThread', {discussionKey}); 
+            })
+    };
+
     const allComments = comments.map((comment, i) => 
         <View key={i} style={styles.commentSectionStyle}>
             <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
@@ -40,36 +89,13 @@ const IndividualThread = (props) => {
                     />
                     <Button 
                         title="Delete"
+                        onPress={() => onDeleteCommentPress(comment["key"])}
                     />
                 </View>
                 : null
             }
         </View>
     );
-
-    const onDeletePostPress = () => {
-        Alert.alert(
-            `Are you sure you want to delete this thread?`,
-            'All of it will be deleted including the comments.',
-            [
-              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
-              {text: 'Delete', onPress: () => deletePost()}
-            ]
-          )
-    }
-
-    const deletePost = () => {
-        console.log(`post with id ${discussionKey} is about to be deleted`)
-        
-        const postToDelete = firebase.database().ref(`/discussions/${discussionKey}`);
-
-        postToDelete
-            .remove()
-            .then(() => {
-                console.log('post was deleted...')
-                props.navigation.navigate('Discussions'); 
-            })
-    }
 
     return (
         <View style={styles.aboutAppMainStyle}>
