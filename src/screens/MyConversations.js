@@ -56,12 +56,12 @@ class MyConversations extends Component {
     onDiscussionTitlePress = (discussion) => {
         this.props.navigation.navigate('IndividualThread', {
             discussionKey: discussion["key"],
-            // question: discussion["question"],
-            // questionBody: discussion["question_body"],
-            // userId: discussion["userId"],
-            // userName: discussion["userName"],
-            // date: discussion["date"],
-            // comments: discussion["comments"]
+            question: discussion["question"],
+            questionBody: discussion["question_body"],
+            userId: discussion["userId"],
+            userName: discussion["userName"],
+            date: discussion["date"],
+            comments: discussion["comments"]
         })
     }
 
@@ -92,9 +92,9 @@ class MyConversations extends Component {
                 map.set(post["key"], true);    // set any value to Map
                 console.log('in myConvo, these are comments: ', post["comments"])
                 commentedNoDups.push({
-                    discussionKey: post["key"],
+                    key: post["key"],
                     question: post["question"],
-                    questionBody: post["question_body"],
+                    question_body: post["question_body"],
                     userId: post["userId"],
                     userName: post["userName"],
                     date: post["date"],
