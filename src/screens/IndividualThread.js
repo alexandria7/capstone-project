@@ -33,6 +33,7 @@ const IndividualThread = (props) => {
                         title="Edit"
                         onPress={() => props.navigation.navigate("EditComment", {
                             discussionKey,
+                            commentKey: comment["key"],
                             comment: comment["comment"],
                             question
                         })}
