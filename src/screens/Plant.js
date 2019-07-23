@@ -23,16 +23,10 @@ const Plant = (props) => {
             console.log('snapshot of image object', snapshot.val());
             // console.log('snapshot of image uri: ', snapshot.val()["uri"])
             if (snapshot.val() !== null) {
-                plantImage = snapshot.val()["uri"];
+                plantImage = snapshot.val();
             }
-            // plantImage = snapshot.val()["image"];
         })
-        // .then(() => {
-        //     console.log('successfully found the plant image')
-        // })
-        // .catch((error) => {
-        //     console.log('there was an error getting the plant\'s image: ', error)
-        // })
+        
 
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
@@ -100,7 +94,7 @@ const Plant = (props) => {
 
     let imageSource = require('../images/sm-plant-placeholder.png');
     if (plantImage) {
-        imageSource = {uri: plantImage}
+        imageSource = {uri: plantImage["uri"]}
     }
 
     let wateringDisplay = <Text>No record of any past waterings</Text>;
@@ -160,7 +154,7 @@ const Plant = (props) => {
 
                 <Button 
                     title="Update Plant Image"
-                    onPress={() => props.navigation.navigate('AddImage', {plantKey})}
+                    onPress={() => props.navigation.navigate('AddImage', {plantKey, plantImage})}
                 />
         
                 <View style={styles.plantDateStyle}>

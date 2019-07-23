@@ -11,7 +11,7 @@ class AddImage extends Component {
         super(props);
     
         this.state = {
-            plantImage: undefined,
+            plantImage: this.props.navigation.getParam('plantImage'),
             plantKey: this.props.navigation.getParam('plantKey'),
             hasCameraPermission: null
         }
@@ -20,7 +20,7 @@ class AddImage extends Component {
             'willFocus',
             () => {
                 this.setState({
-                    plantImage: undefined,
+                    plantImage: this.props.navigation.getParam('plantImage'),
                     plantKey: this.props.navigation.getParam('plantKey'),
                     hasCameraPermission: null
                 })
@@ -65,9 +65,6 @@ class AddImage extends Component {
               .catch((error) => {
                 Alert.alert(`there was an error: ${error}`)
               })
-            //   .then(() => {
-            //       this.saveImageToDatabase(result);
-            //   })
         }
     }
 
@@ -81,20 +78,56 @@ class AddImage extends Component {
 
     saveImageToDatabase = () => {
         // const plantKey = this.state.plantKey;
-
-        firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
-        .update({
-            image: this.state.plantImage
-        })
-        .then(() => {
-            console.log('this is in addImage saveImageToDatabase and we\'re gonna go back to plant')
-            console.log(this.state)
-
+        if (this.state.plantImage) {
+            firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
+                .update({
+                    image: this.state.plantImage
+                })
+                .then(() => {
+                    console.log('this is in addImage saveImageToDatabase and we\'re gonna go back to plant')
+                    console.log(this.state)
+        
+                    this.props.navigation.navigate('Plant', {
+                        plantImage: this.state.plantImage,
+                        plantKey: this.state.plantKey
+                    });
+                })
+        } else {
             this.props.navigation.navigate('Plant', {
                 plantImage: this.state.plantImage,
                 plantKey: this.state.plantKey
             });
+        }
+        
+    }
+
+    onDeleteImagePress = () => {
+        Alert.alert(
+            `Are you sure you want to delete this photo?`,
+            'This will permanently remove the photo from the database.',
+            [
+              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
+              {text: 'Delete', onPress: () => this.deletePhoto()}
+            ]
+          )
+    }
+
+    deletePhoto = () => {
+        const photoToDelete = firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}/image`)
+
+        photoToDelete
+        .remove()
+        .then(() => {
+            this.setState({plantImage: undefined})
         })
+        .catch((error) => {
+            console.log('there was an error deleting this image from the database: ', error)
+        })
+
+        this.props.navigation.navigate('Plant', {
+            plantImage: this.state.plantImage,
+            plantKey: this.state.plantKey
+        });
     }
 
     render() {
@@ -116,6 +149,12 @@ class AddImage extends Component {
                         style={styles.plantImageStyle}
                         source={{uri: this.state.plantImage["uri"]}}
                     /> 
+
+                    <Button 
+                        title="Delete"
+                        onPress={() => this.onDeleteImagePress()}
+                    />
+
                     <Button 
                         title="Submit!"
                         onPress={() => this.saveImageToDatabase()} 
