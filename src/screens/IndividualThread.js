@@ -65,9 +65,22 @@ const IndividualThread = (props) => {
         commentToDelete
             .remove()
             .then(() => {
-                console.log('comment was deleted...')
-                props.navigation.navigate('IndividualThread', {discussionKey}); 
+                // const commentByUserRef = firebase.database().ref(`/users/${userId}/discussionsCommented`); //root reference to your data
+                // commentByUserRef.orderByChild('comment_key').equalTo(`${commentKey}`)
+                //     .once('value').then((snapshot) => {
+                //         snapshot.forEach((childSnapshot) => {
+                //         //remove each child
+                //         commentByUserRef.child(childSnapshot.key)
+                //         .remove()
+                //         .then(() => {console.log('comment reference deleted from user')})
+                //         .catch((error) => {console.log('there was an error deleting this comment\'s ref from the user: ', error)})
+                //     });
+                // });
+
             })
+
+            console.log('comment was deleted...')
+            props.navigation.navigate('IndividualThread', {discussionKey});
     };
 
     const allComments = comments.map((comment, i) => 
