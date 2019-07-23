@@ -7,7 +7,7 @@ import styles from '../components/Styles';
 const Plant = (props) => {
 
     const plantName = props.navigation.getParam('plantName');
-    const plantImage = props.navigation.getParam('plantImage');
+    // const plantImage = props.navigation.getParam('plantImage');
     const dateReceived = props.navigation.getParam('dateReceived');
     const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
@@ -15,6 +15,20 @@ const Plant = (props) => {
     const wateringDates = props.navigation.getParam('wateringDates');
     console.log(wateringDates)
     const fertilizingDates = props.navigation.getParam('fertilizingDates');
+    let plantImage = undefined;
+
+    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}`)
+        .on('value', snapshot => {
+            console.log('snapshot of plant', snapshot.val());
+            console.log('snapshot of image: ', snapshot.val()["image"])
+            plantImage = snapshot.val()["image"];
+        })
+        .then(() => {
+            console.log('successfully found the plant image')
+        })
+        .catch((error) => {
+            console.log('there was an error getting the plant\'s image: ', error)
+        })
 
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
@@ -74,6 +88,9 @@ const Plant = (props) => {
             .then(() => {
                 console.log('plant was deleted...')
                 props.navigation.navigate('ListPlants'); 
+            })
+            .catch((error) => {
+                console.log('there was an error deleting this plant: ', error)
             })
     }
 

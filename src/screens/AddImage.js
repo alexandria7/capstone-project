@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Alert, Button, StyleSheet } from 'react-native';
+import { Text, View, Alert, Button, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
+import styles from '../components/Styles';
 
 class AddImage extends Component {
 
@@ -10,19 +11,21 @@ class AddImage extends Component {
         super(props);
     
         this.state = {
+            plantImage: undefined,
             plantKey: this.props.navigation.getParam('plantKey'),
             hasCameraPermission: null
         }
 
-        this.props.navigation.addListener(
-            'willFocus',
-            () => {
-                this.setState({
-                    plantKey: this.props.navigation.getParam('plantKey'),
-                    hasCameraPermission: null
-                })
-            }
-        )
+        // this.props.navigation.addListener(
+        //     'willFocus',
+        //     () => {
+        //         this.setState({
+        //             plantImage: undefined,
+        //             plantKey: this.props.navigation.getParam('plantKey'),
+        //             hasCameraPermission: null
+        //         })
+        //     }
+        // )
     }
 
     componentDidMount() {
@@ -36,10 +39,6 @@ class AddImage extends Component {
         const hasCameraPermission = (camera.status === 'granted' || cameraRoll.status === 'granted')
 
         this.setState({hasCameraPermission});
-
-        // if (status !== 'granted') {
-        //     Alert.alert("you didn't grant access")
-        // }
     }
 
     onGetImagePress = async (type) => {
@@ -53,16 +52,17 @@ class AddImage extends Component {
 
         if (!result.cancelled) {
             console.log(result);
-            this.uploadImage(result.uri, "test-image3")
+            this.uploadImage(result.uri, "test-image5")
               .then(() => {
-                Alert.alert("Success!")
+                Alert.alert("Success!");
+                this.setState({plantImage: result})
               })
               .catch((error) => {
                 Alert.alert(`there was an error: ${error}`)
               })
-              .then(() => {
-                  this.saveImageToDatabase(result);
-              })
+            //   .then(() => {
+            //       this.saveImageToDatabase(result);
+            //   })
         }
     }
 
@@ -74,16 +74,19 @@ class AddImage extends Component {
         return ref.put(blob);
     }
 
-    saveImageToDatabase = (imageResult) => {
+    saveImageToDatabase = () => {
         // const plantKey = this.state.plantKey;
 
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
         .update({
-            image: imageResult
+            image: this.state.plantImage
         })
         .then(() => {
+            console.log('this is in addImage saveImageToDatabase and we\'re gonna go back to plant')
+            console.log(this.state)
+
             this.props.navigation.navigate('Plant', {
-                plantImage: imageResult,
+                plantImage: this.state.plantImage,
                 plantKey: this.state.plantKey
             });
         })
@@ -101,6 +104,21 @@ class AddImage extends Component {
                     title="Choose Photo From Library"
                     onPress={() => this.onGetImagePress('library')}
                 />
+
+                {this.state.plantImage ? 
+                <View>
+                    <Image 
+                        style={styles.plantImageStyle}
+                        source={{uri: this.state.plantImage["uri"]}}
+                    /> 
+                    <Button 
+                        title="Submit!"
+                        onPress={() => this.saveImageToDatabase()} 
+                    />
+                </View>
+                : null}
+
+
             </View>
         )
     }
