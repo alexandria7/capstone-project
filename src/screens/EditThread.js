@@ -106,22 +106,66 @@ class EditThread extends Component {
     }
 
     updateInfoToDatabase = () => {
-        firebase.database().ref(`/discussions/${this.state.discussionKey}`)
-        .update({
-            question: this.state.question,
-            question_body: this.state.questionBody,
-            threadImage: this.state.threadImage
-        })
+        if (this.state.threadImage) {
+            firebase.database().ref(`/discussions/${this.state.discussionKey}`)
+                .update({
+                    question: this.state.question,
+                    question_body: this.state.questionBody,
+                    threadImage: this.state.threadImage
+                })
+                .then(() => {
+                    this.props.navigation.navigate('IndividualThread', {
+                        discussionKey: this.state.discussionKey,
+                        question: this.state.question,
+                        questionBody: this.state.questionBody,
+                        threadImage: this.state.threadImage
+                    });
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        } else {
+            firebase.database().ref(`/discussions/${this.state.discussionKey}`)
+                .update({
+                    question: this.state.question,
+                    question_body: this.state.questionBody,
+                })
+                .then(() => {
+                    this.props.navigation.navigate('IndividualThread', {
+                        discussionKey: this.state.discussionKey,
+                        question: this.state.question,
+                        questionBody: this.state.questionBody,
+                        threadImage: this.state.threadImage
+                    });
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+        
+    }
+
+    onDeletePhotoPress = () => {
+        Alert.alert(
+            `Are you sure you want to delete this photo?`,
+            'This will permanently remove the image from the discussion thread.',
+            [
+              {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
+              {text: 'Delete', onPress: () => this.deletePhoto()}
+            ]
+          )
+    }
+
+    deletePhoto = () => {
+        const photoToDelete = firebase.database().ref(`/discussions/${this.state.discussionKey}/threadImage`);
+
+        photoToDelete
+        .remove()
         .then(() => {
-            this.props.navigation.navigate('IndividualThread', {
-                discussionKey: this.state.discussionKey,
-                question: this.state.question,
-                questionBody: this.state.questionBody,
-                threadImage: this.state.threadImage
-            });
+            this.setState({threadImage: undefined})
         })
         .catch((error) => {
-            console.log(error)
+            console.log('there was an error deleting this image from the database: ', error)
         })
     }
 
@@ -182,7 +226,10 @@ class EditThread extends Component {
                                         source={{uri: this.state.threadImage["uri"]}}
                                     />
                                 </View>
-                                
+                                <Button 
+                                    title="Delete photo"
+                                    onPress={() => this.onDeletePhotoPress()}
+                                />
                                 <Text>Update photo:</Text>
                             </View> :
                             <View>

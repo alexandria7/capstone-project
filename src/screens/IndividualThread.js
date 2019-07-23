@@ -115,6 +115,19 @@ const IndividualThread = (props) => {
             props.navigation.navigate('IndividualThread', {discussionKey});
     };
 
+    // const onDeletePhotoPress = () => {
+    //     const photoToDelete = firebase.database().ref(`/discussions/${this.state.discussionKey}/threadImage`);
+
+    //     photoToDelete
+    //     .remove()
+    //     .then(() => {
+    //         this.setState({threadImage: undefined})
+    //     })
+    //     .catch((error) => {
+    //         console.log('there was an error deleting this image from the database: ', error)
+    //     })
+    // }
+
     const allComments = comments.map((comment, i) => 
         <View key={i} style={styles.commentSectionStyle}>
             <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
