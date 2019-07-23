@@ -26,6 +26,22 @@ const IndividualThread = (props) => {
             <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
             <Text>{comment["date"]}</Text>
             <Text>{comment["comment"]}</Text>
+            {
+                comment["comment_user_id"] === firebase.auth().currentUser.uid ? 
+                <View>
+                    <Button 
+                        title="Edit"
+                        onPress={() => props.navigation.navigate("EditComment", {
+                            discussionKey,
+                            comment: comment["comment"]
+                        })}
+                    />
+                    <Button 
+                        title="Delete"
+                    />
+                </View>
+                : null
+            }
         </View>
     );
 
