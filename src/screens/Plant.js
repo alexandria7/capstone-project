@@ -17,18 +17,22 @@ const Plant = (props) => {
     const fertilizingDates = props.navigation.getParam('fertilizingDates');
     let plantImage = undefined;
 
-    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}`)
+    console.log('image link works?: ', firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/image`))
+    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/image`)
         .on('value', snapshot => {
-            console.log('snapshot of plant', snapshot.val());
-            console.log('snapshot of image: ', snapshot.val()["image"])
-            plantImage = snapshot.val()["image"];
+            console.log('snapshot of image object', snapshot.val());
+            // console.log('snapshot of image uri: ', snapshot.val()["uri"])
+            if (snapshot.val() !== null) {
+                plantImage = snapshot.val()["uri"];
+            }
+            // plantImage = snapshot.val()["image"];
         })
-        .then(() => {
-            console.log('successfully found the plant image')
-        })
-        .catch((error) => {
-            console.log('there was an error getting the plant\'s image: ', error)
-        })
+        // .then(() => {
+        //     console.log('successfully found the plant image')
+        // })
+        // .catch((error) => {
+        //     console.log('there was an error getting the plant\'s image: ', error)
+        // })
 
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
@@ -96,7 +100,7 @@ const Plant = (props) => {
 
     let imageSource = require('../images/sm-plant-placeholder.png');
     if (plantImage) {
-        imageSource = {uri: plantImage["uri"]}
+        imageSource = {uri: plantImage}
     }
 
     let wateringDisplay = <Text>No record of any past waterings</Text>;

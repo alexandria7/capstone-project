@@ -16,16 +16,16 @@ class AddImage extends Component {
             hasCameraPermission: null
         }
 
-        // this.props.navigation.addListener(
-        //     'willFocus',
-        //     () => {
-        //         this.setState({
-        //             plantImage: undefined,
-        //             plantKey: this.props.navigation.getParam('plantKey'),
-        //             hasCameraPermission: null
-        //         })
-        //     }
-        // )
+        this.props.navigation.addListener(
+            'willFocus',
+            () => {
+                this.setState({
+                    plantImage: undefined,
+                    plantKey: this.props.navigation.getParam('plantKey'),
+                    hasCameraPermission: null
+                })
+            }
+        )
     }
 
     componentDidMount() {
