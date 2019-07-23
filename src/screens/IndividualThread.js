@@ -65,18 +65,22 @@ const IndividualThread = (props) => {
         commentToDelete
             .remove()
             .then(() => {
-                // const commentByUserRef = firebase.database().ref(`/users/${userId}/discussionsCommented`); //root reference to your data
-                // commentByUserRef.orderByChild('comment_key').equalTo(`${commentKey}`)
-                //     .once('value').then((snapshot) => {
-                //         snapshot.forEach((childSnapshot) => {
-                //         //remove each child
-                //         commentByUserRef.child(childSnapshot.key)
-                //         .remove()
-                //         .then(() => {console.log('comment reference deleted from user')})
-                //         .catch((error) => {console.log('there was an error deleting this comment\'s ref from the user: ', error)})
-                //     });
-                // });
+                console.log('we deleted the comment from the discussion section, about to delete from the user section...');
+                const commentByUserRef = firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/discussionsCommented`); 
+                
+                commentByUserRef.orderByChild('comment_key').equalTo(`${commentKey}`)
+                    .once('value').then((snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                        //remove each child
+                        commentByUserRef.child(childSnapshot.key).remove()
+                            .then(() => {console.log('comment reference deleted from user')})
+                            .catch((error) => {console.log('there was an error deleting this comment\'s ref from the user: ', error)})
+                    });
+                });
 
+            })
+            .catch((error) => {
+                console.log('there was an error deleting the comment from the database: ', error)
             })
 
             console.log('comment was deleted...')
