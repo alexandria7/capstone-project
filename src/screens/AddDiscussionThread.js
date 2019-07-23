@@ -187,9 +187,9 @@ class AddDiscussionThread extends Component {
             </View>
 
             {this.state.threadImage ? 
-                <View>
+                <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 15, }}>
                     <Image 
-                        style={styles.plantImageStyle}
+                        style={{width: 200, height: 200}}
                         source={{uri: this.state.threadImage["uri"]}}
                     /> 
                 </View> : null

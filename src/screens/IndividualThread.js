@@ -28,7 +28,7 @@ const IndividualThread = (props) => {
             console.log('snapshot of thread object', snapshot.val());
             // console.log('snapshot of image uri: ', snapshot.val()["uri"])
             if (snapshot.val() !== null) {
-                threadImage = snapshot.val()["uri"];
+                threadImage = snapshot.val();
             }
             // plantImage = snapshot.val()["image"];
             console.log('this is the thread image: ', threadImage)
@@ -129,7 +129,7 @@ const IndividualThread = (props) => {
                             discussionKey,
                             commentKey: comment["key"],
                             comment: comment["comment"],
-                            question
+                            question,
                         })}
                     />
                     <Button 
@@ -171,7 +171,7 @@ const IndividualThread = (props) => {
                             <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 15, }}>
                                 <Image
                                     style={{width: 200, height: 200}}
-                                    source={{uri: threadImage}}
+                                    source={{uri: threadImage["uri"]}}
                                 />
                             </View>
                             : null
@@ -182,7 +182,7 @@ const IndividualThread = (props) => {
                             <Button 
                                 title="Edit Thread"
                                 onPress={() => props.navigation.navigate('EditThread', {
-                                    discussionKey, questionBody, question
+                                    discussionKey, questionBody, question, threadImage 
                                 })}
                             /> : null
                         }
