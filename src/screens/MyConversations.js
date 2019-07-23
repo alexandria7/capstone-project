@@ -56,12 +56,12 @@ class MyConversations extends Component {
     onDiscussionTitlePress = (discussion) => {
         this.props.navigation.navigate('IndividualThread', {
             discussionKey: discussion["key"],
-            question: discussion["question"],
-            questionBody: discussion["question_body"],
-            userId: discussion["userId"],
-            userName: discussion["userName"],
-            date: discussion["date"],
-            comments: discussion["comments"]
+            // question: discussion["question"],
+            // questionBody: discussion["question_body"],
+            // userId: discussion["userId"],
+            // userName: discussion["userName"],
+            // date: discussion["date"],
+            // comments: discussion["comments"]
         })
     }
 
@@ -90,6 +90,7 @@ class MyConversations extends Component {
         for (const post of commentedDiscussions) {
             if(!map.has(post["key"])){
                 map.set(post["key"], true);    // set any value to Map
+                console.log('in myConvo, these are comments: ', post["comments"])
                 commentedNoDups.push({
                     discussionKey: post["key"],
                     question: post["question"],
@@ -117,6 +118,7 @@ class MyConversations extends Component {
         );
 
         const commentedPosts = commentedNoDups.map((discussion, i) => 
+            
             <TouchableOpacity 
                 onPress={ () => this.onDiscussionTitlePress(discussion) }
                 style={styles.discussionContainerStyle}
