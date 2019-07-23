@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Plant Momma",
-    "slug": "capstone-project-expo",
+    "name": "Wet Your Plants",
+    "slug": "wet-your-plants",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -25,6 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "A plant tracking app where you can query your planty friends about any plant-related question or concern you may have! "
   }
 }
