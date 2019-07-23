@@ -2,61 +2,32 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import CommentsList from "../components/CommentsList";
 
 const IndividualThread = (props) => {
-    // const question = props.navigation.getParam('question');
-    // const questionBody = props.navigation.getParam('questionBody');
-    // const userId = props.navigation.getParam('userId');
-    // const userName = props.navigation.getParam('userName');
-    // const discussionKey = props.navigation.getParam('discussionKey');
-    // const date = props.navigation.getParam('date');
+    const question = props.navigation.getParam('question');
+    const questionBody = props.navigation.getParam('questionBody');
+    const userId = props.navigation.getParam('userId');
+    const userName = props.navigation.getParam('userName');
     const discussionKey = props.navigation.getParam('discussionKey');
-    let question = '';
-    let questionBody = '';
-    let userId = '';
-    let userName = '';
-    let date = '';
+    const date = props.navigation.getParam('date');
     let comments = undefined;
-    // const commentsFromDb = props.navigation.getParam('comments');
-    // console.log(comments)
-    firebase.database().ref(`/discussions/${discussionKey}`)
+
+    firebase.database().ref(`/discussions/${discussionKey}/comments`)
         .on('value', snapshot => {
-            console.log('just the discussion key:', snapshot.val());
-            const discussionObj = snapshot.val();
-            question = discussionObj["question"];
-            questionBody = discussionObj["question_body"];
-            userId = discussionObj["userId"];
-            userName = discussionObj["userName"];
-            date = discussionObj["date"];
-            // comments = discussionObj["comments"]
-            comments = _.map(discussionObj["comments"], (commentObject, key) => {
+            console.log('snapshot of all comments', snapshot.val());
+            comments = _.map(snapshot.val(), (commentObject, key) => {
                 commentObject.key = key;
                 return commentObject;
             });
         })
 
-    // firebase.database().ref(`/discussions/${discussionKey}/comments`)
-    //     .on('value', snapshot => {
-    //         console.log('snapshot of all comments', snapshot.val());
-    //         comments = _.map(snapshot.val(), (commentObject, key) => {
-    //             commentObject.key = key;
-    //             return commentObject;
-    //         });
-    //     })
-
-    // const comments = _.map(commentsFromDb, (commentObject, key) => {
-    //     commentObject.key = key;
-    //     return commentObject;
-    // });
-
-    // const allComments = comments.map((comment, i) => 
-    //     <View key={i} style={styles.commentSectionStyle}>
-    //         <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
-    //         <Text>{comment["date"]}</Text>
-    //         <Text>{comment["comment"]}</Text>
-    //     </View>
-    // );
+    const allComments = comments.map((comment, i) => 
+        <View key={i} style={styles.commentSectionStyle}>
+            <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
+            <Text>{comment["date"]}</Text>
+            <Text>{comment["comment"]}</Text>
+        </View>
+    );
 
     const onDeletePostPress = () => {
         Alert.alert(
@@ -125,23 +96,13 @@ const IndividualThread = (props) => {
                 </View>
 
                 <View style={styles.discussionCommentSection}>
-                    {/* <View>
+                    <View>
                         <Text style={styles.commentNumber}>{allComments.length} Comment(s)</Text>
                         {allComments.length !== 0 ? 
                             <View>{allComments}</View> :
                             <Text style={styles.noCommentsNoticeStyle}>No comments yet...</Text>
                         }
-                    </View> */}
-                    <View>
-                        {comments.map((comment, i) => 
-                            <View key={i} style={styles.commentSectionStyle}>
-                            <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
-                                <Text>{comment["date"]}</Text>
-                                <Text>{comment["comment"]}</Text>
-                            </View>
-                        )}
                     </View>
-
 
                     <View>
                         <Button 
@@ -149,7 +110,6 @@ const IndividualThread = (props) => {
                             onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
                         />
                     </View>
-                    {/* <CommentsList discussionKey={discussionKey}/> */}
 
                 </View>
             </ScrollView>
