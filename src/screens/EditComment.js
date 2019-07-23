@@ -31,8 +31,6 @@ class EditComment extends Component {
     onCancelPress = () => {
         this.props.navigation.navigate('IndividualThread', {
             discussionKey: this.props.navigation.getParam('discussionKey'),
-            comment: this.props.navigation.getParam('comment'),
-            question: this.props.navigation.getParam('question')
         });
     }
 
@@ -43,7 +41,6 @@ class EditComment extends Component {
               'Please enter a comment before submitting.',
               [
                 {text: 'Ok', onPress: () => console.log('ok was pressed')}
-                // {text: 'Delete', onPress: () => deletePlant()}
               ]
             )
           } else {
@@ -61,9 +58,15 @@ class EditComment extends Component {
             this.props.navigation.navigate('IndividualThread', {
                 discussionKey: this.state.discussionKey,
                 comment: this.state.comment,
-                question: this.state.question
+                // question: this.state.question
             });
             
+        })
+        .catch((error) => {
+            console.log('there was an error updating the comment: ', error)
+            this.props.navigation.navigate('IndividualThread', {
+                discussionKey: this.state.discussionKey,
+            });
         })
     }
 
@@ -84,7 +87,6 @@ class EditComment extends Component {
                 </View>
 
                 <View style={styles.mainEditSectionStyle}>
-                    <Text>the comment id is {this.state.commentKey}</Text>
                     <Text style={styles.editTextHeaderStyle}>Edit comment</Text>
                     <Text style={styles.editCommentContextSection}>From thread "{this.state.question}"</Text>
 
