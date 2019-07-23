@@ -18,25 +18,8 @@ import AddComment from '../src/screens/AddComment';
 import MyConversations from '../src/screens/MyConversations';
 import AddImage from '../src/screens/AddImage';
 import EditThread from '../src/screens/EditThread';
+import EditComment from '../src/screens/EditComment';
 import AboutApp from '../src/screens/AboutApp';
-
-// import { 
-//   Loading, 
-//   Auth, 
-//   Home, 
-//   AddPlant, 
-//   EditPlantName, 
-//   EditPlantReceivedDate, 
-//   EditPlantNote, 
-//   AddWateringDate, 
-//   AddFertilizingDate, 
-//   ListPlants, 
-//   Plant, 
-//   Discussions, 
-//   AddDiscussionThread, 
-//   IndividualThread, 
-//   AboutApp 
-// } from '../src/screens';
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -156,7 +139,13 @@ const AppNavigator = createSwitchNavigator(
           navigationOptions: {
             drawerLabel: () => null
           }
-        }
+        },
+        EditComment: {
+          screen: EditComment,
+          navigationOptions: {
+            drawerLabel: () => null
+          }
+        },
       })
     }
   },
