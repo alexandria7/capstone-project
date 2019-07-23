@@ -40,9 +40,24 @@ const IndividualThread = (props) => {
         postToDelete
             .remove()
             .then(() => {
-                console.log('post was deleted...')
-                props.navigation.navigate('Discussions'); 
+                console.log('we deleted the thread from the discussion section, about to delete from the user section...');
+                const discussionByUserRef = firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/discussionsCommented`); 
+                
+                discussionByUserRef.orderByChild('id').equalTo(`${discussionKey}`)
+                    .once('value').then((snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                        //remove each child
+                        discussionByUserRef.child(childSnapshot.key).remove()
+                            .then(() => {console.log('discussion reference deleted from user')})
+                            .catch((error) => {console.log('there was an error deleting this discussion\'s ref from the user: ', error)})
+                    });
+                });
             })
+            .catch((error) => {
+                console.log('there was an error deleting this discussion thread: ', error);
+            })
+
+            props.navigation.navigate('Discussions'); 
     };
 
     const onDeleteCommentPress = (commentKey) => {
