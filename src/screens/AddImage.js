@@ -52,7 +52,12 @@ class AddImage extends Component {
 
         if (!result.cancelled) {
             console.log(result);
-            this.uploadImage(result.uri, "test-image5")
+
+            const uriString = result.uri;
+            const splitUri = uriString.split("/");
+            const imageRef = splitUri[splitUri.length - 1];
+
+            this.uploadImage(result.uri, imageRef)
               .then(() => {
                 Alert.alert("Success!");
                 this.setState({plantImage: result})
