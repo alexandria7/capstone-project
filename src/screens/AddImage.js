@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Alert, Button, Image } from 'react-native';
+import { Text, View, Alert, Button, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import styles from '../components/Styles';
@@ -132,37 +132,61 @@ class AddImage extends Component {
 
     render() {
         return (
-            <View style={{marginTop: 70}}>
-                <Button 
-                    title="Take Photo"
-                    onPress={() => this.onGetImagePress('camera')}
-                />
-
-                <Button 
-                    title="Choose Photo From Library"
-                    onPress={() => this.onGetImagePress('library')}
-                />
-
-                {this.state.plantImage ? 
-                <View>
+            <View style={styles.aboutAppMainStyle}>
+                <View style={styles.headerStyle}>
+                    <TouchableOpacity 
+                    onPress={ () => this.props.navigation.openDrawer() }
+                    >
                     <Image 
-                        style={styles.plantImageStyle}
-                        source={{uri: this.state.plantImage["uri"]}}
-                    /> 
+                        style={styles.headerImageStyle}
+                        source={require('../images/nav-burger-transparent.png')}
+                    />
+                    </TouchableOpacity>
+
+                    <Text style={styles.headerText}>Wet Your Plants</Text>
+                </View> 
+
+                <View style={styles.mainEditSectionStyle}>
+
+                    <Text style={styles.editTextHeaderStyle}>Update Plant Photo</Text>
+        
+                    {this.state.plantImage ? 
+                    <View>
+                        <Image 
+                            style={styles.plantImageStyle}
+                            source={{uri: this.state.plantImage["uri"]}}
+                        /> 
+
+                        <Button 
+                            title="Delete current photo"
+                            onPress={() => this.onDeleteImagePress()}
+                        />
+                    </View>
+                    : null}
 
                     <Button 
-                        title="Delete"
-                        onPress={() => this.onDeleteImagePress()}
+                        title="Take Photo"
+                        onPress={() => this.onGetImagePress('camera')}
                     />
 
                     <Button 
-                        title="Submit!"
-                        onPress={() => this.saveImageToDatabase()} 
+                        title="Choose Photo From Library"
+                        onPress={() => this.onGetImagePress('library')}
+                    />      
+
+                    
+                    <Button 
+                        title="Cancel"
+                        onPress={() => this.props.navigation.navigate("Plant", {plantKey: this.state.plantKey})}
                     />
+
+                    {this.state.plantImage ? 
+                        <Button 
+                            title="Submit!"
+                            onPress={() => this.saveImageToDatabase()} 
+                        />
+                    : null}
                 </View>
-                : null}
-
-
             </View>
         )
     }
