@@ -246,6 +246,12 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
         fontSize: 15
+    },
+    editCommentContextSection: {
+        textAlign: 'center',
+        fontSize: 17,
+        fontWeight: '500',
+        marginBottom: 25
     }
 })
 
