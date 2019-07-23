@@ -11,6 +11,8 @@ const IndividualThread = (props) => {
     const discussionKey = props.navigation.getParam('discussionKey');
     const date = props.navigation.getParam('date');
     let comments = undefined;
+    let threadImage = undefined;
+    // console.log('this is the incoming thread image: ', threadImage)
 
     firebase.database().ref(`/discussions/${discussionKey}/comments`)
         .on('value', snapshot => {
@@ -19,6 +21,17 @@ const IndividualThread = (props) => {
                 commentObject.key = key;
                 return commentObject;
             });
+        })
+
+    firebase.database().ref(`/discussions/${discussionKey}/threadImage`)
+        .on('value', snapshot => {
+            console.log('snapshot of thread object', snapshot.val());
+            // console.log('snapshot of image uri: ', snapshot.val()["uri"])
+            if (snapshot.val() !== null) {
+                threadImage = snapshot.val()["uri"];
+            }
+            // plantImage = snapshot.val()["image"];
+            console.log('this is the thread image: ', threadImage)
         })
 
     const onDeletePostPress = () => {
@@ -152,6 +165,18 @@ const IndividualThread = (props) => {
                         <Text style={styles.aboutPostText}>{date}</Text>
                         <Text style={styles.aboutPostText}>Posted by {userName}</Text>
                         <Text style={styles.postBodyStyle}>{questionBody}</Text>
+
+                        {
+                            threadImage ? 
+                            <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 15, }}>
+                                <Image
+                                    style={{width: 200, height: 200}}
+                                    source={{uri: threadImage}}
+                                />
+                            </View>
+                            : null
+                        }
+                        
                         {
                             firebase.auth().currentUser.uid === userId ? 
                             <Button 

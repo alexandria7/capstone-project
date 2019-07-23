@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TouchableOpacity, Image, Alert, StyleSheet, TextInput, ScrollView } from 'react-native';
 import firebase from 'firebase';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import styles from '../components/Styles';
 
 class AddDiscussionThread extends Component {
@@ -12,8 +14,22 @@ class AddDiscussionThread extends Component {
         questionBody: '',
         userId: '',
         userName: '',
-        // date: ''
+        threadImage: undefined,
+        hasCameraPermission: null
     };
+  }
+
+  componentDidMount() {
+    this.checkImagePermission();
+  }
+
+  checkImagePermission = async () => {
+    const camera = await Permissions.askAsync(Permissions.CAMERA);
+    const cameraRoll = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+    const hasCameraPermission = (camera.status === 'granted' || cameraRoll.status === 'granted');
+
+    this.setState({hasCameraPermission});
   }
 
   onSubmitDiscussionThreadPress = () => {
@@ -31,6 +47,42 @@ class AddDiscussionThread extends Component {
     }
   }
 
+  onGetImagePress = async (type) => {
+    let result = undefined;
+
+    if (type === 'camera') {
+        result = await ImagePicker.launchCameraAsync();
+    } else if (type === 'library') {
+        result = await ImagePicker.launchImageLibraryAsync();
+    }
+
+    if (!result.cancelled) {
+        console.log(result);
+
+        const uriString = result.uri;
+        const splitUri = uriString.split("/");
+        const imageRef = splitUri[splitUri.length - 1];
+
+        this.uploadImage(result.uri, imageRef)
+          .then(() => {
+            Alert.alert("Success!");
+            this.setState({threadImage: result})
+          })
+          .catch((error) => {
+            Alert.alert(`there was an error: ${error}`)
+          })
+     
+    }
+  }
+
+  uploadImage = async (uri, imageName) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    const ref = firebase.storage().ref().child(`images/${imageName}`);
+    return ref.put(blob);
+  }
+
   addInfoToDatabaseAndClear = () => {
     console.log('submit was pressed')
     
@@ -42,7 +94,8 @@ class AddDiscussionThread extends Component {
         question_body: this.state.questionBody,
         userId: firebase.auth().currentUser.uid,
         userName: firebase.auth().currentUser.displayName,
-        date: todaysDate
+        date: todaysDate,
+        threadImage: this.state.threadImage
       }).key
 
       console.log('the discussion thread key that was just created is', dataRef)
@@ -53,7 +106,8 @@ class AddDiscussionThread extends Component {
         userId: firebase.auth().currentUser.uid,
         userName: firebase.auth().currentUser.displayName,
         discussionKey: dataRef,
-        date: todaysDate
+        date: todaysDate,
+        threadImage: this.state.threadImage
       })
 
       console.log('about to reset the state!!!!!')
@@ -61,7 +115,9 @@ class AddDiscussionThread extends Component {
           question: '',
           questionBody: '',
           userId: '',
-          userName: ''
+          userName: '',
+          threadImage: undefined,
+          hasCameraPermission: null
       });
       console.log('i should have just reset my state!!!!')
     
@@ -116,6 +172,28 @@ class AddDiscussionThread extends Component {
                 />
               </View>
             </View>
+
+            <View>
+              <Text>(Optional) Add a Photo</Text>
+              <Button 
+                    title="Take Photo"
+                    onPress={() => this.onGetImagePress('camera')}
+                />
+
+                <Button 
+                    title="Choose Photo From Library"
+                    onPress={() => this.onGetImagePress('library')}
+                />
+            </View>
+
+            {this.state.threadImage ? 
+                <View>
+                    <Image 
+                        style={styles.plantImageStyle}
+                        source={{uri: this.state.threadImage["uri"]}}
+                    /> 
+                </View> : null
+            }
 
             <Button 
                 title="Cancel"
