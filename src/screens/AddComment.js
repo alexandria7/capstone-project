@@ -73,17 +73,21 @@ class AddComment extends Component {
 
                 <View style={styles.mainEditSectionStyle}>
                     <Text style={styles.editTextHeaderStyle}>Add A Comment</Text>
-                    <Text>From thread "{this.state.question}"</Text>
+                    <Text style={styles.editCommentContextSection}>From thread "{this.state.question}"</Text>
 
-                    <View>
-                        <Text>Add Your comment:</Text>
+                    <View style={styles.textAreaContainer}>
                         <TextInput 
                             placeholder="your comment here"
                             value={this.state.comment}
                             onChangeText={(comment) => this.setState({comment})}
+                            multiline = {true}
+                            numberOfLines = {4}
+                            editable = {true}
                             clearButtonMode='always'
+                            style={styles.noteTextArea}
                         />
-
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button 
                             title="Cancel"
                             onPress={() => this.props.navigation.navigate('IndividualThread', {
@@ -102,39 +106,5 @@ class AddComment extends Component {
         )
     }
 }
-
-// const styles = StyleSheet.create({
-//     aboutAppMainStyle: {
-//         // marginTop: 20,
-//         flex: 1,
-//         backgroundColor: '#BDE1C9', 
-//     },
-//     headerStyle: {
-//         height: 70,
-//         paddingTop: 30, 
-//         borderColor: '#7A7E7B',
-//         borderBottomWidth: 0.5,
-//         justifyContent: 'space-around',
-//         backgroundColor: '#EFDECE'
-//     },
-//     headerText: {
-//         alignSelf: 'center',
-//         textAlign: 'center',
-//         fontSize: 22,
-//         color: '#055607',
-//         fontWeight: 'bold',
-//         paddingBottom: 40,
-//         paddingTop: 0
-//     },
-//     headerImageStyle: {
-//         width: 28, 
-//         height: 28,
-//         marginLeft: 10,
-//         marginTop: 10
-//     },
-//     mainCommentSection: {
-//         marginTop: 10
-//     }
-// })
 
 export default AddComment;
