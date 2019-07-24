@@ -211,7 +211,7 @@ const IndividualThread = (props) => {
                     <View>
                         <Button 
                             title="Add Comment"
-                            onPress={() => props.navigation.navigate('AddComment', {discussionKey})}
+                            onPress={() => props.navigation.navigate('AddComment', {discussionKey, question})}
                         />
                     </View>
 

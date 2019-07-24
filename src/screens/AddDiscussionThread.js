@@ -89,7 +89,8 @@ class AddDiscussionThread extends Component {
     
     const todaysDate = (new Date()).toDateString();
 
-    const dataRef = firebase.database().ref('/discussions')
+    if (this.state.threadImage) {
+      const dataRef = firebase.database().ref('/discussions')
       .push({
         question: this.state.question,
         question_body: this.state.questionBody,
@@ -108,8 +109,31 @@ class AddDiscussionThread extends Component {
         userName: firebase.auth().currentUser.displayName,
         discussionKey: dataRef,
         date: todaysDate,
-        threadImage: this.state.threadImage
+        // threadImage: this.state.threadImage
       })
+    } else {
+      const dataRef = firebase.database().ref('/discussions')
+      .push({
+        question: this.state.question,
+        question_body: this.state.questionBody,
+        userId: firebase.auth().currentUser.uid,
+        userName: firebase.auth().currentUser.displayName,
+        date: todaysDate,
+      }).key
+
+      console.log('the discussion thread key that was just created is', dataRef)
+
+      this.props.navigation.navigate('IndividualThread', {
+        question: this.state.question,
+        questionBody: this.state.questionBody,
+        userId: firebase.auth().currentUser.uid,
+        userName: firebase.auth().currentUser.displayName,
+        discussionKey: dataRef,
+        date: todaysDate,
+      })
+    }
+
+    
 
       console.log('about to reset the state!!!!!')
       this.setState({

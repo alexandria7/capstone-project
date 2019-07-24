@@ -58,7 +58,7 @@ class EditComment extends Component {
             
             this.props.navigation.navigate('IndividualThread', {
                 discussionKey: this.state.discussionKey,
-                comment: this.state.comment,
+                // comment: this.state.comment,
                 // question: this.state.question
             });
             
