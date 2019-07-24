@@ -19,8 +19,9 @@ const styles = StyleSheet.create({
       fontSize: 22,
       color: '#055607',
       fontWeight: 'bold',
-      paddingBottom: 40,
-      paddingTop: 0
+      paddingBottom: 58,
+      paddingTop: 0,
+      fontFamily: 'Bangla Sangam MN',
     },
     headerImageStyle: {
       width: 28, 
@@ -76,7 +77,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignSelf: 'center',
         marginTop: 50,
-        paddingTop: 10
+        paddingTop: 10,
+        fontFamily: 'Bangla Sangam MN',
+        paddingLeft: 5, 
+        paddingRight: 5,
+        textAlign: 'center'
     },
     imageStyle: {
       width: 85, 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 import _ from 'lodash';
+import Header from '../components/Header';
 
 class MyConversations extends Component {
     constructor(props) {
@@ -131,18 +132,7 @@ class MyConversations extends Component {
 
         return (
             <View style={styles.aboutAppMainStyle}>
-                <View style={styles.headerStyle}>
-                    <TouchableOpacity 
-                    onPress={ () => this.props.navigation.openDrawer() }
-                    >
-                        <Image 
-                            style={styles.headerImageStyle}
-                            source={require('../images/nav-burger-transparent.png')}
-                        />
-                    </TouchableOpacity>
-
-                    <Text style={styles.headerText}>Wet Your Plants</Text>
-                </View>
+                <Header drawerNav={this.props.navigation.openDrawer}/>
 
                 <View style={styles.mainPageSection}>
                     

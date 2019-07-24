@@ -14,7 +14,7 @@ const Header = (props) => {
                 />
             </TouchableOpacity>
 
-            <Text style={styles.headerText}>Wet Your Plants</Text>
+            <Text style={styles.headerText}>wet your plants</Text>
         </View>
     )
 }

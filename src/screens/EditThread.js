@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { Text, View, Button, Alert, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
+import Header from '../components/Header';
 import styles from '../components/Styles';
 
 class EditThread extends Component {
@@ -172,18 +173,7 @@ class EditThread extends Component {
     render() {
         return (
             <View style={styles.aboutAppMainStyle}>
-                <View style={styles.headerStyle}>
-                    <TouchableOpacity 
-                    onPress={ () => this.props.navigation.openDrawer() }
-                    >
-                        <Image 
-                            style={styles.headerImageStyle}
-                            source={require('../images/nav-burger-transparent.png')}
-                        />
-                    </TouchableOpacity>
-
-                    <Text style={styles.headerText}>Wet Your Plants</Text>
-                </View>
+                <Header drawerNav={this.props.navigation.openDrawer}/>
 
                 <View style={styles.mainEditSectionStyle}>
 

@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
 import styles from '../components/Styles';
+import Header from '../components/Header';
 
 const Plant = (props) => {
 
@@ -125,18 +126,7 @@ const Plant = (props) => {
 
     return (
         <View style={styles.aboutAppMainStyle}>
-            <View style={styles.headerStyle}>
-                <TouchableOpacity 
-                onPress={ () => props.navigation.openDrawer() }
-                >
-                <Image 
-                    style={styles.headerImageStyle}
-                    source={require('../images/nav-burger-transparent.png')}
-                />
-                </TouchableOpacity>
-
-                <Text style={styles.headerText}>Wet Your Plants</Text>
-            </View>   
+            <Header drawerNav={props.navigation.openDrawer}/>
 
             <ScrollView style={styles.mainPlantSectionStyle}>
 

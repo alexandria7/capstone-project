@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import Header from '../components/Header';
 
 const IndividualThread = (props) => {
     const question = props.navigation.getParam('question');
@@ -157,18 +158,7 @@ const IndividualThread = (props) => {
 
     return (
         <View style={styles.aboutAppMainStyle}>
-            <View style={styles.headerStyle}>
-                <TouchableOpacity 
-                onPress={ () => props.navigation.openDrawer() }
-                >
-                    <Image 
-                        style={styles.headerImageStyle}
-                        source={require('../images/nav-burger-transparent.png')}
-                    />
-                </TouchableOpacity>
-
-                <Text style={styles.headerText}>Wet Your Plants</Text>
-            </View>
+            <Header drawerNav={props.navigation.openDrawer}/>
 
             <ScrollView>
                 <View style={styles.discussionMainSectionStyle}>

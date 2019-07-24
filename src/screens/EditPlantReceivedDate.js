@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Text, View, Button, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import Header from '../components/Header';
 import styles from '../components/Styles';
 
 class EditPlantReceivedDate extends Component {
@@ -49,18 +50,7 @@ class EditPlantReceivedDate extends Component {
     render() {
         return (
             <View style={styles.aboutAppMainStyle}>
-                <View style={styles.headerStyle}>
-                    <TouchableOpacity 
-                    onPress={ () => this.props.navigation.openDrawer() }
-                    >
-                    <Image 
-                        style={styles.headerImageStyle}
-                        source={require('../images/nav-burger-transparent.png')}
-                    />
-                    </TouchableOpacity>
-
-                    <Text style={styles.headerText}>Wet Your Plants</Text>
-                </View>
+                <Header drawerNav={this.props.navigation.openDrawer}/>
 
                 <View style={styles.mainEditSectionStyle}>
                     <Text style={styles.editTextHeaderStyle}>Update the date you received this plant!</Text>

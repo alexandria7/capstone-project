@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
+import Header from '../components/Header';
 import styles from '../components/Styles';
 
 class AddPlant extends Component {
@@ -66,18 +67,7 @@ class AddPlant extends Component {
   render() {
     return (
       <View style={styles.aboutAppMainStyle}>
-        <View style={styles.headerStyle}>
-          <TouchableOpacity 
-            onPress={ () => this.props.navigation.openDrawer() }
-          >
-            <Image 
-              style={styles.headerImageStyle}
-              source={require('../images/nav-burger-transparent.png')}
-            />
-          </TouchableOpacity>
-
-          <Text style={styles.headerText}>Wet Your Plants</Text>
-        </View>
+        <Header drawerNav={this.props.navigation.openDrawer}/>
 
         <View style={styles.mainEditSectionStyle}>
         
@@ -156,68 +146,5 @@ class AddPlant extends Component {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-  // addPlantMainStyle: {
-  //     // marginTop: 20,
-  //     flex: 1,
-  //     backgroundColor: '#BDE1C9', 
-  //     // justifyContent: 'space-between'
-  // },
-  // headerStyle: {
-  //   height: 70,
-  //   paddingTop: 30, 
-  //   borderColor: '#7A7E7B',
-  //   borderBottomWidth: 0.5,
-  //   justifyContent: 'space-around',
-  //   backgroundColor: '#EFDECE'
-  // },
-  // headerText: {
-  //   alignSelf: 'center',
-  //   textAlign: 'center',
-  //   fontSize: 22,
-  //   color: '#055607',
-  //   fontWeight: 'bold',
-  //   paddingBottom: 40,
-  //   paddingTop: 0
-  // },
-  // headerImageStyle: {
-  //   width: 28, 
-  //   height: 28,
-  //   marginLeft: 10,
-  //   marginTop: 10
-  // },
-  // addPlantForm: {
-  //   marginLeft: 10,
-  //   marginRight: 10,
-  //   paddingTop: 20,
-  //   flex: 1
-  // },
-  // addPlantTitle: {
-  //   fontSize: 35,
-  //   fontWeight: 'bold',
-  //   color: '#055607',
-  //   textAlign: 'center',
-  //   marginBottom: 15
-  // },
-  // inputSectionStyle: {
-  //   marginBottom: 20
-  // },
-  // datePickerStyle: {
-  //   width: 200
-  // },
-  // noteTextArea: {
-  //   height: 100,
-  //   justifyContent: "flex-start"
-  // },
-  // textAreaContainer: {
-  //   borderWidth: 0.5,
-  // },
-//   inputTitleStyle: {
-//     fontSize: 15,
-//     color: '#055607',
-//     fontWeight: 'bold'
-//   }
-// });
 
 export default AddPlant;

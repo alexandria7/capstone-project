@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Text, View, Button, Alert, TouchableOpacity, Image, TextInput } from 'react-native';
+import Header from '../components/Header';
 import styles from '../components/Styles';
 
 class EditPlantName extends Component {
@@ -65,18 +66,7 @@ class EditPlantName extends Component {
     render() {
         return (
             <View style={styles.aboutAppMainStyle}>
-                <View style={styles.headerStyle}>
-                    <TouchableOpacity 
-                    onPress={ () => this.props.navigation.openDrawer() }
-                    >
-                    <Image 
-                        style={styles.headerImageStyle}
-                        source={require('../images/nav-burger-transparent.png')}
-                    />
-                    </TouchableOpacity>
-
-                    <Text style={styles.headerText}>Wet Your Plants</Text>
-                </View>
+                <Header drawerNav={this.props.navigation.openDrawer}/>
 
                 <View style={styles.mainEditSectionStyle}>
 
