@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     aboutAppMainStyle: {
         flex: 1,
-        backgroundColor: '#BDE1C9', 
+        backgroundColor: 'white', 
     },
     headerStyle: {
       height: 70,
@@ -257,7 +257,25 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: '500',
         marginBottom: 25
+    },
+    signInTextStyle: {
+        textAlign: 'center',
+        fontSize: 23,
+        fontWeight: '500',
+    },
+    signInContainerStyle: {
+        marginTop: 50
+    },
+    signInTouchStyle: {
+        borderWidth: 0.5,
+        borderColor: 'black',
+        marginLeft: 60,
+        marginRight: 60,
+        paddingTop: 10,
+        paddingBottom: 10,
+        backgroundColor: '#BDE1C9'
     }
+    
 })
 
 export default styles;
