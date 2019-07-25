@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Button, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { Text, View, Button, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
 import _ from 'lodash';
 import DatePicker from 'react-native-datepicker';
 import Header from '../components/Header';
@@ -42,6 +42,20 @@ class AddWateringDate extends Component {
     }
         
     updateInfoToDatabase = () => {
+        if (this.state.newWateringDate.trim() === "" ) {
+            Alert.alert(
+              `Error: No date given.`,
+              'You must specify a date or press cancel.',
+              [
+                {text: 'Ok', onPress: () => console.log('ok was pressed')}
+              ]
+            )
+        } else {
+            this.addInfoToDatabaseAndClear();
+        }
+    }
+
+    addInfoToDatabaseAndClear = () => {
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}/waterings`)
         .push({
             watering_date: this.state.newWateringDate
@@ -76,6 +90,7 @@ class AddWateringDate extends Component {
             console.log('there was an error with adding a watering date: ', error)
         })
     }
+
 
     render() {
         return (
