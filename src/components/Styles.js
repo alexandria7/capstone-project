@@ -169,10 +169,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     plantContainerStyle: {
-        borderColor: '#7A7E7B',
         borderBottomWidth: 0.5,
         paddingTop: 10, 
-        paddingBottom: 10
+        paddingBottom: 10,
+        borderColor: '#055607',
     },
     addDiscussionBlurb: {
         textAlign: 'center',
@@ -306,8 +306,26 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10,
         backgroundColor: '#055607'
-    }
-    
+    },
+    bigButtonTextStyle: {
+        textAlign: 'center',
+        fontSize: 15,
+        margin: 5,
+        fontWeight: '600'
+    },
+    bigButtonTouchStyle: {
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#055607',
+        shadowColor: '#055607',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        marginLeft: 130,
+        marginRight: 130,
+        backgroundColor: '#BDE1C9',
+        margin: 3
+    },
 })
 
 export default styles;
