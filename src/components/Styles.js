@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     listOfDiscussionsStyle: {
         marginLeft: 15,
         marginRight: 15,
-        marginTop: 15,
+        marginTop: 10,
     },
     discussionNameButtonStyle: {
         fontSize: 20,
@@ -511,6 +511,43 @@ const styles = StyleSheet.create({
     },
     loadingDiscussionImageStyle: {
         paddingTop: 25
+    },
+    myConvoMainStyle: {
+        paddingTop: 20,
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    mainConvoViewingSection: {
+        paddingTop: 15,
+        marginBottom: 20
+    },
+    convoSectionHeader: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center',
+        backgroundColor: '#BDE1C9',
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderColor: 'black',
+        borderWidth: 0.5,
+    },
+    convoListPostSection: {
+        // paddingTop: 5, 
+        paddingBottom: 10
+    },
+    convoContainerStyle: {
+        borderBottomColor: 'black',
+        borderBottomWidth: 0.5,
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+    convoDateButtonStyle: {
+        paddingLeft: 5,
+        fontStyle: 'italic'
+    },
+    convoSectionContainerStyle: {
+        marginBottom: 10
     }
 })
 

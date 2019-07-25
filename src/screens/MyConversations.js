@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import firebase from 'firebase';
 import _ from 'lodash';
 import Header from '../components/Header';
+import styles from '../components/Styles';
 
 class MyConversations extends Component {
     constructor(props) {
@@ -110,11 +111,11 @@ class MyConversations extends Component {
         const writtenPosts = startedDiscussions.map((discussion, i) => 
         <TouchableOpacity 
             onPress={ () => this.onDiscussionTitlePress(discussion) }
-            style={styles.discussionContainerStyle}
+            style={styles.convoContainerStyle}
             key={i}
         >
             <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-            <Text style={styles.discussionDateButtonStyle}>{discussion["date"]}</Text>
+            <Text style={styles.convoDateButtonStyle}>{discussion["date"]}</Text>
         </TouchableOpacity> 
         );
 
@@ -122,11 +123,11 @@ class MyConversations extends Component {
             
             <TouchableOpacity 
                 onPress={ () => this.onDiscussionTitlePress(discussion) }
-                style={styles.discussionContainerStyle}
+                style={styles.convoContainerStyle}
                 key={i}
             >
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-                <Text style={styles.discussionDateButtonStyle}>{discussion["date"]}</Text>
+                <Text style={styles.convoDateButtonStyle}>{discussion["date"]}</Text>
             </TouchableOpacity> 
         )
 
@@ -134,20 +135,20 @@ class MyConversations extends Component {
             <View style={styles.aboutAppMainStyle}>
                 <Header drawerNav={this.props.navigation.openDrawer}/>
 
-                <View style={styles.mainPageSection}>
+                <View style={styles.myConvoMainStyle}>
                     
-                    <Text style={styles.mainTitleStyle}>Your Conversations</Text>
+                    <Text style={styles.plantListTitle}>Your Conversations</Text>
                     
-                    <ScrollView style={styles.mainPostViewingSection}>
-                        <View>
+                    <ScrollView style={styles.mainConvoViewingSection}>
+                        <View style={styles.convoSectionContainerStyle}>
                             <TouchableOpacity
                                 onPress={() => this.onCategoryPress('written')}
                             >
-                                <Text style={styles.postSectionHeader}>Posts You've Written</Text>
+                                <Text style={styles.convoSectionHeader}>Posts You've Written</Text>
                             </TouchableOpacity>
 
                             {this.state.writtenPostsAreVisible ?
-                                <View style={styles.listPostsSection}>
+                                <View style={styles.convoListPostSection}>
                                     {
                                         startedDiscussions.length === 0 ? 
                                         <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
@@ -161,11 +162,11 @@ class MyConversations extends Component {
                             <TouchableOpacity
                                 onPress={() => this.onCategoryPress('commented')}
                             >
-                                <Text style={styles.postSectionHeader}>Posts You've Commented On</Text>
+                                <Text style={styles.convoSectionHeader}>Posts You've Commented On</Text>
                             </TouchableOpacity>
 
                             {this.state.commentedPostsAreVisible ? 
-                                <View style={styles.listPostsSection}>
+                                <View style={styles.convoListPostSection}>
                                     {
                                         commentedDiscussions.length === 0 ?
                                         <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
@@ -180,75 +181,5 @@ class MyConversations extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    aboutAppMainStyle: {
-        // marginTop: 20,
-        flex: 1,
-        backgroundColor: '#BDE1C9', 
-    },
-    headerStyle: {
-        height: 70,
-        paddingTop: 30, 
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        justifyContent: 'space-around',
-        backgroundColor: '#EFDECE'
-    },
-    headerText: {
-        alignSelf: 'center',
-        textAlign: 'center',
-        fontSize: 22,
-        color: '#055607',
-        fontWeight: 'bold',
-        paddingBottom: 40,
-        paddingTop: 0
-    },
-    headerImageStyle: {
-        width: 28, 
-        height: 28,
-        marginLeft: 10,
-        marginTop: 10
-    }, 
-    mainPageSection: {
-        paddingTop: 20,
-        flex: 1,
-        marginLeft: 10,
-        marginRight: 10
-    },
-    mainTitleStyle: {
-        fontSize: 35,
-        fontWeight: 'bold',
-        color: '#055607',
-        textAlign: 'center',
-    },
-    mainPostViewingSection: {
-        paddingTop: 15
-    },
-    postSectionHeader: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        textAlign: 'center',
-        backgroundColor: '#ADADAD',
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderColor: 'black',
-        borderWidth: 0.5
-    },
-    listPostsSection: {
-        paddingTop: 10, 
-        paddingBottom: 10
-    },
-    discussionContainerStyle: {
-        borderBottomColor: 'black',
-        borderBottomWidth: 0.5,
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    discussionDateButtonStyle: {
-        paddingLeft: 5,
-        fontStyle: 'italic'
-    }
-})
 
 export default MyConversations;
