@@ -204,13 +204,18 @@ const styles = StyleSheet.create({
     },
     discussionNameButtonStyle: {
         fontSize: 20,
-        paddingBottom: 10
+        // paddingBottom: 10
+    },
+    discussionInfoButtonStyle: {
+        fontSize: 10,
+        fontWeight: '700',
+        color: '#6C6C6C'
     },
     discussionContainerStyle: {
         borderColor: '#7A7E7B',
         borderBottomWidth: 0.5,
-        paddingTop: 10, 
-        paddingBottom: 10
+        paddingTop: 13, 
+        paddingBottom: 13
     },
     mainLoadingContainer: {
         flex: 1,
@@ -362,7 +367,26 @@ const styles = StyleSheet.create({
     },
     addButtonTextStyle: {
         fontSize: 20
-    }
+    },
+    addThreadButtonTextStyle: {
+        textAlign: 'center',
+        fontSize: 15,
+        margin: 5,
+        fontWeight: '600'
+    },
+    addThreadButtonTouchStyle: {
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#055607',
+        shadowColor: '#055607',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        marginLeft: 110,
+        marginRight: 110,
+        backgroundColor: '#BDE1C9',
+        margin: 3
+    },
 })
 
 export default styles;

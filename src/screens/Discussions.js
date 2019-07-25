@@ -55,9 +55,13 @@ class Discussions extends Component {
                 style={styles.discussionContainerStyle}
                 key={i}
             >
+                <Text style={styles.discussionInfoButtonStyle}>By {discussion["userName"]} | {discussion["date"]}</Text>
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-                <Text>{discussion["date"]}</Text>
-                <Text>By: {discussion["userName"]}</Text>
+                
+                {discussion["comments"] ? 
+                    <Text style={styles.discussionInfoButtonStyle}>{Object.keys(discussion["comments"]).length} comment(s)</Text> :
+                    <Text style={styles.discussionInfoButtonStyle}>0 Comments</Text>
+                }
             </TouchableOpacity> 
         );
 
@@ -68,10 +72,12 @@ class Discussions extends Component {
                 <View style={styles.mainDiscussionListSection}>
                     <Text style={styles.ListTitle}>All Discussions</Text>
                     <Text style={styles.subTitleStyle}>Find and offer planty advice!</Text>
-                    <Button 
-                        title="Start a Thread"
+                    <TouchableOpacity 
                         onPress={ () => this.props.navigation.navigate('AddDiscussionThread') }
-                    />
+                        style={styles.addThreadButtonTouchStyle}
+                    >
+                        <Text style={styles.addThreadButtonTextStyle}>Start a Thread</Text>
+                    </TouchableOpacity>    
                 </View>
 
                 {
