@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { View, Text, Button, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import Header from '../components/Header';
 import styles from '../components/Styles';
 
@@ -10,7 +10,7 @@ class Discussions extends Component {
         super(props);
     
         this.state = {
-          discussions: [],
+          discussions: undefined,
           comments: []
         }
     }
@@ -49,21 +49,26 @@ class Discussions extends Component {
     }
     
     render() {
-        const discussionList = this.state.discussions.map((discussion, i) => 
-            <TouchableOpacity 
-                onPress={ () => this.onDiscussionButtonPress(discussion) }
-                style={styles.discussionContainerStyle}
-                key={i}
-            >
-                <Text style={styles.discussionInfoButtonStyle}>By {discussion["userName"]} | {discussion["date"]}</Text>
-                <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-                
-                {discussion["comments"] ? 
-                    <Text style={styles.discussionInfoButtonStyle}>{Object.keys(discussion["comments"]).length} comment(s)</Text> :
-                    <Text style={styles.discussionInfoButtonStyle}>0 Comments</Text>
-                }
-            </TouchableOpacity> 
-        );
+
+        let discussionList = null;
+        if (this.state.discussions) {
+            discussionList = this.state.discussions.map((discussion, i) => 
+                <TouchableOpacity 
+                    onPress={ () => this.onDiscussionButtonPress(discussion) }
+                    style={styles.discussionContainerStyle}
+                    key={i}
+                >
+                    <Text style={styles.discussionInfoButtonStyle}>By {discussion["userName"]} | {discussion["date"]}</Text>
+                    <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
+                    
+                    {discussion["comments"] ? 
+                        <Text style={styles.discussionInfoButtonStyle}>{Object.keys(discussion["comments"]).length} comment(s)</Text> :
+                        <Text style={styles.discussionInfoButtonStyle}>0 Comments</Text>
+                    }
+                </TouchableOpacity> 
+            );
+        }
+        
 
         return (
             <View style={styles.aboutAppMainStyle}>
@@ -81,7 +86,15 @@ class Discussions extends Component {
                 </View>
 
                 {
-                    this.state.discussions.length === 0 ? 
+                    !this.state.discussions ? 
+                    <View style={styles.loadingPlantsListStyle}>
+                        <ActivityIndicator size='large'/> 
+                    </View>
+                    : null
+                }
+
+                {
+                    this.state.discussions && this.state.discussions.length === 0 ? 
                     <Text style={styles.noticeStyleName}>No discussion threads to be found</Text> : 
                     <ScrollView style={styles.listOfDiscussionsStyle}>{discussionList}</ScrollView>
                 }

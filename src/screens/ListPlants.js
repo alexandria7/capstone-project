@@ -66,14 +66,14 @@ class ListPlants extends Component {
     let plantList = null;
     if (this.state.plants) {
       plantList = this.state.plants.map((plant, i) => 
-      <TouchableOpacity 
-        onPress={ () => this.onPlantNameButtonPress(plant) }
-        style={styles.plantContainerStyle}
-        key={i}
-      >
-        <Text style={styles.plantNameButtonStyle}>{plant["plant_name"]}</Text>
-      </TouchableOpacity> 
-    );
+        <TouchableOpacity 
+          onPress={ () => this.onPlantNameButtonPress(plant) }
+          style={styles.plantContainerStyle}
+          key={i}
+        >
+          <Text style={styles.plantNameButtonStyle}>{plant["plant_name"]}</Text>
+        </TouchableOpacity> 
+      );
     }
     
 
