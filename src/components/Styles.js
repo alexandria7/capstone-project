@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Bangla Sangam MN',
         paddingLeft: 5, 
         paddingRight: 5,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     imageStyle: {
       width: 85, 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     greetingText: {
-      fontSize: 15,
+      fontSize: 20,
       color: '#055607',
       fontWeight: 'bold'
     },
@@ -110,13 +110,35 @@ const styles = StyleSheet.create({
     buttonContainerStyle: {
       marginTop: 50
     },
+    homeButtonContainerStyle: {
+        marginTop: 30,
+        justifyContent: 'center',
+    },
+    homeButtonTextStyle: {
+        textAlign: 'center',
+        fontSize: 20,
+        margin: 5
+    },
+    homeButtonTouchStyle: {
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#055607',
+        shadowColor: '#055607',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        marginLeft: 80,
+        marginRight: 80,
+        backgroundColor: '#BDE1C9',
+        margin: 3
+    },
     aboutAppStyle: {
       flex: 1,
       justifyContent: 'center', 
       alignItems: 'center',
       width: '100%',
       position: 'absolute',
-      bottom: 0,
+      bottom: 5,
     },
     aboutAppButtonText: {
       fontSize: 15,
@@ -272,9 +294,10 @@ const styles = StyleSheet.create({
         marginTop: 50
     },
     signInTouchStyle: {
+        borderRadius: 10,
         borderWidth: 1.5,
         borderColor: '#055607',
-        shadowColor: '#000',
+        shadowColor: '#055607',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2,

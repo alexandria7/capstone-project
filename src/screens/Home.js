@@ -24,26 +24,34 @@ const Home = (props) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.buttonContainerStyle}>
-        <Button 
-            title="My Plants"
+      <View style={styles.homeButtonContainerStyle}>
+        <TouchableOpacity 
             onPress={ () => props.navigation.navigate('ListPlants') }
-        />
+            style={styles.homeButtonTouchStyle}
+        >
+          <Text style={styles.homeButtonTextStyle}>My Plants</Text>
+        </TouchableOpacity>   
 
-        <Button 
-            title="Add Plant"
+        <TouchableOpacity 
             onPress={ () => props.navigation.navigate('AddPlant') }
-        />
+            style={styles.homeButtonTouchStyle}
+        >
+          <Text style={styles.homeButtonTextStyle}>Add Plant</Text>
+        </TouchableOpacity>  
 
-        <Button 
-          title="Discussion Forum"
+        <TouchableOpacity 
           onPress={ () => props.navigation.navigate('Discussions') }
-        />
+          style={styles.homeButtonTouchStyle}
+        >
+          <Text style={styles.homeButtonTextStyle}>Discussion Forum</Text>
+        </TouchableOpacity> 
 
-        <Button 
-          title="My Conversations"
+        <TouchableOpacity 
           onPress={ () => props.navigation.navigate('MyConversations') }
-        />
+          style={styles.homeButtonTouchStyle}
+        >
+          <Text style={styles.homeButtonTextStyle}>My Conversations</Text>
+        </TouchableOpacity>  
       </View>
 
       <View style={styles.aboutAppStyle}>
