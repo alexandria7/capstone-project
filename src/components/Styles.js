@@ -402,6 +402,58 @@ const styles = StyleSheet.create({
     },
     photoChoiceTouchStyle: {
         margin: 10
+    },
+    discussionMainSectionStyle: {
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15,
+    },
+    discussionHeader: {
+        fontWeight: 'bold',
+        color: '#7A7E7B',
+        fontSize: 15,
+        marginTop: 20
+    },
+    questionTitleStyle: {
+        marginTop: 20,
+        paddingBottom: 12,
+        borderColor: '#7A7E7B',
+        borderBottomWidth: 0.5,
+    },
+    questionTitleText: {
+        fontSize: 30,
+    },
+    aboutPostText: {
+        fontStyle: 'italic',
+        marginTop: 10
+    },
+    postBodyStyle: {
+        marginTop: 15,
+        fontSize: 17
+    },
+    discussionCommentSection: {
+        margin: 10, 
+    },
+    noCommentsNoticeStyle: {
+        fontWeight: 'bold',
+        fontStyle: 'italic',
+        textAlign: 'center',
+        marginTop: 25
+    },
+    commentNumber: {
+        marginBottom: 10,
+        fontWeight: 'bold'
+    },
+    commentUserNameStyle: {
+        color: '#055607',
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
+    commentSectionStyle: {
+        borderColor: '#7A7E7B',
+        borderBottomWidth: 0.5,
+        paddingTop: 10, 
+        paddingBottom: 10
     }
 })
 

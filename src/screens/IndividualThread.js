@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import Header from '../components/Header';
+import styles from '../components/Styles';
 
 const IndividualThread = (props) => {
     const question = props.navigation.getParam('question');
@@ -221,88 +222,5 @@ const IndividualThread = (props) => {
         </View>
     )
 };
-
-const styles = StyleSheet.create({
-    aboutAppMainStyle: {
-        // marginTop: 20,
-        flex: 1,
-        backgroundColor: '#BDE1C9', 
-    },
-    headerStyle: {
-        height: 70,
-        paddingTop: 30, 
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        justifyContent: 'space-around',
-        backgroundColor: '#EFDECE'
-      },
-      headerText: {
-        alignSelf: 'center',
-        textAlign: 'center',
-        fontSize: 22,
-        color: '#055607',
-        fontWeight: 'bold',
-        paddingBottom: 40,
-        paddingTop: 0
-      },
-      headerImageStyle: {
-        width: 28, 
-        height: 28,
-        marginLeft: 10,
-        marginTop: 10
-      },
-    discussionMainSectionStyle: {
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 15,
-    },
-    discussionHeader: {
-        fontWeight: 'bold',
-        color: '#7A7E7B',
-        fontSize: 15,
-        marginTop: 20
-    },
-    questionTitleStyle: {
-        marginTop: 20,
-        paddingBottom: 12,
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-    },
-    questionTitleText: {
-        fontSize: 30,
-    },
-    aboutPostText: {
-        fontStyle: 'italic',
-        marginTop: 10
-    },
-    postBodyStyle: {
-        marginTop: 15,
-        fontSize: 17
-    },
-    discussionCommentSection: {
-        margin: 10, 
-    },
-    noCommentsNoticeStyle: {
-        fontWeight: 'bold',
-        fontStyle: 'italic',
-        textAlign: 'center',
-        marginTop: 25
-    },
-    commentNumber: {
-        marginBottom: 10,
-        fontWeight: 'bold'
-    },
-    commentUserNameStyle: {
-        color: '#055607',
-        fontWeight: 'bold',
-        marginBottom: 10
-    },
-    commentSectionStyle: {
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
-        paddingTop: 10, 
-        paddingBottom: 10
-    }
-});
 
 export default IndividualThread;
