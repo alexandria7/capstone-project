@@ -259,6 +259,7 @@ const styles = StyleSheet.create({
     plantNoNotesStyle: {
         fontStyle: 'italic',
         textAlign: 'center',
+        marginTop: 5
     },
     mainPlantSectionStyle: {
         marginLeft: 10,
@@ -565,11 +566,13 @@ const styles = StyleSheet.create({
     waterButtonTextStyle: {
         marginTop: 2,
         marginLeft: 2,
-        fontWeight: '700'
+        fontWeight: '700',
+        color: '#908F8F'
     },
     fertilizeButtonTextStyle: {
         marginTop: 7,
-        fontWeight: '700'
+        fontWeight: '700',
+        color: '#908F8F'
     },
     deletePlantButtonTouchStyle: {
         margin: 10,
@@ -606,9 +609,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5, 
         paddingBottom: 15,
         borderColor: '#055607',
-        marginBottom: 15,
-        
-    }
+        marginBottom: 15, 
+    },
+    editPlantGeneralTextStyle: {
+        // textAlign: 'center',
+        fontWeight: '600',
+        color: '#908F8F'
+    },
 })
 
 export default styles;

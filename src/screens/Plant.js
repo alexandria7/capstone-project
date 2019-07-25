@@ -197,7 +197,7 @@ const Plant = (props) => {
                     
                         onPress={() => onEditDatePress()}
                     >
-                        <Text>Edit Date</Text>
+                        <Text style={styles.editPlantGeneralTextStyle}>Edit Date</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -209,10 +209,9 @@ const Plant = (props) => {
                         <Text>{note}</Text>
                     }
                     <TouchableOpacity 
-              
                         onPress={() => onEditNotePress()}
                     >
-                        <Text>Edit Note</Text>
+                        <Text style={styles.editPlantGeneralTextStyle}>Edit Note</Text>
                     </TouchableOpacity>
                     
                 </View>
