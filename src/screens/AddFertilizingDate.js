@@ -94,40 +94,46 @@ class AddFertilizingDate extends Component {
                 <View style={styles.mainEditSectionStyle}>
                     <Text style={styles.editTextHeaderStyle}>Set New Fertilizing Date for Your Plant:</Text>
 
-                    <DatePicker
-                        style={styles.datePickerStyle}
-                        date={this.state.newFertilizingDate}
-                        mode="date"
-                        placeholder='choose date'
-                        format="MMMM Do YYYY"
-                        minDate="1980-01-01"
-                        maxDate="2050-12-31"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0
-                            },
-                            dateInput: {
-                            marginLeft: 36
-                            }
-                        }}
-                        onDateChange={(newFertilizingDate) => this.onAddDateButtonPress(newFertilizingDate)}
-                    />
+                    <View style={styles.datePickerSection}>
+                        <DatePicker
+                            style={styles.datePickerStyle}
+                            date={this.state.newFertilizingDate}
+                            mode="date"
+                            placeholder='choose date'
+                            format="MMMM Do YYYY"
+                            minDate="1980-01-01"
+                            maxDate="2050-12-31"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                marginLeft: 0
+                                },
+                                dateInput: {
+                                marginLeft: 36
+                                }
+                            }}
+                            onDateChange={(newFertilizingDate) => this.onAddDateButtonPress(newFertilizingDate)}
+                        />
+                    </View>
 
-                    <View style={styles.buttonContainer}>
-                        <Button 
-                            title="Cancel"
+                    <View style={styles.addButtonContainerStyle}>
+                        <TouchableOpacity 
+                            style={styles.cancelButtonTouchStyle}
                             onPress={() => this.onCancelPress()}
-                        />
+                        >
+                            <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                        </TouchableOpacity>    
 
-                        <Button 
-                            title="Update"
+                        <TouchableOpacity 
+                            style={styles.addButtonTouchStyle}
                             onPress={() => this.updateInfoToDatabase()}
-                        />
+                        >
+                            <Text style={styles.addButtonTextStyle}>Update</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
