@@ -161,20 +161,24 @@ const Plant = (props) => {
 
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
                 
-                <Button 
-                    title='Edit Name'
+                <TouchableOpacity
+                   
                     onPress={() => onEditNamePress()}
-                />
+                >
+                    <Text>Edit Name</Text>
+                </TouchableOpacity>
 
                 <Image 
                     style={styles.plantImageStyle}
                     source={imageSource}
                 />
 
-                <Button 
-                    title="Update Plant Image"
+                <TouchableOpacity 
+              
                     onPress={() => props.navigation.navigate('AddImage', {plantKey, plantImage})}
-                />
+                >
+                    <Text>Update Photo</Text>
+                </TouchableOpacity>
         
                 <View style={styles.plantDateStyle}>
                     <Text style={styles.plantSectionNameText}>Date Received: </Text>
@@ -186,10 +190,12 @@ const Plant = (props) => {
                     
                 </View>
 
-                <Button 
-                    title='Edit Date'
+                <TouchableOpacity 
+                
                     onPress={() => onEditDatePress()}
-                />
+                >
+                    <Text>Edit Date</Text>
+                </TouchableOpacity>
 
 
                 <View>
@@ -199,10 +205,12 @@ const Plant = (props) => {
                         <Text style={styles.plantNoNotesStyle}>No notes for this plant</Text> :
                         <Text>{note}</Text>
                     }
-                    <Button 
-                        title='Edit Note'
+                    <TouchableOpacity 
+              
                         onPress={() => onEditNotePress()}
-                    />
+                    >
+                        <Text>Edit Note</Text>
+                    </TouchableOpacity>
                     
                 </View>
 
@@ -211,10 +219,16 @@ const Plant = (props) => {
                     <View style={styles.plantLogDatesDisplay}>
                         {wateringDisplay}
                     </View>
-                    <Button 
-                        title="I just watered this! Update Log"
+                    <TouchableOpacity 
+                        style={styles.plantDropletTouchStyle}
                         onPress={() => onUpdateWaterLogPress()}
-                    />
+                    >
+                        <Image 
+                            style={{height: 20, width: 20}}
+                            source={require('../images/water-droplet.png')}
+                        />
+                        <Text style={styles.waterButtonTextStyle}>Just watered!</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View>
@@ -222,74 +236,32 @@ const Plant = (props) => {
                     <View style={styles.plantLogDatesDisplay}>
                         {fertilizingDisplay}
                     </View>
-                    <Button 
-                        title="I just fertilized! Update Log"
+                    <TouchableOpacity 
+                        style={styles.plantDropletTouchStyle}
                         onPress={() => onUpdateFertilizingLogPress()}
-                    />
+                    >
+                        <Image 
+                            style={{height: 28, width: 28}}
+                            source={require('../images/petite-fertilizer-droplet.png')}
+                        />
+                        <Text style={styles.fertilizeButtonTextStyle}>Just fertilized!</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View>
-                    <Button 
-                        title='Delete Plant'
+
+                    <TouchableOpacity 
                         onPress={() => onDeletePress()}
-                    />
+                        style={styles.deletePlantButtonTouchStyle}
+                    >
+                        <Text style={styles.deletePlantButtonTextStyle}>Delete Plant</Text>
+                    </TouchableOpacity>
+                    
                 </View>
             </ScrollView>
         </View>
         
     )
 };
-
-// const styles = StyleSheet.create({
-    // aboutAppMainStyle: {
-    //     // marginTop: 20,
-    //     flex: 1,
-    //     backgroundColor: '#BDE1C9', 
-    // },
-    // headerStyle: {
-    //     height: 70,
-    //     paddingTop: 30, 
-    //     borderColor: '#7A7E7B',
-    //     borderBottomWidth: 0.5,
-    //     justifyContent: 'space-around',
-    //     backgroundColor: '#EFDECE'
-    // },
-    // headerText: {
-    //     alignSelf: 'center',
-    //     textAlign: 'center',
-    //     fontSize: 22,
-    //     color: '#055607',
-    //     fontWeight: 'bold',
-    //     paddingBottom: 40,
-    //     paddingTop: 0
-    // },
-    // headerImageStyle: {
-    //     width: 28, 
-    //     height: 28,
-    //     marginLeft: 10,
-    //     marginTop: 10
-    // },
-    // plantNameTitle: {
-    //     marginTop: 30,
-    //     fontWeight: 'bold',
-    //     textAlign: 'center',
-    //     fontSize: 25
-    // },
-    // plantSectionNameText: {
-    //     fontWeight: 'bold'
-    // },
-    // plantImageStyle: {
-    //     width: 125, 
-    //     height: 125,
-    //     alignSelf: 'center',
-    //     marginTop: 10,
-    //     marginBottom: 30,
-    //     borderRadius: 120 / 2
-    // },
-    // plantNoNotesStyle: {
-    //     fontStyle: 'italic',
-    //     textAlign: 'center',
-    //   }
-// });
 
 export default Plant;

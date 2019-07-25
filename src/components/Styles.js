@@ -243,7 +243,8 @@ const styles = StyleSheet.create({
     },
     plantSectionNameText: {
         fontWeight: 'bold',
-        fontSize: 15
+        fontSize: 15,
+        color: '#055607'
     },
     plantImageStyle: {
         width: 125, 
@@ -269,7 +270,8 @@ const styles = StyleSheet.create({
     plantLogSectionNameText: {
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 15
+        fontSize: 15,
+        color: '#055607'
     },
     plantLogDatesDisplay: {
         borderColor: '#7A7E7B',
@@ -558,6 +560,39 @@ const styles = StyleSheet.create({
     },
     convoSectionContainerStyle: {
         marginBottom: 10
+    },
+    plantDropletTouchStyle: {
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    waterButtonTextStyle: {
+        marginTop: 2,
+        marginLeft: 2,
+        fontWeight: '700'
+    },
+    fertilizeButtonTextStyle: {
+        marginTop: 7,
+        fontWeight: '700'
+    },
+    deletePlantButtonTouchStyle: {
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#000',
+        shadowColor: '#8B8B8B',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        backgroundColor: '#CBCBCB',
+        justifyContent: 'center',
+        marginLeft: 110,
+        marginRight: 110
+    },
+    deletePlantButtonTextStyle: {
+        textAlign: 'center',
+        fontSize: 15
     }
 })
 
