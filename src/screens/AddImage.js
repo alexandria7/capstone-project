@@ -84,7 +84,7 @@ class AddImage extends Component {
     }
 
     saveImageToDatabase = () => {
-        // const plantKey = this.state.plantKey;
+        
         if (this.state.plantImage) {
             firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${this.state.plantKey}`)
                 .update({
@@ -161,35 +161,47 @@ class AddImage extends Component {
                             source={{uri: this.state.plantImage["uri"]}}
                         /> 
 
-                        <Button 
-                            title="Delete current photo"
+                        <TouchableOpacity 
+                            style={styles.photoChoiceTouchStyle}
                             onPress={() => this.onDeleteImagePress()}
-                        />
+                        >
+                            <Text style={styles.deletePhotoTextStyle}>Delete current photo</Text>
+                        </TouchableOpacity>
                     </View>
                     : null}
 
-                    <Button 
-                        title="Take Photo"
-                        onPress={() => this.onGetImagePress('camera')}
-                    />
+                    <View style={styles.photoChoiceButtonSectionStyle}>
+                        <TouchableOpacity 
+                            onPress={() => this.onGetImagePress('camera')}
+                            style={styles.photoChoiceTouchStyle}
+                        >
+                            <Text style={styles.photoChoiceTextStyle}>Take Photo</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            onPress={() => this.onGetImagePress('library')}
+                            style={styles.photoChoiceTouchStyle}
+                        >
+                            <Text style={styles.photoChoiceTextStyle}>Choose From Library</Text>
+                        </TouchableOpacity>
+                    </View>     
 
-                    <Button 
-                        title="Choose Photo From Library"
-                        onPress={() => this.onGetImagePress('library')}
-                    />      
+                    <View style={styles.addButtonContainerStyle}>
+                        <TouchableOpacity 
+                            style={styles.cancelButtonTouchStyle}
+                            onPress={() => this.props.navigation.navigate("Plant", {plantKey: this.state.plantKey})}
+                        >
+                            <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                        </TouchableOpacity>
 
-                    
-                    <Button 
-                        title="Cancel"
-                        onPress={() => this.props.navigation.navigate("Plant", {plantKey: this.state.plantKey})}
-                    />
-
-                    {this.state.plantImage ? 
-                        <Button 
-                            title="Submit!"
-                            onPress={() => this.saveImageToDatabase()} 
-                        />
-                    : null}
+                        {this.state.plantImage ? 
+                            <TouchableOpacity 
+                                style={styles.addButtonTouchStyle}
+                                onPress={() => this.saveImageToDatabase()} 
+                            >
+                                <Text style={styles.addButtonTextStyle}>Submit</Text>
+                            </TouchableOpacity>
+                        : null}
+                    </View>
                 </View>
             </View>
         )
