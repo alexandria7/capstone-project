@@ -448,8 +448,16 @@ const styles = StyleSheet.create({
     },
     commentUserNameStyle: {
         color: '#055607',
-        fontWeight: 'bold',
+        fontWeight: '700',
         marginBottom: 10
+    },
+    commentUserDateStyle: {
+        color: '#A09E9E',
+        paddingLeft: 5
+    },
+    commentUserSection: {
+        flexDirection: 'row',
+        
     },
     commentSectionStyle: {
         borderColor: '#055607',

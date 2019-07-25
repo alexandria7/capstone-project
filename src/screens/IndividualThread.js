@@ -119,25 +119,31 @@ const IndividualThread = (props) => {
 
     const allComments = comments.map((comment, i) => 
         <View key={i} style={styles.commentSectionStyle}>
-            <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
-            <Text>{comment["date"]}</Text>
+            <View style={styles.commentUserSection}>
+                <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
+                <Text style={styles.commentUserDateStyle}>| {comment["date"]}</Text>
+            </View>
+            
             <Text>{comment["comment"]}</Text>
             {
                 comment["comment_user_id"] === firebase.auth().currentUser.uid ? 
                 <View>
-                    <Button 
-                        title="Edit"
+                    <TouchableOpacity 
                         onPress={() => props.navigation.navigate("EditComment", {
                             discussionKey,
                             commentKey: comment["key"],
                             comment: comment["comment"],
                             question,
                         })}
-                    />
-                    <Button 
-                        title="Delete"
+                    >
+                        <Text>Edit</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
                         onPress={() => onDeleteCommentPress(comment["key"])}
-                    />
+                    >
+                        <Text>Delete</Text>
+                    </TouchableOpacity>    
                 </View>
                 : null
             }
