@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TouchableOpacity, Image, Alert, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, Button, TouchableOpacity, Image, Alert, ActivityIndicator, TextInput, ScrollView } from 'react-native';
 import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -16,7 +16,8 @@ class AddDiscussionThread extends Component {
         userId: '',
         userName: '',
         threadImage: undefined,
-        hasCameraPermission: null
+        hasCameraPermission: null,
+        loadingImage: false
     };
   }
 
@@ -66,8 +67,10 @@ class AddDiscussionThread extends Component {
 
         this.uploadImage(result.uri, imageRef)
           .then(() => {
-            Alert.alert("Success!");
-            this.setState({threadImage: result})
+            this.setState({
+              loadingImage: false,
+              threadImage: result
+            })
           })
           .catch((error) => {
             Alert.alert(`there was an error: ${error}`)
@@ -77,6 +80,8 @@ class AddDiscussionThread extends Component {
   }
 
   uploadImage = async (uri, imageName) => {
+    this.setState({loadingImage: true});
+
     const response = await fetch(uri);
     const blob = await response.blob();
 
@@ -175,7 +180,7 @@ class AddDiscussionThread extends Component {
               <Text style={styles.inputTitleStyle}>Body: </Text>
               <View style={styles.textAreaContainer} >
                 <TextInput 
-                  placeholder="expand on your question, post pictures, etc."
+                  placeholder="expand on your question, give some more detail, etc."
                   multiline = {true}
                   numberOfLines = {4}
                   editable = {true}
@@ -205,6 +210,14 @@ class AddDiscussionThread extends Component {
                 </TouchableOpacity>
               </View>
             </View>
+
+            {
+              this.state.loadingImage ? 
+              <View style={styles.loadingDiscussionImageStyle}>
+                  <ActivityIndicator size='large'/> 
+              </View>
+              : null
+            }
 
             {this.state.threadImage ? 
                 <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 15, }}>
