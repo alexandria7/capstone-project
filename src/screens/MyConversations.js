@@ -115,7 +115,7 @@ class MyConversations extends Component {
             key={i}
         >
             <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-            <Text style={styles.convoDateButtonStyle}>{discussion["date"]}</Text>
+            <Text style={styles.discussionInfoButtonStyle}>{discussion["date"]}</Text>
         </TouchableOpacity> 
         );
 
@@ -127,7 +127,7 @@ class MyConversations extends Component {
                 key={i}
             >
                 <Text style={styles.discussionNameButtonStyle}>{discussion["question"]}</Text>
-                <Text style={styles.convoDateButtonStyle}>{discussion["date"]}</Text>
+                <Text style={styles.discussionInfoButtonStyle}>{discussion["date"]}</Text>
             </TouchableOpacity> 
         )
 
