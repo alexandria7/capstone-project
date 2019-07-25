@@ -406,25 +406,27 @@ const styles = StyleSheet.create({
     discussionMainSectionStyle: {
         marginLeft: 15,
         marginRight: 15,
-        marginTop: 15,
+        marginTop: 8,
     },
     discussionHeader: {
         fontWeight: 'bold',
         color: '#7A7E7B',
         fontSize: 15,
-        marginTop: 20
+        marginTop: 10
     },
     questionTitleStyle: {
         marginTop: 20,
         paddingBottom: 12,
-        borderColor: '#7A7E7B',
-        borderBottomWidth: 0.5,
+        borderColor: '#055607',
+        borderBottomWidth: 1,
     },
     questionTitleText: {
         fontSize: 30,
     },
     aboutPostText: {
-        fontStyle: 'italic',
+        fontWeight: '700',
+        color: '#7A7E7B',
+        fontSize: 10,
         marginTop: 10
     },
     postBodyStyle: {
@@ -450,10 +452,27 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     commentSectionStyle: {
-        borderColor: '#7A7E7B',
+        borderColor: '#055607',
         borderBottomWidth: 0.5,
         paddingTop: 10, 
         paddingBottom: 10
+    },
+    discussionButtonContainerStyle: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10
+    },
+    discussionButtonTouchStyle: {
+        marginLeft: 7,
+        marginRight: 7
+    },
+    discussionEditButton: {
+        fontWeight: '700',
+        color: '#6A6A6A'
+    },
+    discussionDeleteButton: {
+        fontWeight: '700',
+        color: '#761C1C'
     },
     loadingPlantsListStyle: {
         paddingTop: 50

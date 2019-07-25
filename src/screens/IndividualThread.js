@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
 import Header from '../components/Header';
 import styles from '../components/Styles';
 
@@ -117,19 +117,6 @@ const IndividualThread = (props) => {
             props.navigation.navigate('IndividualThread', {discussionKey});
     };
 
-    // const onDeletePhotoPress = () => {
-    //     const photoToDelete = firebase.database().ref(`/discussions/${this.state.discussionKey}/threadImage`);
-
-    //     photoToDelete
-    //     .remove()
-    //     .then(() => {
-    //         this.setState({threadImage: undefined})
-    //     })
-    //     .catch((error) => {
-    //         console.log('there was an error deleting this image from the database: ', error)
-    //     })
-    // }
-
     const allComments = comments.map((comment, i) => 
         <View key={i} style={styles.commentSectionStyle}>
             <Text style={styles.commentUserNameStyle}>{comment["comment_user_name"]}</Text>
@@ -166,8 +153,7 @@ const IndividualThread = (props) => {
                     <Text style={styles.discussionHeader}>Discussion Thread</Text>
                     <View style={styles.questionTitleStyle}>
                         <Text style={styles.questionTitleText}>{question}</Text>
-                        <Text style={styles.aboutPostText}>{date}</Text>
-                        <Text style={styles.aboutPostText}>Posted by {userName}</Text>
+                        <Text style={styles.aboutPostText}>By {userName} | {date}</Text>
                         <Text style={styles.postBodyStyle}>{questionBody}</Text>
 
                         {
@@ -183,20 +169,27 @@ const IndividualThread = (props) => {
                         
                         {
                             firebase.auth().currentUser.uid === userId ? 
-                            <Button 
-                                title="Edit Thread"
-                                onPress={() => props.navigation.navigate('EditThread', {
-                                    discussionKey, questionBody, question, threadImage 
-                                })}
-                            /> : null
+                            <View style={styles.discussionButtonContainerStyle}>
+                                <TouchableOpacity 
+                                    onPress={() => props.navigation.navigate('EditThread', {
+                                        discussionKey, questionBody, question, threadImage 
+                                    })}
+                                    style={styles.discussionButtonTouchStyle}
+                                >
+                                    <Text style={styles.discussionEditButton}>Edit</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity 
+                                    onPress={() => onDeletePostPress()}
+                                    style={styles.discussionButtonTouchStyle}
+                                >
+                                    <Text style={styles.discussionDeleteButton}>Delete Thread</Text> 
+                                </TouchableOpacity>
+                            </View>
+                            
+                            : null
                         }
-                        {
-                            firebase.auth().currentUser.uid === userId ? 
-                            <Button 
-                                title="Delete Thread"
-                                onPress={() => onDeletePostPress()}
-                            /> : null 
-                        }
+
                     </View>
                 </View>
 
