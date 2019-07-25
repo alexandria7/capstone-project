@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Text, View, Alert, Button, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Alert, Button, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import Header from '../components/Header';
@@ -14,7 +14,8 @@ class AddImage extends Component {
         this.state = {
             plantImage: this.props.navigation.getParam('plantImage'),
             plantKey: this.props.navigation.getParam('plantKey'),
-            hasCameraPermission: null
+            hasCameraPermission: null,
+            loadingImage: false
         }
 
         this.props.navigation.addListener(
@@ -23,7 +24,8 @@ class AddImage extends Component {
                 this.setState({
                     plantImage: this.props.navigation.getParam('plantImage'),
                     plantKey: this.props.navigation.getParam('plantKey'),
-                    hasCameraPermission: null
+                    hasCameraPermission: null,
+                    loadingImage: false
                 })
             }
         )
@@ -60,8 +62,10 @@ class AddImage extends Component {
 
             this.uploadImage(result.uri, imageRef)
               .then(() => {
-                Alert.alert("Success!");
-                this.setState({plantImage: result})
+                this.setState({
+                    loadingImage: false,
+                    plantImage: result
+                });
               })
               .catch((error) => {
                 Alert.alert(`there was an error: ${error}`)
@@ -70,6 +74,8 @@ class AddImage extends Component {
     }
 
     uploadImage = async (uri, imageName) => {
+        this.setState({loadingImage: true});
+
         const response = await fetch(uri);
         const blob = await response.blob();
 
@@ -139,6 +145,14 @@ class AddImage extends Component {
                 <View style={styles.mainEditSectionStyle}>
 
                     <Text style={styles.editTextHeaderStyle}>Update Plant Photo</Text>
+
+                    {
+                        this.state.loadingImage ? 
+                        <View style={styles.loadingPlantsListStyle}>
+                            <ActivityIndicator size='large'/> 
+                        </View>
+                        : null
+                    }
         
                     {this.state.plantImage ? 
                     <View>
