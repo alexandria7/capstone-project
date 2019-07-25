@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, Alert, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, TouchableOpacity, Image } from 'react-native';
 import firebase from 'firebase';
 import Header from '../components/Header';
 import styles from '../components/Styles';
@@ -87,18 +87,22 @@ class AddComment extends Component {
                             style={styles.noteTextArea}
                         />
                     </View>
-                    <View style={styles.buttonContainer}>
-                        <Button 
-                            title="Cancel"
+                    <View style={styles.addButtonContainerStyle}>
+                        <TouchableOpacity 
+                            style={styles.cancelButtonTouchStyle}
                             onPress={() => this.props.navigation.navigate('IndividualThread', {
                                 discussionKey: this.props.navigation.getParam('discussionKey')
                             })}
-                        />
+                        >
+                            <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                        </TouchableOpacity>
 
-                        <Button 
-                            title="Submit Comment"
+                        <TouchableOpacity  
+                            style={styles.addButtonTouchStyle}
                             onPress={() => this.onSubmitCommentPress()}
-                        />
+                        >
+                            <Text style={styles.addButtonTextStyle}>Submit</Text>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
