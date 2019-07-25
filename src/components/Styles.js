@@ -618,6 +618,9 @@ const styles = StyleSheet.create({
     },
     datePickerSection: {
         marginBottom: 20
+    },
+    editInputTextSection: {
+        marginBottom: 50
     }
 })
 

@@ -77,18 +77,23 @@ class EditPlantName extends Component {
                         value={this.state.plantName}
                         onChangeText={(plantName) => this.setState({plantName})}
                         clearButtonMode='always'
+                        style={styles.editInputTextSection}
                     />
 
-                    <View style={styles.buttonContainer}>
-                        <Button 
-                            title="Cancel"
+                    <View style={styles.addButtonContainerStyle}>
+                        <TouchableOpacity 
+                            style={styles.cancelButtonTouchStyle}
                             onPress={() => this.onCancelPress()}
-                        />
+                        >
+                            <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                        </TouchableOpacity>
 
-                        <Button 
-                            title="Update"
+                        <TouchableOpacity 
+                            style={styles.addButtonTouchStyle}
                             onPress={() => this.onEditPlantButtonPress()}
-                        />
+                        >
+                            <Text style={styles.addButtonTextStyle}>Update</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
