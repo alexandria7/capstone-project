@@ -157,7 +157,7 @@ class AddDiscussionThread extends Component {
         
           <View>
             <Text style={styles.editTextHeaderStyle}>Start a Discussion Thread</Text>
-            <Text style={styles.addDiscussionBlurb}>Got a planty question, concern, or comment? Post away and other users can comment with their thoughts!</Text>
+            <Text style={styles.subTitleStyle}>Got a planty question, concern, or comment? Post away and other users can comment with their thoughts!</Text>
           </View>
 
           <ScrollView>
@@ -188,16 +188,22 @@ class AddDiscussionThread extends Component {
             </View>
 
             <View>
-              <Text>(Optional) Add a Photo</Text>
-              <Button 
-                    title="Take Photo"
-                    onPress={() => this.onGetImagePress('camera')}
-                />
+              <Text style={styles.inputTitleStyle}>(Optional) Add a Photo:</Text>
 
-                <Button 
-                    title="Choose Photo From Library"
+              <View style={styles.photoChoiceButtonSectionStyle}>
+                <TouchableOpacity 
+                      onPress={() => this.onGetImagePress('camera')}
+                      style={styles.photoChoiceTouchStyle}
+                >
+                  <Text style={styles.photoChoiceTextStyle}>Take Photo</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
                     onPress={() => this.onGetImagePress('library')}
-                />
+                    style={styles.photoChoiceTouchStyle}
+                >
+                  <Text style={styles.photoChoiceTextStyle}>Choose From Library</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
             {this.state.threadImage ? 
@@ -209,15 +215,21 @@ class AddDiscussionThread extends Component {
                 </View> : null
             }
 
-            <Button 
-                title="Cancel"
-                onPress={ () => this.props.navigation.navigate('Discussions') }
-            />
+            <View style={styles.addButtonContainerStyle}>
+              <TouchableOpacity 
+                  onPress={ () => this.props.navigation.navigate('Discussions') }
+                  style={styles.cancelButtonTouchStyle}
+              >
+                <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+              </TouchableOpacity>  
 
-            <Button 
-              title="Submit"
-              onPress={() => this.onSubmitDiscussionThreadPress()}
-            />
+              <TouchableOpacity 
+                onPress={() => this.onSubmitDiscussionThreadPress()}
+                style={styles.addButtonTouchStyle}
+              >
+                <Text style={styles.addButtonTextStyle}>Submit</Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </View>
 

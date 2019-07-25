@@ -387,6 +387,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#BDE1C9',
         margin: 3
     },
+    photoChoiceButtonSectionStyle: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 15
+    },
+    photoChoiceTextStyle: {
+        fontSize: 15,
+        fontWeight: '700',
+        shadowColor: '#858585',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.7,
+        shadowRadius: 0.8,
+    },
+    photoChoiceTouchStyle: {
+        margin: 10
+    }
 })
 
 export default styles;
