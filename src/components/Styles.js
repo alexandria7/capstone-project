@@ -239,7 +239,8 @@ const styles = StyleSheet.create({
         marginTop: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 25
+        fontSize: 25,
+        color: '#055607'
     },
     plantSectionNameText: {
         fontWeight: 'bold',
