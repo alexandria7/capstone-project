@@ -613,10 +613,12 @@ const styles = StyleSheet.create({
         marginBottom: 15, 
     },
     editPlantGeneralTextStyle: {
-        // textAlign: 'center',
         fontWeight: '600',
         color: '#908F8F'
     },
+    datePickerSection: {
+        marginBottom: 20
+    }
 })
 
 export default styles;
