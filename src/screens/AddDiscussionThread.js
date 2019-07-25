@@ -147,7 +147,8 @@ class AddDiscussionThread extends Component {
           userId: '',
           userName: '',
           threadImage: undefined,
-          hasCameraPermission: null
+          hasCameraPermission: null,
+          loadingImage: false
       });
       console.log('i should have just reset my state!!!!')
     

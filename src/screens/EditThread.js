@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import { Text, View, Button, Alert, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
+import { Text, View, Button, Alert, TouchableOpacity, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native';
 import Header from '../components/Header';
 import styles from '../components/Styles';
 
@@ -15,7 +15,8 @@ class EditThread extends Component {
             question: this.props.navigation.getParam('question'),
             questionBody: this.props.navigation.getParam('questionBody'),
             threadImage: this.props.navigation.getParam('threadImage'),
-            hasCameraPermission: null
+            hasCameraPermission: null,
+            loadingImage: false
         };
         
         console.log(this.state.threadImage)
@@ -28,7 +29,8 @@ class EditThread extends Component {
                     question: this.props.navigation.getParam('question'),
                     questionBody: this.props.navigation.getParam('questionBody'),
                     threadImage: this.props.navigation.getParam('threadImage'),
-                    hasCameraPermission: null
+                    hasCameraPermission: null,
+                    loadingImage: false
                 })
             }
         )
@@ -74,8 +76,10 @@ class EditThread extends Component {
     
             this.uploadImage(result.uri, imageRef)
               .then(() => {
-                Alert.alert("Success!");
-                this.setState({threadImage: result})
+                this.setState({
+                    loadingImage: false,
+                    threadImage: result
+                })
               })
               .catch((error) => {
                 Alert.alert(`there was an error: ${error}`)
@@ -85,6 +89,8 @@ class EditThread extends Component {
     }
 
     uploadImage = async (uri, imageName) => {
+        this.setState({loadingImage: true});
+
         const response = await fetch(uri);
         const blob = await response.blob();
     
@@ -206,6 +212,14 @@ class EditThread extends Component {
                             </View>
                         </View>
 
+
+                        {
+                            this.state.loadingImage ? 
+                            <View style={styles.loadingDiscussionImageStyle}>
+                                <ActivityIndicator size='large'/> 
+                            </View>
+                            : null
+                        }
                         
                         {
                             this.state.threadImage ?
