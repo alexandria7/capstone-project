@@ -69,16 +69,21 @@ class EditPlantNote extends Component {
                         />
                     </View> 
 
-                    <View style={styles.buttonContainer}>
-                        <Button 
-                            title="Cancel"
+                    <View style={styles.addButtonContainerStyle}>
+                        <TouchableOpacity 
+                            style={styles.cancelButtonTouchStyle}
                             onPress={() => this.onCancelPress()}
-                        />
+                        >
+                            <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                        </TouchableOpacity>
 
-                        <Button 
-                            title="Update"
+                        <TouchableOpacity 
+                            style={styles.addButtonTouchStyle}
                             onPress={() => this.updateInfoToDatabase()}
-                        />
+                        >
+                            <Text style={styles.addButtonTextStyle}>Update</Text>
+                        </TouchableOpacity>
+                       
                     </View>
                 </View>
             </View>

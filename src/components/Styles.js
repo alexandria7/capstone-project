@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     },
     textAreaContainer: {
         borderWidth: 0.5,
+        marginBottom: 30
     },
     buttonContainer: {
         marginTop: 20
