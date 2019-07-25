@@ -454,6 +454,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
         paddingTop: 10, 
         paddingBottom: 10
+    },
+    loadingPlantsListStyle: {
+        paddingTop: 50
     }
 })
 

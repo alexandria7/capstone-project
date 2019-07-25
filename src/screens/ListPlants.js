@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import { View, Text, Button, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, Button, ScrollView, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import Header from '../components/Header';
 import styles from '../components/Styles';
 
@@ -10,7 +10,7 @@ class ListPlants extends Component {
     super(props);
 
     this.state = {
-      plants: [],
+      plants: undefined,
       // selectedPlant: null
     }
   }
@@ -63,8 +63,9 @@ class ListPlants extends Component {
   }
 
   render() {
-
-    const plantList = this.state.plants.map((plant, i) => 
+    let plantList = null;
+    if (this.state.plants) {
+      plantList = this.state.plants.map((plant, i) => 
       <TouchableOpacity 
         onPress={ () => this.onPlantNameButtonPress(plant) }
         style={styles.plantContainerStyle}
@@ -73,6 +74,8 @@ class ListPlants extends Component {
         <Text style={styles.plantNameButtonStyle}>{plant["plant_name"]}</Text>
       </TouchableOpacity> 
     );
+    }
+    
 
     return (
         <View style={styles.aboutAppMainStyle}>
@@ -88,8 +91,17 @@ class ListPlants extends Component {
             >
               <Text style={styles.bigButtonTextStyle}>Add Plant</Text>
             </TouchableOpacity>
+
             {
-              this.state.plants.length === 0 ? 
+              !this.state.plants ? 
+              <View style={styles.loadingPlantsListStyle}>
+                <ActivityIndicator size='large'/> 
+              </View>
+              : null
+            }
+
+            {
+              this.state.plants && this.state.plants.length === 0 ? 
               <Text style={styles.noticeStyleName}>You have not added any plants!</Text> : 
               <ScrollView style={styles.listOfPlantsStyle}>{plantList}</ScrollView>
             }
