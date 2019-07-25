@@ -224,43 +224,56 @@ class EditThread extends Component {
                         {
                             this.state.threadImage ?
                             <View>
+                                <Text style={styles.inputTitleStyle}>Update photo:</Text>
+
                                 <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 15, }}>
                                     <Image 
                                         style={{width: 150, height: 150}}
                                         source={{uri: this.state.threadImage["uri"]}}
                                     />
                                 </View>
-                                <Button 
-                                    title="Delete photo"
+                                <TouchableOpacity 
                                     onPress={() => this.onDeletePhotoPress()}
-                                />
-                                <Text>Update photo:</Text>
+                                    style={styles.photoChoiceTouchStyle}
+                                >
+                                    <Text style={styles.deletePhotoTextStyle}>Delete Photo</Text>
+                                </TouchableOpacity>
                             </View> :
                             <View>
-                                <Text>Add image to thread:</Text>
+                                <Text style={styles.inputTitleStyle}>Add image to thread:</Text>
                             </View>
                         }
                         
-                        <Button 
-                            title="Take Photo"
-                            onPress={() => this.onGetImagePress('camera')}
-                        />
+                        <View style={styles.photoChoiceButtonSectionStyle}>
+                            <TouchableOpacity 
+                                onPress={() => this.onGetImagePress('camera')}
+                                style={styles.photoChoiceTouchStyle}
+                            >
+                                <Text style={styles.photoChoiceTextStyle}>Take Photo</Text>
+                            </TouchableOpacity>
 
-                        <Button 
-                            title="Choose Photo From Library"
-                            onPress={() => this.onGetImagePress('library')}
-                        />
+                            <TouchableOpacity 
+                                onPress={() => this.onGetImagePress('library')}
+                                style={styles.photoChoiceTouchStyle}
+                            >
+                                <Text style={styles.photoChoiceTextStyle}>Choose From Library</Text>
+                            </TouchableOpacity>
+                        </View>
 
-                        <View style={styles.buttonContainer}>
-                            <Button 
-                                title="Cancel"
+                        <View style={styles.addButtonContainerStyle}>
+                            <TouchableOpacity 
+                                style={styles.cancelButtonTouchStyle}
                                 onPress={() => this.onCancelPress()}
-                            />
+                            >
+                                <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                            </TouchableOpacity>
 
-                            <Button 
-                                title="Update"
+                            <TouchableOpacity 
+                                style={styles.addButtonTouchStyle}
                                 onPress={() => this.onEditThreadButtonPress()}
-                            />
+                            >
+                                <Text style={styles.addButtonTextStyle}>Update</Text>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </View>

@@ -400,8 +400,18 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.7,
         shadowRadius: 0.8,
     },
+    deletePhotoTextStyle: {
+        fontSize: 15,
+        fontWeight: '700',
+        shadowColor: '#858585',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.7,
+        shadowRadius: 0.8,
+        textAlign: 'center'
+    },
     photoChoiceTouchStyle: {
-        margin: 10
+        margin: 10,
+        justifyContent: 'center'
     },
     discussionMainSectionStyle: {
         marginLeft: 15,
