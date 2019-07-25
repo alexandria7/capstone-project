@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     inputSectionStyle: {
-        marginBottom: 20
+        marginBottom: 25
     },
     datePickerStyle: {
         width: 200
     },
     inputTitleStyle: {
-        fontSize: 15,
+        fontSize: 18,
         color: '#055607',
         fontWeight: 'bold'
     },
@@ -326,6 +326,43 @@ const styles = StyleSheet.create({
         backgroundColor: '#BDE1C9',
         margin: 3
     },
+    addButtonContainerStyle: {
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    cancelButtonTouchStyle: {
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#000',
+        shadowColor: '#8B8B8B',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        backgroundColor: '#CBCBCB',
+        // margin: 3
+    },
+    addButtonTouchStyle: {
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#055607',
+        shadowColor: '#055607',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        backgroundColor: '#BDE1C9',
+    },
+    cancelButtonTextStyle: {
+        fontSize: 20
+    },
+    addButtonTextStyle: {
+        fontSize: 20
+    }
 })
 
 export default styles;

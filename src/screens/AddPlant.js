@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, Button, TextInput, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
 import Header from '../components/Header';
@@ -130,15 +130,21 @@ class AddPlant extends Component {
               </View>
             </View>
 
-            <Button 
-                title="Cancel"
-                onPress={ () => this.props.navigation.navigate('ListPlants') }
-            />
+            <View style={styles.addButtonContainerStyle}>
+              <TouchableOpacity 
+                  onPress={ () => this.props.navigation.navigate('ListPlants') }
+                  style={styles.cancelButtonTouchStyle}
+              >
+                <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+              </TouchableOpacity>  
 
-            <Button 
-              title="Add Plant!"
-              onPress={ () => this.onAddPlantButtonPress() }
-            />
+              <TouchableOpacity 
+                onPress={ () => this.onAddPlantButtonPress() }
+                style={styles.addButtonTouchStyle}
+              >
+                <Text style={styles.addButtonTextStyle}>Add Plant</Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </View>
 
