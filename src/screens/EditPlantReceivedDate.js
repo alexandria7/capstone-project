@@ -42,7 +42,6 @@ class EditPlantReceivedDate extends Component {
             this.props.navigation.navigate('Plant', {
                 dateReceived: this.state.dateReceived,
                 plantKey: this.state.plantKey,
-                // pass in function for rendering of firebase list here
             });
         })
     }
@@ -54,79 +53,52 @@ class EditPlantReceivedDate extends Component {
 
                 <View style={styles.mainEditSectionStyle}>
                     <Text style={styles.editTextHeaderStyle}>Update the date you received this plant!</Text>
-                    <DatePicker
-                        style={styles.datePickerStyle}
-                        date={this.state.dateReceived}
-                        mode="date"
-                        placeholder={`${this.state.dateReceived}`}
-                        format="MMMM Do YYYY"
-                        minDate="1980-01-01"
-                        maxDate="2050-12-31"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0
-                            },
-                            dateInput: {
-                            marginLeft: 36
-                            }
-                        }}
-                        onDateChange={(dateReceived) => this.setState({dateReceived})}
-                    />
                     
-                    <View style={styles.buttonContainer}>
-                        <Button 
-                            title="Cancel"
+                    <View style={styles.datePickerSection}>
+                        <DatePicker
+                            style={styles.datePickerStyle}
+                            date={this.state.dateReceived}
+                            mode="date"
+                            placeholder={`${this.state.dateReceived}`}
+                            format="MMMM Do YYYY"
+                            minDate="1980-01-01"
+                            maxDate="2050-12-31"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                marginLeft: 0
+                                },
+                                dateInput: {
+                                marginLeft: 36
+                                }
+                            }}
+                            onDateChange={(dateReceived) => this.setState({dateReceived})}
+                        />
+                    </View>
+                    
+                    <View style={styles.addButtonContainerStyle}>
+                        <TouchableOpacity 
+                            style={styles.cancelButtonTouchStyle}
                             onPress={() => this.onCancelPress()}
-                        />
+                        >
+                            <Text style={styles.cancelButtonTextStyle}>Cancel</Text>
+                        </TouchableOpacity> 
 
-                        <Button 
-                            title="Update Date"
+                        <TouchableOpacity 
+                            style={styles.addButtonTouchStyle}
                             onPress={() => this.updateInfoToDatabase()}
-                        />
+                        >
+                            <Text style={styles.addButtonTextStyle}>Update</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
         )
     }
 }
-        
-// const styles = StyleSheet.create({
-    // aboutAppMainStyle: {
-    //     // marginTop: 20,
-    //     flex: 1,
-    //     backgroundColor: '#BDE1C9', 
-    // },
-    // headerStyle: {
-    //   height: 70,
-    //   paddingTop: 30, 
-    //   borderColor: '#7A7E7B',
-    //   borderBottomWidth: 0.5,
-    //   justifyContent: 'space-around',
-    //   backgroundColor: '#EFDECE'
-    // },
-    // headerText: {
-    //   alignSelf: 'center',
-    //   textAlign: 'center',
-    //   fontSize: 22,
-    //   color: '#055607',
-    //   fontWeight: 'bold',
-    //   paddingBottom: 40,
-    //   paddingTop: 0
-    // },
-    // headerImageStyle: {
-    //   width: 28, 
-    //   height: 28,
-    //   marginLeft: 10,
-    //   marginTop: 10
-    // },
-//     mainEditForm: {
-//         marginTop: 30
-//     }
-// })
         
 export default EditPlantReceivedDate;

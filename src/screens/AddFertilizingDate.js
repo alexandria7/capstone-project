@@ -141,38 +141,4 @@ class AddFertilizingDate extends Component {
     }
 } 
 
-// const styles = StyleSheet.create({
-//     aboutAppMainStyle: {
-//         // marginTop: 20,
-//         flex: 1,
-//         backgroundColor: '#BDE1C9', 
-//     },
-//     headerStyle: {
-//       height: 70,
-//       paddingTop: 30, 
-//       borderColor: '#7A7E7B',
-//       borderBottomWidth: 0.5,
-//       justifyContent: 'space-around',
-//       backgroundColor: '#EFDECE'
-//     },
-//     headerText: {
-//       alignSelf: 'center',
-//       textAlign: 'center',
-//       fontSize: 22,
-//       color: '#055607',
-//       fontWeight: 'bold',
-//       paddingBottom: 40,
-//       paddingTop: 0
-//     },
-//     headerImageStyle: {
-//       width: 28, 
-//       height: 28,
-//       marginLeft: 10,
-//       marginTop: 10
-//     },
-//     mainEditForm: {
-//         marginTop: 30,
-//     }
-// })
-
 export default AddFertilizingDate;
