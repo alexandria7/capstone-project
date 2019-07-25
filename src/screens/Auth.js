@@ -93,7 +93,7 @@ class Auth extends Component {
 
     render() {
         return (
-            <View style={styles.aboutAppMainStyle}>
+            <View style={styles.authScreenStyle}>
                 <Text style={styles.titleStyle}>wet your plants</Text>
 
                 <Image 

@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    authScreenStyle: {
+        flex: 1, 
+        backgroundColor: '#BDE1C9'
+    },
     aboutAppMainStyle: {
         flex: 1,
         backgroundColor: 'white', 
@@ -262,18 +266,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 23,
         fontWeight: '500',
+        color: 'white'
     },
     signInContainerStyle: {
         marginTop: 50
     },
     signInTouchStyle: {
-        borderWidth: 0.5,
-        borderColor: 'black',
+        borderWidth: 1.5,
+        borderColor: '#055607',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
         marginLeft: 60,
         marginRight: 60,
         paddingTop: 10,
         paddingBottom: 10,
-        backgroundColor: '#BDE1C9'
+        backgroundColor: '#055607'
     }
     
 })
