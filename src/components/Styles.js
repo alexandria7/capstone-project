@@ -250,17 +250,17 @@ const styles = StyleSheet.create({
         width: 125, 
         height: 125,
         alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 30,
-        borderRadius: 120 / 2
+        marginTop: 15,
+        marginBottom: 7,
+        borderRadius: 120 / 2,
+        borderColor: '#055607',
+        borderWidth: 0.5
     },
     plantNoNotesStyle: {
         fontStyle: 'italic',
         textAlign: 'center',
     },
     mainPlantSectionStyle: {
-        // paddingTop: 20,
-        // flex: 1,
         marginLeft: 10,
         marginRight: 10,
     },
@@ -269,9 +269,9 @@ const styles = StyleSheet.create({
     },
     plantLogSectionNameText: {
         fontWeight: 'bold',
-        textAlign: 'center',
         fontSize: 15,
-        color: '#055607'
+        color: '#055607',
+        marginBottom: 5
     },
     plantLogDatesDisplay: {
         borderColor: '#7A7E7B',
@@ -349,7 +349,6 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         backgroundColor: '#CBCBCB',
-        // margin: 3
     },
     addButtonTouchStyle: {
         margin: 10,
@@ -483,7 +482,6 @@ const styles = StyleSheet.create({
     deleteCommentButtonStyle: {
         marginLeft: 10,
         fontWeight: '700',
-        // color: '#761C1C'
     },
     editCommentButtonStyle: {
         fontWeight: '700',
@@ -544,8 +542,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 0.5,
     },
-    convoListPostSection: {
-        // paddingTop: 5, 
+    convoListPostSection: { 
         paddingBottom: 10
     },
     convoContainerStyle: {
@@ -593,6 +590,24 @@ const styles = StyleSheet.create({
     deletePlantButtonTextStyle: {
         textAlign: 'center',
         fontSize: 15
+    },
+    editPlantTouchStyle: {
+        justifyContent: 'center'
+    },
+    editPlantTextStyle: {
+        textAlign: 'center',
+        fontWeight: '600',
+        color: '#908F8F'
+    },
+    plantImageSectionStyle: {
+        marginBottom: 20
+    },
+    plantGeneralSection: {
+        borderBottomWidth: 0.5, 
+        paddingBottom: 15,
+        borderColor: '#055607',
+        marginBottom: 15,
+        
     }
 })
 

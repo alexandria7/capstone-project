@@ -162,43 +162,46 @@ const Plant = (props) => {
                 <Text style={styles.plantNameTitle}>{plantName}</Text>
                 
                 <TouchableOpacity
-                   
+                    style={styles.editPlantTouchStyle}
                     onPress={() => onEditNamePress()}
                 >
-                    <Text>Edit Name</Text>
+                    <Text style={styles.editPlantTextStyle}>Edit Name</Text>
                 </TouchableOpacity>
 
-                <Image 
-                    style={styles.plantImageStyle}
-                    source={imageSource}
-                />
+                <View style={styles.plantImageSectionStyle}>
+                    <Image 
+                        style={styles.plantImageStyle}
+                        source={imageSource}
+                    />
 
-                <TouchableOpacity 
-              
-                    onPress={() => props.navigation.navigate('AddImage', {plantKey, plantImage})}
-                >
-                    <Text>Update Photo</Text>
-                </TouchableOpacity>
-        
-                <View style={styles.plantDateStyle}>
-                    <Text style={styles.plantSectionNameText}>Date Received: </Text>
-                    {
-                        dateReceived === "" ? 
-                        <Text style={styles.plantNoNotesStyle}>No date given</Text> :
-                        <Text>{dateReceived}</Text>
-                    }
-                    
+                    <TouchableOpacity 
+                        style={styles.editPlantTouchStyle}
+                        onPress={() => props.navigation.navigate('AddImage', {plantKey, plantImage})}
+                    >
+                        <Text style={styles.editPlantTextStyle}>Update Photo</Text>
+                    </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity 
-                
-                    onPress={() => onEditDatePress()}
-                >
-                    <Text>Edit Date</Text>
-                </TouchableOpacity>
+                <View style={styles.plantGeneralSection}>
+                    <View style={styles.plantDateStyle}>
+                        <Text style={styles.plantSectionNameText}>Date received: </Text>
+                        {
+                            dateReceived === "" ? 
+                            <Text style={styles.plantNoNotesStyle}>No date given</Text> :
+                            <Text>{dateReceived}</Text>
+                        }
+                        
+                    </View>
 
+                    <TouchableOpacity 
+                    
+                        onPress={() => onEditDatePress()}
+                    >
+                        <Text>Edit Date</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <View>
+                <View style={styles.plantGeneralSection}>
                     <Text style={styles.plantSectionNameText}>A bit about this plant:</Text>
                 
                     {note === '' ? 
@@ -214,8 +217,8 @@ const Plant = (props) => {
                     
                 </View>
 
-                <View>
-                    <Text style={styles.plantLogSectionNameText}>Watering Log</Text>
+                <View style={styles.plantGeneralSection}>
+                    <Text style={styles.plantLogSectionNameText}>Watering Log:</Text>
                     <View style={styles.plantLogDatesDisplay}>
                         {wateringDisplay}
                     </View>
@@ -231,8 +234,8 @@ const Plant = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View>
-                    <Text style={styles.plantLogSectionNameText}>Fertilizing Log</Text>
+                <View style={styles.plantGeneralSection}>
+                    <Text style={styles.plantLogSectionNameText}>Fertilizing Log:</Text>
                     <View style={styles.plantLogDatesDisplay}>
                         {fertilizingDisplay}
                     </View>
