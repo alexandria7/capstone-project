@@ -2,33 +2,55 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 import { Text, View, Button, Alert, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
-import styles from '../components/Styles';
 import Header from '../components/Header';
+import styles from '../components/Styles';
 
 const Plant = (props) => {
 
-    const plantName = props.navigation.getParam('plantName');
-    // const plantImage = props.navigation.getParam('plantImage');
-    const dateReceived = props.navigation.getParam('dateReceived');
     const note = props.navigation.getParam('note');
     const plantKey = props.navigation.getParam('plantKey');
-    console.log(plantKey)
-    const wateringDates = props.navigation.getParam('wateringDates');
-    console.log(wateringDates)
-    const fertilizingDates = props.navigation.getParam('fertilizingDates');
+    const plantName = props.navigation.getParam('plantName');
+    let dateReceived = undefined;
+    let wateringDates = undefined;
+    let fertilizingDates = undefined;
     let plantImage = undefined;
 
-    console.log('image link works?: ', firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/image`))
     firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/image`)
         .on('value', snapshot => {
             console.log('snapshot of image object', snapshot.val());
-            // console.log('snapshot of image uri: ', snapshot.val()["uri"])
             if (snapshot.val() !== null) {
                 plantImage = snapshot.val();
             }
         })
-        
+    
+    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/date_received`)
+        .on('value', snapshot => {
+            console.log('snapshot of dateReceived object', snapshot.val());
+            
+            dateReceived = snapshot.val();
+            console.log('date received: ', dateReceived);
+        })
 
+    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/fertilizings`)
+        .on('value', snapshot => {
+            fertilizingDates = _.map(snapshot.val(), (fertilizeObject, key) => {
+                fertilizeObject.key = key;
+                return fertilizeObject;
+            });
+
+            console.log('this is the fertilizings list: ', fertilizingDates)
+        })
+
+    firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/plants/${plantKey}/waterings`)
+        .on('value', snapshot => {
+            wateringDates = _.map(snapshot.val(), (wateringObject, key) => {
+                wateringObject.key = key;
+                return wateringObject;
+            });
+    
+            console.log('this is the waterings list: ', wateringDates)
+        })
+        
     const onEditNamePress = () => {
         props.navigation.navigate('EditPlantName', {
             plantKey: plantKey,
@@ -90,6 +112,13 @@ const Plant = (props) => {
             })
             .catch((error) => {
                 console.log('there was an error deleting this plant: ', error)
+                Alert.alert(
+                    "There was an error deleting this plant from the database.",
+                    "Please try again later.",
+                    [
+                        {text: 'Ok', onPress: () => console.log('ok was pressed')},
+                    ]
+                )
             })
     }
 
@@ -149,7 +178,12 @@ const Plant = (props) => {
         
                 <View style={styles.plantDateStyle}>
                     <Text style={styles.plantSectionNameText}>Date Received: </Text>
-                    <Text>{dateReceived}</Text>
+                    {
+                        dateReceived === "" ? 
+                        <Text style={styles.plantNoNotesStyle}>No date given</Text> :
+                        <Text>{dateReceived}</Text>
+                    }
+                    
                 </View>
 
                 <Button 
