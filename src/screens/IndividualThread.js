@@ -127,7 +127,7 @@ const IndividualThread = (props) => {
             <Text>{comment["comment"]}</Text>
             {
                 comment["comment_user_id"] === firebase.auth().currentUser.uid ? 
-                <View>
+                <View style={styles.commentButtonSection}>
                     <TouchableOpacity 
                         onPress={() => props.navigation.navigate("EditComment", {
                             discussionKey,
@@ -136,13 +136,13 @@ const IndividualThread = (props) => {
                             question,
                         })}
                     >
-                        <Text>Edit</Text>
+                        <Text style={styles.editCommentButtonStyle}>Edit</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity 
                         onPress={() => onDeleteCommentPress(comment["key"])}
                     >
-                        <Text>Delete</Text>
+                        <Text style={styles.deleteCommentButtonStyle}>Delete</Text>
                     </TouchableOpacity>    
                 </View>
                 : null
@@ -209,10 +209,12 @@ const IndividualThread = (props) => {
                     </View>
 
                     <View>
-                        <Button 
-                            title="Add Comment"
+                        <TouchableOpacity 
                             onPress={() => props.navigation.navigate('AddComment', {discussionKey, question})}
-                        />
+                            style={styles.addCommentButtonTouchStyle}
+                        >
+                            <Text style={styles.addThreadButtonTextStyle}>Add comment</Text>
+                        </TouchableOpacity>
                     </View>
 
                 </View>

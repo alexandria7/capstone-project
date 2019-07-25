@@ -457,13 +457,25 @@ const styles = StyleSheet.create({
     },
     commentUserSection: {
         flexDirection: 'row',
-        
     },
     commentSectionStyle: {
         borderColor: '#055607',
         borderBottomWidth: 0.5,
         paddingTop: 10, 
         paddingBottom: 10
+    },
+    commentButtonSection: {
+        flexDirection: 'row',
+        marginTop: 9
+    },
+    deleteCommentButtonStyle: {
+        marginLeft: 10,
+        fontWeight: '700',
+        // color: '#761C1C'
+    },
+    editCommentButtonStyle: {
+        fontWeight: '700',
+        color: '#6A6A6A'
     },
     discussionButtonContainerStyle: {
         flexDirection: 'row',
@@ -480,7 +492,19 @@ const styles = StyleSheet.create({
     },
     discussionDeleteButton: {
         fontWeight: '700',
-        color: '#761C1C'
+    },
+    addCommentButtonTouchStyle: {
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#055607',
+        shadowColor: '#055607',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1.5,
+        marginLeft: 110,
+        marginRight: 110,
+        backgroundColor: '#BDE1C9',
+        marginTop: 10
     },
     loadingPlantsListStyle: {
         paddingTop: 50
