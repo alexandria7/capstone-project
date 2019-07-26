@@ -1,5 +1,5 @@
 // import React from 'react';
-import { createSwitchNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createDrawerNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import Loading from '../src/screens/Loading';
 import Auth from '../src/screens/Auth';
 import Home from '../src/screens/Home';
