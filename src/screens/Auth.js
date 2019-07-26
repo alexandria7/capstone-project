@@ -69,9 +69,9 @@ class Auth extends Component {
             console.log('User already signed-in to Firebase.');
           }
         }.bind(this));
-      }
+    }
 
-      // from Expo Google sign-in docs
+    // from Expo Google sign-in docs
     async signInWithGoogleAsync () {
         try {
             const result = await Expo.Google.logInAsync({

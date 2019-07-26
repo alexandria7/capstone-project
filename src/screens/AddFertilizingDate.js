@@ -77,7 +77,6 @@ class AddFertilizingDate extends Component {
             this.props.navigation.navigate('Plant', {
                 fertilizingDates: this.state.fertilizingDates,
                 plantKey: this.state.plantKey,
-                // pass in function for rendering of firebase list here
             });
         })
         .catch((error) => {

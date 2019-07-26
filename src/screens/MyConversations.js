@@ -24,26 +24,25 @@ class MyConversations extends Component {
     getDiscussionsFromFirebase = () => {
         firebase.database().ref(`/discussions`)
             .on('value', snapshot => {
-                // console.log(snapshot.val());
+              
                 const allDiscussions = _.map(snapshot.val(), (discussionObject, key) => {
                     discussionObject.key = key;
                     return discussionObject;
                 });
 
                 this.setState({allDiscussions});
-                // console.log('this is the discussions list from firebase', discussions)
             })
         
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/discussionsCommented`)
             .on('value', snapshot => {
-                // console.log(snapshot.val());
+                
                 const discussionsCommented = _.map(snapshot.val(), (discussionObject, key) => {
                     discussionObject.key = key;
                     return discussionObject;
                 });
 
                 this.setState({discussionsCommented});
-                // console.log(discussionsCommented)
+           
             })
     }
 
@@ -73,7 +72,7 @@ class MyConversations extends Component {
         const commentedDiscussions = [];
 
         this.state.allDiscussions.forEach((post) => {
-            // console.log('this is a post...', post)
+          
             if (post["userId"] === firebase.auth().currentUser.uid) {
                 startedDiscussions.push(post)
             }
@@ -91,7 +90,7 @@ class MyConversations extends Component {
         const map = new Map();
         for (const post of commentedDiscussions) {
             if(!map.has(post["key"])){
-                map.set(post["key"], true);    // set any value to Map
+                map.set(post["key"], true);    
                 console.log('in myConvo, these are comments: ', post["comments"])
                 commentedNoDups.push({
                     key: post["key"],
@@ -104,9 +103,6 @@ class MyConversations extends Component {
                 });
             }
         }
-
-        console.log('the commented discussions are: ', commentedDiscussions)
-        console.log('the commented discussions without dups are, ', commentedNoDups)
 
         const writtenPosts = startedDiscussions.map((discussion, i) => 
         <TouchableOpacity 

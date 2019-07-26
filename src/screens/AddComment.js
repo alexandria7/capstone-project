@@ -34,7 +34,6 @@ class AddComment extends Component {
               'Please enter a comment before submitting.',
               [
                 {text: 'Ok', onPress: () => console.log('ok was pressed')}
-                // {text: 'Delete', onPress: () => deletePlant()}
               ]
             )
           } else {

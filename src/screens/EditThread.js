@@ -19,7 +19,6 @@ class EditThread extends Component {
             loadingImage: false
         };
         
-        console.log(this.state.threadImage)
         // tells react-navigation to focus/look at these params
         this.props.navigation.addListener(
             'willFocus',

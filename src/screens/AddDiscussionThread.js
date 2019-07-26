@@ -41,7 +41,6 @@ class AddDiscussionThread extends Component {
         'Please enter a question or comment before submitting.',
         [
           {text: 'Ok', onPress: () => console.log('ok was pressed')}
-          // {text: 'Delete', onPress: () => deletePlant()}
         ]
       )
     } else {
@@ -113,8 +112,7 @@ class AddDiscussionThread extends Component {
         userId: firebase.auth().currentUser.uid,
         userName: firebase.auth().currentUser.displayName,
         discussionKey: dataRef,
-        date: todaysDate,
-        // threadImage: this.state.threadImage
+        date: todaysDate
       })
     } else {
       const dataRef = firebase.database().ref('/discussions')
@@ -138,20 +136,15 @@ class AddDiscussionThread extends Component {
       })
     }
 
-    
-
-      console.log('about to reset the state!!!!!')
-      this.setState({
-          question: '',
-          questionBody: '',
-          userId: '',
-          userName: '',
-          threadImage: undefined,
-          hasCameraPermission: null,
-          loadingImage: false
-      });
-      console.log('i should have just reset my state!!!!')
-    
+    this.setState({
+        question: '',
+        questionBody: '',
+        userId: '',
+        userName: '',
+        threadImage: undefined,
+        hasCameraPermission: null,
+        loadingImage: false
+    });    
   }
 
   render() {
@@ -251,75 +244,5 @@ class AddDiscussionThread extends Component {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-  // addPlantMainStyle: {
-  //     // marginTop: 20,
-  //     flex: 1,
-  //     backgroundColor: '#BDE1C9', 
-  //     // justifyContent: 'space-between'
-  // },
-  // headerStyle: {
-  //   height: 70,
-  //   paddingTop: 30, 
-  //   borderColor: '#7A7E7B',
-  //   borderBottomWidth: 0.5,
-  //   justifyContent: 'space-around',
-  //   backgroundColor: '#EFDECE'
-  // },
-  // headerText: {
-  //   alignSelf: 'center',
-  //   textAlign: 'center',
-  //   fontSize: 22,
-  //   color: '#055607',
-  //   fontWeight: 'bold',
-  //   paddingBottom: 40,
-  //   paddingTop: 0
-  // },
-  // headerImageStyle: {
-  //   width: 28, 
-  //   height: 28,
-  //   marginLeft: 10,
-  //   marginTop: 10
-  // },
-  // addDiscussionForm: {
-  //   marginLeft: 10,
-  //   marginRight: 10,
-  //   paddingTop: 20,
-  //   flex: 1
-  // },
-  // addDiscussionTitle: {
-  //   fontSize: 35,
-  //   fontWeight: 'bold',
-  //   color: '#055607',
-  //   textAlign: 'center',
-  //   marginBottom: 15
-  // },  
-  // addDiscussionBlurb: {
-  //   textAlign: 'center',
-  //   fontSize: 15,
-  //   fontWeight: '800',
-  //   marginBottom: 20
-  //   // fontStyle: 'italic'
-  // },
-  // inputSectionStyle: {
-  //   marginBottom: 20
-  // }, 
-  // inputTitleStyle: {
-  //   fontSize: 15,
-  //   color: '#055607',
-  //   fontWeight: 'bold'
-  // }, 
-  // datePickerStyle: {
-  //   width: 200
-  // },
-//   questionBodyTextArea: {
-//     height: 100,
-//     justifyContent: "flex-start"
-//   },
-//   // textAreaContainer: {
-//   //   borderWidth: 0.5,
-//   // },
-// });
 
 export default AddDiscussionThread;

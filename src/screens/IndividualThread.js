@@ -14,7 +14,6 @@ const IndividualThread = (props) => {
     const date = props.navigation.getParam('date');
     let comments = undefined;
     let threadImage = undefined;
-    // console.log('this is the incoming thread image: ', threadImage)
 
     firebase.database().ref(`/discussions/${discussionKey}/comments`)
         .on('value', snapshot => {
@@ -28,12 +27,11 @@ const IndividualThread = (props) => {
     firebase.database().ref(`/discussions/${discussionKey}/threadImage`)
         .on('value', snapshot => {
             console.log('snapshot of thread object', snapshot.val());
-            // console.log('snapshot of image uri: ', snapshot.val()["uri"])
+            
             if (snapshot.val() !== null) {
                 threadImage = snapshot.val();
             }
-            // plantImage = snapshot.val()["image"];
-            console.log('this is the thread image: ', threadImage)
+
         })
 
     const onDeletePostPress = () => {
@@ -61,7 +59,7 @@ const IndividualThread = (props) => {
                 discussionByUserRef.orderByChild('id').equalTo(`${discussionKey}`)
                     .once('value').then((snapshot) => {
                         snapshot.forEach((childSnapshot) => {
-                        //remove each child
+                        
                         discussionByUserRef.child(childSnapshot.key).remove()
                             .then(() => {console.log('discussion reference deleted from user')})
                             .catch((error) => {console.log('there was an error deleting this discussion\'s ref from the user: ', error)})
@@ -101,7 +99,7 @@ const IndividualThread = (props) => {
                 commentByUserRef.orderByChild('comment_key').equalTo(`${commentKey}`)
                     .once('value').then((snapshot) => {
                         snapshot.forEach((childSnapshot) => {
-                        //remove each child
+                        
                         commentByUserRef.child(childSnapshot.key).remove()
                             .then(() => {console.log('comment reference deleted from user')})
                             .catch((error) => {console.log('there was an error deleting this comment\'s ref from the user: ', error)})

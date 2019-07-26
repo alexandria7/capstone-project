@@ -43,7 +43,6 @@ class EditPlantNote extends Component {
                 dateReceived: this.state.dateReceived,
                 plantKey: this.state.plantKey,
                 note: this.state.note
-                // pass in function for rendering of firebase list here
             });
         })
     }
@@ -90,59 +89,5 @@ class EditPlantNote extends Component {
         )
     }
 }
-
-// const styles = StyleSheet.create({
-//     aboutAppMainStyle: {
-//         // marginTop: 20,
-//         flex: 1,
-//         backgroundColor: '#BDE1C9', 
-//     },
-//     headerStyle: {
-//       height: 70,
-//       paddingTop: 30, 
-//       borderColor: '#7A7E7B',
-//       borderBottomWidth: 0.5,
-//       justifyContent: 'space-around',
-//       backgroundColor: '#EFDECE'
-//     },
-//     headerText: {
-//       alignSelf: 'center',
-//       textAlign: 'center',
-//       fontSize: 22,
-//       color: '#055607',
-//       fontWeight: 'bold',
-//       paddingBottom: 40,
-//       paddingTop: 0
-//     },
-//     headerImageStyle: {
-//       width: 28, 
-//       height: 28,
-//       marginLeft: 10,
-//       marginTop: 10
-//     },
-//     mainEditSectionStyle: {
-//         paddingTop: 20,
-//         flex: 1,
-//         marginLeft: 10,
-//         marginRight: 10,
-//     },
-//     editTextHeaderStyle: {
-//         fontSize: 35,
-//         fontWeight: 'bold',
-//         color: '#055607',
-//         textAlign: 'center',
-//         marginBottom: 20
-//     },
-//     noteTextArea: {
-//         height: 100,
-//         justifyContent: "flex-start"
-//     },
-//     textAreaContainer: {
-//         borderWidth: 0.5,
-//     },
-//     buttonContainer: {
-//         marginTop: 20
-//     }
-// })
 
 export default EditPlantNote;

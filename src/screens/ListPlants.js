@@ -11,11 +11,9 @@ class ListPlants extends Component {
 
     this.state = {
       plants: undefined,
-      // selectedPlant: null
     }
   }
 
-  // look into changing this rendering 
   componentDidMount () {
     this.getPlantListFromFireBase();
   }
@@ -57,7 +55,6 @@ class ListPlants extends Component {
       plantKey: plant["key"],
       wateringDates: wateringList,
       fertilizingDates: fertilizingList
-      // pass in function for rendering of firebase list here
     }); 
 
   }
@@ -105,8 +102,6 @@ class ListPlants extends Component {
               <Text style={styles.noticeStyleName}>You have not added any plants!</Text> : 
               <ScrollView style={styles.listOfPlantsStyle}>{plantList}</ScrollView>
             }
-
-
           </View>
         </View>
       );

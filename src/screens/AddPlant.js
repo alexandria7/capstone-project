@@ -24,7 +24,6 @@ class AddPlant extends Component {
         'You must name your plant before it can be added to the database.',
         [
           {text: 'Ok', onPress: () => console.log('ok was pressed')}
-          // {text: 'Delete', onPress: () => deletePlant()}
         ]
       )
     } else {
@@ -41,27 +40,19 @@ class AddPlant extends Component {
         note: this.state.note,
       }).key
 
-      console.log('the state of plantKey is', this.state.plantKey )
+    this.props.navigation.navigate('Plant', {
+      plantName: this.state.plantName,
+      receivedDate: this.state.dateReceived,
+      note: this.state.note, 
+      plantKey: dataRef,
+    })
 
-        console.log('the childId of this new plant is', dataRef)
-        console.log('plant added to database with the name', this.state.plantName);
-
-        this.props.navigation.navigate('Plant', {
-          plantName: this.state.plantName,
-          receivedDate: this.state.dateReceived,
-          note: this.state.note, 
-          plantKey: dataRef,
-        })
-
-        console.log('about to reset the state!!!!!')
-        this.setState({
-          plantKey: '',
-          plantName: '',
-          dateReceived: '',
-          note: '',
-        });
-        console.log('i should have just reset my state!!!!')
-    
+    this.setState({
+      plantKey: '',
+      plantName: '',
+      dateReceived: '',
+      note: '',
+    });    
   }
 
   render() {

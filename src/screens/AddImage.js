@@ -116,7 +116,7 @@ class AddImage extends Component {
               {text: 'Cancel', onPress: () => console.log('cancel was pressed'), style: 'cancel'},
               {text: 'Delete', onPress: () => this.deletePhoto()}
             ]
-          )
+        )
     }
 
     deletePhoto = () => {
