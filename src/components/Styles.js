@@ -71,10 +71,20 @@ const styles = StyleSheet.create({
     aboutTitleStyle: {
         fontSize: 15,
         fontWeight: 'bold',
-        marginBottom: 10
+        marginBottom: 10,
+        textAlign: 'center'
     },
     aboutMainBlurbStyle: {
-        fontSize: 15
+        fontSize: 15,
+        paddingBottom: 10
+    },
+    aboutSignatureText: {
+        fontSize: 15,
+        paddingBottom: 10,
+        fontFamily: 'Zapfino'
+    },
+    aboutTheAppSection: {
+        margin: 15
     },
     titleStyle: {
         fontSize: 50,
