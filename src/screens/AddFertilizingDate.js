@@ -73,6 +73,14 @@ class AddFertilizingDate extends Component {
                     this.setState({fertilizingDates})
                     console.log('this is the fertilizings list from firebase', fertilizingDates)
                 })
+
+            Alert.alert(
+                `Succesfully added new fertilizing date.`,
+                'Good job!',
+                [
+                    {text: 'Ok', onPress: console.log('ok was pressed')}
+                ]
+            )
                 
             this.props.navigation.navigate('Plant', {
                 fertilizingDates: this.state.fertilizingDates,

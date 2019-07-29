@@ -73,6 +73,14 @@ class AddWateringDate extends Component {
                     this.setState({wateringDates})
                     console.log('this is the waterings list from firebase', wateringDates)
                 })
+
+            Alert.alert(
+                `Succesfully added new watering date.`,
+                'Good job!',
+                [
+                    {text: 'Ok', onPress: console.log('ok was pressed')}
+                ]
+            )
                 
             this.props.navigation.navigate('Plant', {
                 wateringDates: this.state.wateringDates,
