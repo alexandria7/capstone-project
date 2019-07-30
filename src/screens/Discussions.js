@@ -30,6 +30,8 @@ class Discussions extends Component {
                     return discussionObject;
                 });
 
+                discussions.reverse();
+
                 this.setState({discussions})
             })
     }
